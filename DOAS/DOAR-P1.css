@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+html, body {
+    overflow: hidden;
+  }
+  
+
+.GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
+.pxgraphic {
+    display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 60px 50px;
+}
+.pxgraphic div {
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.preview_image{
+    position: absolute;
+}
+.service { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.service a{
+    position: absolute;
+    display: flex;
+    padding-left: 1700px;
+    padding-top: 20px;
+}
+

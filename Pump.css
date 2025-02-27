@@ -1,0 +1,180 @@
+   /* ตั้งค่าให้ html และ body ครอบคลุมหน้าจอทั้งหมด */
+   html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
+  body {
+    background: url('image/Pump.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+  }
+   /* Navbar ที่อยู่ด้านบน */
+   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 105px;
+    background: linear-gradient(to right, #2BAAE0 , #1E327D);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 2000;
+  }
+  
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    font-size: 3em;
+    text-decoration: none;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin-left: 60px;
+
+  }
+  
+  .navbar-item a {
+    text-decoration: none;
+    color: #ADB5B2;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  
+  @media (max-width: 1500px) {
+    .sidebar {
+      width: 30%;  /* Sidebar ครอบคลุมความกว้างเต็มจอ */
+    }
+  }
+
+  @media (min-width: 800px) {
+    .status-table 
+    .sidebar{
+      width: 80%;            /* ตารางจะมีความกว้าง 80% ของ container */
+      margin: 40px auto 0;   /* จัดให้อยู่ตรงกลางโดยใช้ margin ซ้ายขวา auto */
+    }
+  }
+
+   /* Container มี padding ด้านล่าง */
+   .container {
+    padding-bottom: 20px; /* ปรับระยะห่างด้านล่างได้ตามต้องการ */
+    margin: 0 auto;
+    width: 95%;
+  }
+  /* จัดเรียง 7 ช่องในแถวเดียว */
+  .display-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 90px;
+  }
+  /* สไตล์ของแต่ละช่อง */
+  .field {
+    position: relative;
+    flex: 1;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 700px 0 0;
+    height: 80px; /* ปรับความสูงได้ตามต้องการ */
+    padding: 5px;
+  }
+  /* สไตล์หัวข้อในแต่ละช่อง */
+  .field-header {
+    background-color: #4D4D4D;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  /* สไตล์ค่าที่แสดงในแต่ละช่อง */
+  .field-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 10px;
+    gap: 0px;
+}
+
+/* ปรับให้หน่วย V อยู่ติดกับตัวเลข */
+.unit {
+  position: absolute;
+  right: 15px; /* ปรับระยะห่างจากขอบขวา */
+  font-size: 1em;
+  font-weight: bold;
+}
+
+/* สีของหน่วย */
+.voltage {
+    color: red;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.current {
+    color: red;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.speed {
+  color: red;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.power {
+  color: red;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.head {
+  color: red;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.flow {
+  color: red;
+  font-weight: normal;
+  font-size: 20px;
+}
+.percent {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  margin-left: 5px;
+}

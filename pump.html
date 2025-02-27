@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Pump.css" />
+    <title>Pump</title>
+</head>
+<body>
+
+    <h2>ข้อมูลจาก Node-RED</h2>
+    <div id="data">รอข้อมูล...</div>
+  
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a class="navbar-logo" >PUMP</a>
+          <ul class="navbar-menu">
+            <li class="navbar-item"><a href="index.html">Home</a></li>
+            <li class="navbar-item"><a href="non-chem.html">NON-CHEMICAL</a></li>
+            <li class="navbar-item"><a href="DOAR-P1.html">DOAR</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container">
+      <!-- ช่องแสดงค่าการทำงาน 7 ช่อง -->
+      <div class="display-fields">
+        <div class="field">
+          <div class="field-header">MOTOR STATUS</div>
+          <div id="motorValue" class="field-value">OFF</div>
+        </div>
+        <div class="field">
+          <div class="field-header">VOLTAGE</div>
+          <div class="field-value">
+              <span id="voltageValue" class="value-number">0.00</span>
+              <span class="unit voltage">V</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-header">CURRENT</div>
+          <div class="field-value">
+            <span id="currentValue" class="value-number">0.00</span>
+            <span class="unit current">A</span>
+        </div>
+        </div>
+        <div class="field">
+          <div class="field-header">VSD SPEED</div>
+          <div class="field-value">
+              <span id="speedValue" class="value-number">0.00</span>
+              <span class="unit speed">%</span>
+        </div>
+        </div>
+        <div class="field">
+          <div class="field-header">OPERATION POWER</div>
+          <div class="field-value">
+            <span id="powerValue" class="value-number">0.00</span>
+            <span class="unit power">kW</span>
+        </div>
+        </div>
+        <div class="field">
+          <div class="field-header">HEAD</div>
+          <div class="field-value">
+            <span id="headValue" class="value-number">0.00</span>
+            <span class="unit head">ft</span>
+        </div>
+        </div>
+        <div class="field">
+          <div class="field-header">FLOW</div>
+          <div class="field-value">
+            <span id="flowValue" class="value-number">0.00</span>
+            <span class="unit flow">GPM</span>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+         // สร้างการเชื่อมต่อ WebSocket
+ var ws = new WebSocket("ws://10.121.15.37:1880/ws/pump");
+
+// เมื่อเชื่อมต่อสำเร็จ
+ws.onopen = function() {
+  console.log("เชื่อมต่อ WebSocket สำเร็จ");
+};
+
+// เมื่อได้รับข้อความ
+ws.onmessage = function(event) {
+// รับข้อมูลในรูปแบบ string และแปลงเป็น JSON object
+var data = JSON.parse(event.data);
+
+  // สมมุติว่า JSON มีโครงสร้างเช่น
+  // { "voltage": 220, "current": 5, "speed": 60, "power": 2.5 }
+  
+  // อัปเดตข้อมูลลงใน element HTML ที่มี id ตามที่กำหนดไว้
+  document.getElementById("voltageValue").innerText = data.voltage;
+  document.getElementById("currentValue").innerText = data.current;
+  document.getElementById("speedValue").innerText = data.speed;
+  document.getElementById("powerValue").innerText = data.power;
+  document.getElementById("headValue").innerText = data.head;
+  document.getElementById("flowValue").innerText = data.flow;
+  document.getElementById("motorValue").innerText = data.motor;
+  
+  
+};
+
+// เมื่อเกิดข้อผิดพลาด
+ws.onerror = function(error) {
+  console.error("ข้อผิดพลาดใน WebSocket: ", error);
+};
+
+// เมื่อการเชื่อมต่อปิดลง
+ws.onclose = function() {
+  console.log("การเชื่อมต่อ WebSocket ถูกปิด");
+};
+    </script>
+  </body>

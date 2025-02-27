@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viveport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="DOAS/DOAR-P2.css" />
+
+  </head>
+  <body>
+
+
+  <div class="GP">
+    <a><img src="DOAS/BG-P2.jpg"></a>
+    
+    
+    <a><img src="DOAS/STp2.png"></a>    
+    <a><img src="DOAS/Air-BG.png"></a>
+  </div>
+
+
+  <div class="AQIP2">
+  <a><img src="DOAS/Good.png"></a>
+  <a><img src="DOAS/Mod.png" ></a>
+  <a><img src="DOAS/Bad p2.png"></a>
+</div>
+
+<div class="Filter">
+  <a><img src="DOAS/FilterP2.gif" width="1920px" height="1080px"></a>
+  <a><img src="DOAS/WHEEL-GIF-DOAR.gif" width="1920px" height="1080px"></a>
+</div>
+<div class="sa">
+  <a><img src="DOAS/P2 EBM-GIF-DOAR.gif"></a>
+  <a><img src="DOAS/P2 ZA(1)-GIF-DOAR.gif"></a>
+</div>
+
+<div class="ea">
+  <a><img src="DOAS/P2 ZA(2)-GIF-DOAR.gif"></a>
+</div>
+
+
+<div class="GP">
+  <a><img src="DOAS/linep2.png"width="1860" height="1075"></a>
+  <div class="text1">
+    <h1>
+      <span class="smoke">&nbsp;NORMAL</span>
+      <span id="flow_sa" class="saflow">1000</span>
+      <span id="sa_t" class="satemp">25</span>
+      <span class="rafilter1">CLEAR</span>
+      <span class="rafilter2">&nbsp;100</span>
+      <span id="ra_t" class="ratemp">26.5</span>
+      <span id="ra_h" class="rahum">&nbsp;80.0</span>
+      <span id="flow_ea" class="eaflow">80.0</span>
+    </h1>
+  </div>
+  <div class="sa1">
+    <h1>
+      <span id="sa1_st">RUN</span>
+      <h1>
+        <span  id="sa1_ac">&nbsp;650</span>
+      </h1>
+    </h1>
+  </div>
+
+  <div class="ea1">
+    <h1>
+      <span  id="ea_st">RUN</span>
+      <h1>
+        <span  id="ea_ac">&nbsp;650</span>
+      </h1>
+    </h1>
+  </div>
+  <div class="sa2">
+    <h1>
+      <span id="ebm_st">RUN</span>
+      <h1>
+        <span  id="ebm_ac">&nbsp;650</span>
+      </h1>
+    </h1>
+  </div>
+
+  <div class="valveT1">
+    <h1>
+      <span id="t1_ev">15</span>
+      <span class="valveflow">1500</span>
+    </h1>
+  </div>
+  <div class="text10">
+    <h1>
+      <span class="dpt">600</span>
+      <span id="t2_ev" class="valveT2">&nbsp;&nbsp;15</span>
+      <span class="valvepercent">25</span>
+      <span id="oa_lev_t" class="LevwheelTemp">&nbsp;25.0</span>
+      <span id="oa_lev_h" class="Levwheelhum">&nbsp;&nbsp;&nbsp;85.0</span>
+      <span class="EFF">&nbsp;&nbsp;95.0</span>
+      <span id="oa_t" class="outTemp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24.0</span>
+      <span id="oa_h" class="outhum">&nbsp;&nbsp;80.0</span>
+      <span class="safilter1">&nbsp;&nbsp;CLEAR</span>
+      <span class="safilter2">100</span>
+    </h1>
+  </div>
+
+  
+</div>
+
+<div class="energyP2">
+  <a href="#"><img src="DOAS/P2-ENERGY.png" width="128" height="129"></a>
+</div>
+<div class="simP2">
+  <a href="#"><img src="DOAS/P2-SIMULATION.png" width="128" height="129"></a>
+</div>
+<div class="EmerP2">
+  <a href="#"><img src="DOAS/P2-BG-EMC.png" width="128" height="129"></a>
+</div>
+<div class="settingP2">
+  <a href="DOAS/DOAR-P4.html"><img src="DOAS/P2-SETTING.png" width="128" height="129"></a>
+</div>
+<div class="GP">
+  <img src="DOAS/Not.png"class="GP" width="300px" height="150px" alt="Not" usemap="#px" allowfullscreen>
+      <map name="px">
+        <area shape="rect" coords="0,0,300,200" alt="not" href="DOAR-P1.html">
+        
+      </map> 
+</div> 
+
+
+<script>
+  // สร้างการเชื่อมต่อ WebSocket
+var ws = new WebSocket("ws://10.121.15.37:1880/ws/doar");
+
+// เมื่อเชื่อมต่อสำเร็จ
+ws.onopen = function() {
+console.log("เชื่อมต่อ WebSocket สำเร็จ");
+};
+
+// เมื่อได้รับข้อความ
+ws.onmessage = function(event) {
+// รับข้อมูลในรูปแบบ string และแปลงเป็น JSON object
+var data = JSON.parse(event.data);
+
+// T_H
+document.getElementById("ra_t").innerText = data.ra_t ;
+document.getElementById("ra_h").innerText = data.ra_h ;
+document.getElementById("sa_t").innerText = data.sa_t ;
+//document.getElementById("sa_h").innerText = data.sa_h ;
+document.getElementById("oa_t").innerText = data.oa_t ;
+document.getElementById("oa_h").innerText = data.oa_h ;
+document.getElementById("oa_lev_t").innerText = data.lev_t ;
+document.getElementById("oa_lev_h").innerText = data.oa_lev_h ;
+
+//Fan
+document.getElementById("sa1_ac").innerText = data.sa1_ac ;
+document.getElementById("sa1_st").innerText = data.sa1_st ;
+document.getElementById("ebm_ac").innerText = data.ebm_ac ;
+document.getElementById("ebm_st").innerText = data.ebm_st ;
+document.getElementById("ea_ac").innerText = data.ea_ac;
+document.getElementById("ea_st").innerText = data.ea_st;
+
+//Sensor
+document.getElementById("t1_ev").innerText = data.t1_ev;
+document.getElementById("t2_ev").innerText = data.t2_ev;
+document.getElementById("flow_ea").innerText = data.flow_ea;
+document.getElementById("flow_sa").innerText = data.flow_sa;
+
+
+// เมื่อเกิดข้อผิดพลาด
+ws.onerror = function(error) {
+console.error("ข้อผิดพลาดใน WebSocket: ", error);
+};
+
+// เมื่อการเชื่อมต่อปิดลง
+ws.onclose = function() {
+console.log("การเชื่อมต่อ WebSocket ถูกปิด");
+};
+}
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',serif;
+}
+html, body {
+    overflow: hidden;
+  }
+  
+
+.GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
+.pxgraphic {
+    display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 250px 50px;
+}
+.settingP2 {   
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 900px;
+    padding-top: 15px;
+}
+.energyP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1100px;
+    padding-top: 15px;
+}
+.simP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 700px;
+    padding-top: 15px;
+}
+.EmerP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1750px;
+    padding-top: 10px;
+}
+.AQIP2 { 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.AQIP2 a{
+    position: absolute;
+    display: flex;  
+}
+.Filter {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+    display: flex;
+}
+.Filter a {
+    position: absolute;
+    padding-top: 1100px;
+}
+.sa {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+}
+.sa a {
+    position:absolute;
+    display: flex;
+    transform: translate(81px, -5px);
+}
+.ea {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+}
+.ea a {
+    position:absolute;
+    display: flex;
+    transform: translate(29px, 10px);
+}
+
+.text1 {
+font-size:0.5cm;
+display: inline-block;
+
+}
+.text1 h1{
+    padding-top: 225px;
+    padding-left: 70px;
+}
+.smoke {
+    margin-right: 160px;
+}
+.saflow{
+    margin-right: 150px;
+}
+.eaflow{
+    margin-inline-start: 170px;
+}
+.satemp {
+    margin-inline-start: 100px;
+}
+.rafilter2{
+    margin-right: 150px;
+}
+.rafilter1{
+    margin-inline-start: 170px;
+}
+.ratemp {
+    margin-inline-start: -25px;
+}
+.rahum {
+    margin-inline-start: 60px;
+}
+.text10 {
+    padding-left: 80px;
+    padding-top: 10px;
+}
+.dpt{
+    margin-right: 150px;
+}
+.valveT2{
+    margin-right: 150px;
+}
+.valvepercent {
+    margin-inline-start: 100px;
+}
+.LevwheelTemp {
+    margin-inline-start: 160px;
+}
+.Levwheelhum{
+    margin-inline-start: 60px;
+}
+.EFF{
+    margin-inline-start: 110px;
+}
+.outTemp {
+    margin-inline-start: 100px;
+}
+.outhum{
+    margin-inline-start: 70px;
+}
+.safilter1{
+    margin-inline-start: 50px;
+}
+.safilter2 {
+    margin-inline-start: 20px;
+}
+.valveT1 {
+    padding-left: 307px;
+    padding-top: 395px;
+}
+.valveflow{
+    margin-inline-start: 230px;
+}
+.sa1 {
+    color: #ffffff;
+    padding-left: 430px;
+    padding-top: 90px;
+}
+.sa1 h1{
+    color: #ffffff;
+    padding-top: 5px;
+}
+.ea1 {
+    color: #ffffff;
+    padding-left: 1750px;
+    margin-top: -12px;
+}
+.ea1 h1{
+    color: #ffffff;
+    padding-top: 5px;
+}
+.sa2 {
+    color: #ffffff;
+    margin-top: -40px;
+    padding-left: 430px;
+    padding-top: 0px;
+}
+.sa2 h1{
+    color: #ffffff;
+    padding-top: 5px;
+}
