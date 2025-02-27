@@ -8,12 +8,21 @@
   
   /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
   body {
-    background: url('image/EST.jpg') no-repeat center center fixed;
+    /* background: url('image/EST.jpg') no-repeat center center fixed; */
     background-size: cover;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;
     font-weight: 550;
     font-style: normal;
+  }
+  .Gp{
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  .Gp a {
+    position: absolute;
+    display: flex;
   }
   
   /* Sidebar สำหรับแสดงตารางสถานะด้านซ้าย */

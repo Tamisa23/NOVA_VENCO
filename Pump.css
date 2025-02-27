@@ -8,13 +8,23 @@
   
   /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
   body {
-    background: url('image/Pump.jpg') no-repeat center center fixed;
+    /* background: url('image/Pump.jpg') no-repeat center center fixed; */
     background-size: cover;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;
     font-weight: 550;
     font-style: normal;
   }
+  .GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
    /* Navbar ที่อยู่ด้านบน */
    .navbar {
     position: fixed;
@@ -82,6 +92,7 @@
     padding-bottom: 20px; /* ปรับระยะห่างด้านล่างได้ตามต้องการ */
     margin: 0 auto;
     width: 95%;
+    margin-left: 25px;
   }
   /* จัดเรียง 7 ช่องในแถวเดียว */
   .display-fields {
@@ -89,6 +100,7 @@
     justify-content: space-between;
     gap: 30px;
     margin-top: 90px;
+    position: absolute;
   }
   /* สไตล์ของแต่ละช่อง */
   .field {
@@ -102,14 +114,14 @@
     align-items: center;
     justify-content: space-between;
     margin: 700px 0 0;
-    height: 80px; /* ปรับความสูงได้ตามต้องการ */
+    height: 90px; /* ปรับความสูงได้ตามต้องการ */
     padding: 5px;
   }
   /* สไตล์หัวข้อในแต่ละช่อง */
   .field-header {
     background-color: #4D4D4D;
     border-radius: 5px;
-    width: 100%;
+    width: 230px;
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;

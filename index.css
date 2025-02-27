@@ -1,20 +1,27 @@
 
    /* ตั้งค่าให้ html และ body ครอบคลุมหน้าจอทั้งหมด */
+  
    html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-  }
-  
-  /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
-  body {
-    background: url('image/BG_01.jpg') no-repeat center center fixed;
-    background-size: cover;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;
     font-weight: 550;
     font-style: normal;
+  }
+  
+  /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
+  .Gp{
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: absolute;
+  }
+  .Gp a {
+    position: absolute;
+    display: flex;
   }
  /* Navbar ที่อยู่ด้านบน */
  .navbar {
