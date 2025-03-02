@@ -1,0 +1,136 @@
+   /* ตั้งค่าพื้นหลัง */
+   body {
+    margin: 0;
+    padding: 0;
+    background: url('../image/HOME/BG_01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #2BAAE0, #1E327D);
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 35px 20px;
+    font-size: 60px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+/* สไตล์ของ VENCO */
+.navbar .brand {
+    margin-right: 20px;
+}
+
+/* กำหนดขนาดของไอคอน */
+.corner-link img {
+    width: 25vw;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+.video-link img {
+    width: 5vw;
+    max-width: 150px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+/* เอฟเฟกต์เมื่อ hover */
+.corner-link img:hover, .video-link img:hover {
+    transform: scale(1.2);
+}
+
+/* ตำแหน่งไอคอน */
+.corner-link {
+    position: fixed;
+}
+
+.top-left { top: 22vh; left: 8vw; }
+.top-right { top: 22vh; right: 7vw; }
+.bottom-left { bottom: 9vh; left: 8vw; }
+.bottom-right { bottom: 9vh; right: 7vw; }
+
+/* กล่องวิดีโอ */
+.video-section {
+    position: fixed;
+    display: flex;
+    gap: 10px;
+}
+
+/* วิดีโอแต่ละตำแหน่ง */
+.video-top-left { top: 20vh; left: 3.5vw; }
+.video-top-right { top: 20vh; right: 3.5vw; }
+.video-bottom-right { bottom: 6vh; right: 3vw; }
+
+/* Responsive สำหรับ iPad และแท็บเล็ต */
+@media (max-width: 1024px) {
+    .corner-link img {
+        width: 14vw;
+        max-width: 130px;
+    }
+    .video-link img {
+        width: 8vw;
+        max-width: 100px;
+    }
+    .top-left { top: 20vh; left: 10vw; }
+    .top-right { top: 20vh; right: 10vw; }
+    .bottom-left { bottom: 7vh; left: 10vw; }
+    .bottom-right { bottom: 7vh; right: 10vw; }
+
+    /* ปรับตำแหน่งวิดีโอ */
+    .video-top-left { top: 20vh; left: 2vw; }
+    .video-top-right { top: 20vh; right: 2vw; }
+    .video-bottom-right { bottom: 7vh; right: 2vw; }
+}
+
+/* Responsive สำหรับมือถือแนวตั้ง */
+@media (max-width: 768px) {
+    .corner-link img{
+        width: 16vw;
+        max-width: 110px;
+    }
+    .video-link img {
+        width: 8vw;
+        max-width: 100px;
+    }
+    .top-left { top: 15vh; left: 10vw; }
+    .top-right { top: 15vh; right: 10vw; }
+    .bottom-left { bottom: 5vh; left: 10vw; }
+    .bottom-right { bottom: 5vh; right: 10vw; }
+
+    /* ปรับตำแหน่งวิดีโอ */
+    .video-top-left { top: 15vh; left: 1vw; }
+    .video-top-right { top: 15vh; right: 1vw; }
+    .video-bottom-right { bottom: 5vh; right: 1vw; }
+}
+
+/* Responsive สำหรับมือถือจอเล็กสุด */
+@media (max-width: 480px) {
+    .corner-link img, .video-link img {
+        width: 18vw;
+        max-width: 90px;
+    }
+    .top-left { top: 12vh; left: 2vw; }
+    .top-right { top: 12vh; right: 2vw; }
+    .bottom-left { bottom: 4vh; left: 2vw; }
+    .bottom-right { bottom: 4vh; right: 2vw; }
+
+    /* ปรับตำแหน่งวิดีโอ */
+    .video-section {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .video-top-left { top: 12vh; left: 12vw; }
+    .video-top-right { top: 12vh; right: 12vw; }
+    .video-bottom-right { bottom: 4vh; right: 12vw; }
+}

@@ -1,0 +1,248 @@
+/* ✅ ตั้งค่า Background ให้ปรับขนาดตามหน้าจอ */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ✅ ปรับขนาด Background */
+body {
+  background: url('../image/NON/EST.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; /* พื้นหลังไม่เลื่อน */
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 550;
+  font-style: normal;
+}
+
+/* ✅ Responsive Background */
+@media (max-width: 1024px) {
+  body {
+    background-size: cover;
+    background-position: center top;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* ✅ Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12vh;
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1vw;
+  z-index: 2000;
+}
+
+/* ✅ Container จัดเรียง Navbar */
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ✅ โลโก้ */
+.navbar-logo {
+  font-size: 2.5vw;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ✅ เมนูหลัก (เรียงขวา) */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-left: 30px;
+}
+
+.navbar-item a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5vw;
+  transition: color 0.3s;
+}
+
+.navbar-item a:hover {
+  color: #FFCC00;
+}
+
+/* ✅ Hamburger Menu (มือถือ) */
+.menu-toggle {
+  display: none;
+  font-size: 3vw;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* ✅ Sidebar (ปรับขนาดตามหน้าจอ) */
+.sidebar {
+  position: fixed;
+  top: 10vh; /* ขยับลงเพื่อไม่ให้ทับ Navbar */
+  left: 0;
+  width: 20vw;
+  height: 90vh;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* ✅ ตารางสถานะ */
+.status-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  margin-top: 50px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.status-table th {
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+
+.status-table th, .status-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+/* ✅ ตารางมุมขวาล่าง */
+.bottom-right-table {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  width: 30vw;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ ตารางสถานะ (Responsive) */
+.status-table-container {
+  width: 100%;
+  overflow-x: auto; /* เพิ่ม Scroll แนวนอนเมื่อจอเล็ก */
+}
+
+.status-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.status-table th {
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+}
+
+.status-table th, .status-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  overflow-wrap: break-word;
+  font-size: 1vw; /* ทำให้ข้อความปรับขนาดตามหน้าจอ */
+}
+/* ✅ Responsive Background */
+@media (max-width: 1440px) {
+  body {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* ✅ Responsive สำหรับแท็บเล็ต */
+@media (max-width: 1024px) {
+  body {
+    background-size: contain; /* ป้องกันภาพโดนครอปมากเกินไป */
+    background-position: center top;
+  }
+  .status-table th, .status-table td {
+    font-size: 1.5vw;
+    padding: 8px;
+  }
+  .status-table-container {
+    overflow-x: auto;
+  }
+}
+
+/* ✅ Responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+  body {
+    background-size: cover; /* กลับมาใช้ cover เพื่อให้เต็มจอ */
+    background-position: center;
+  }
+  .status-table th, .status-table td {
+    font-size: 2vw;
+    padding: 6px;
+  }
+
+  /* เพิ่ม Scroll ในมือถือ */
+  .status-table-container {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .status-table {
+    width: 120%;
+  }
+}
+
+/* ✅ Responsive สำหรับมือถือจอเล็ก */
+@media (max-width: 480px) {
+  body {
+    background-size: cover;
+    background-position: center;
+  }
+  .status-table th, .status-table td {
+    font-size: 1vw;
+    padding: 2px;
+  }
+
+  .status-table {
+    width: 100%;
+  }
+}

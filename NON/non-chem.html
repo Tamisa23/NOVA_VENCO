@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="non-chem.css" />
+    <title>Non Chemical</title>
+</head>
+<body>
+
+   <!-- ✅ Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- โลโก้อยู่ซ้าย -->
+    <a class="navbar-logo">NON-CHEMICAL</a>
+    
+    <!-- Hamburger Menu สำหรับมือถือ -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- เมนูหลัก -->
+    <ul class="navbar-menu">
+      <li class="navbar-item"><a href="../HOME/index.html">Home</a></li>
+      <li class="navbar-item"><a href="../PUMP/pump.html">Pump</a></li>
+      <li class="navbar-item"><a href="../DOAR-P1.html">DOAR</a></li>
+    </ul>
+  </div>
+</nav>
+    
+    <!-- Sidebar แสดงตารางสถานะ -->
+    <div class="sidebar">
+      <table class="status-table">
+        <colgroup>
+          <col style="width: 60%;">
+          <col style="width: 40%;">
+        </colgroup>
+        <tr>
+          <th colspan="2" style="border-radius: 10px;">EST System</th>
+        </tr>
+        <tr>
+          <td>pH Water</td>
+          <td id="phValue" class="rounded-cell">0.00 pH</td>
+        </tr>
+        <tr>
+          <td>Water Conductivity</td>
+          <td id="conductivityValue" class="rounded-cell">0.00 mS</td>
+        </tr>
+        <tr>
+          <td>Electrodes Voltage</td>
+          <td id="voltValue" class="rounded-cell">0.00 V</td>
+        </tr>
+        <tr>
+          <td>Electrodes Current</td>
+          <td id="ampValue"class="rounded-cell">0.00 A</td>
+        </tr>
+        <tr>
+          <th colspan="2" style="border-radius: 10px;">Scraper &amp; Circulation Pump</th>
+        </tr>
+        <tr>
+          <td colspan="2">Time Between Scraper Operation</td>
+        </tr>
+        <tr>
+          <td>Cycle of Scraper/hour</td>
+          <td id="cycleValue"class="rounded-cell">0.00</td>
+        </tr>
+        <tr>
+          <td>Motor Scraper</td>
+          <td id="scraperValue" class="rounded-cell">OFF</td>
+        </tr>
+        <tr>
+          <td>Circulation Pump</td>
+          <td id="circulationValue" class="rounded-cell">OFF</td>
+        </tr>
+        <tr>
+          <th colspan="2" style="border-radius: 10px;">Dosing Pump Control</th>
+        </tr>
+        <tr>
+          <td>ON (pH)</td>
+          <td id="onValue"class="rounded-cell">0.00</td>
+        </tr>
+        <tr>
+          <td>OFF (pH)</td>
+          <td id="offValue"class="rounded-cell">0.0</td>
+        </tr>
+        <tr>
+          <td>Dosing Pump</td>
+          <td id="dosingValue" class="rounded-cell">OFF</td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- ตารางมุมล่างขวา -->
+<div class="bottom-right-table">
+  <table class="status-table">
+    <colgroup>
+      <col style="width: 60%;">
+      <col style="width: 40%;">
+    </colgroup>
+    <tr>
+      <th id="washingConductHeader" colspan="2" style="border-radius: 10px;">Washing By Conductivity</th>
+    </tr>
+    <tr>
+      <th id="washingTimeHeader"colspan="2" style="border-radius: 10px;">Washing By Time</th>
+    </tr>
+    <tr>
+      <th id="washingFlowHeader" colspan="2" style="border-radius: 10px;">Washing By Flow</th>
+    </tr>
+    <tr>
+      <td>Washing of Cycles (min)</td>
+      <td id="washingValue" class="rounded-cell">0.0</td>
+    </tr>
+    <tr>
+      <td>Time of Washing (sec)</td>
+      <td id="timeValue" class="rounded-cell">0.0</td>
+    </tr>
+  </table>
+</div>
+    </div>
+    <div class="field">
+      <div class="field-header">STATE FLOW</div>
+      <div id="stateflow" class="field-value"></div>
+      <div class="field-header">STATE TIME</div>
+      <div id="statetime" class="field-value"></div>
+      <div class="field-header">STATE CONDUCTIVITY</div>
+      <div id="stateconduct" class="field-value"></div>
+    </div>
+
+<script>
+
+function toggleMenu() {
+  document.querySelector(".navbar-menu").classList.toggle("active");
+}
+
+
+      // สร้างการเชื่อมต่อ WebSocket
+var ws = new WebSocket("ws://10.121.15.37:1880/ws/non");
+
+// เมื่อเชื่อมต่อสำเร็จ
+ws.onopen = function() {
+console.log("เชื่อมต่อ WebSocket สำเร็จ");
+};
+
+// เมื่อได้รับข้อความ
+ws.onmessage = function(event) {
+// รับข้อมูลในรูปแบบ string และแปลงเป็น JSON object
+var data = JSON.parse(event.data);
+
+// สมมุติว่า JSON มีโครงสร้างเช่น
+// { "voltage": 220, "current": 5, "speed": 60, "power": 2.5 }
+
+// อัปเดตข้อมูลลงใน element HTML ที่มี id ตามที่กำหนดไว้
+document.getElementById("phValue").innerText = data.ph + " pH";
+document.getElementById("conductivityValue").innerText = data.conductivity + " mS";
+document.getElementById("voltValue").innerText = data.volt + " V";
+document.getElementById("ampValue").innerText = data.amp + " A";
+document.getElementById("cycleValue").innerText = data.cycle + " ";  // หรือหน่วยที่เหมาะสม
+document.getElementById("scraperValue").innerText = data.scraper; // ถ้าเป็นสถานะ เช่น "ON"/"OFF"
+document.getElementById("circulationValue").innerText = data.circulation; // เช่น "ON"/"OFF"
+document.getElementById("onValue").innerText = data.on + " pH";
+document.getElementById("offValue").innerText = data.off + " pH";
+document.getElementById("washingValue").innerText = data.washing + " min"; // ปรับตามหน่วยที่ต้องการ
+document.getElementById("timeValue").innerText = data.time + " sec";
+document.getElementById("dosingValue").innerText = data.dosing;
+
+
+var washingFlowHeader = document.getElementById("washingFlowHeader");
+if (data.stateflow === false) {
+  washingFlowHeader.innerText = "Washing By Flow";
+  washingFlowHeader.classList.add("grayStyle");
+} else {
+  washingFlowHeader.innerText = "Washing By Flow";
+  washingFlowHeader.classList.remove("grayStyle");
+}
+
+
+var washingFlowHeader = document.getElementById("washingTimeHeader");
+if (data.statetime === false) {
+  washingTimeHeader.innerText = "Washing By Time";
+  washingTimeHeader.classList.add("grayStyle");
+} else {
+  washingTimeHeader.innerText = "Washing By Time";
+  washingTimeHeader.classList.remove("grayStyle");
+}
+
+
+var washingFlowHeader = document.getElementById("washingConductHeader");
+if (data.stateconduct === false) {
+  washingConductHeader.innerText = "Washing By Conductivity";
+  washingConductHeader.classList.add("grayStyle");
+} else {
+  washingConductHeader.innerText = "Washing By Conductivity";
+  washingConductHeader.classList.remove("grayStyle");
+}
+};
+
+
+// เมื่อเกิดข้อผิดพลาด
+ws.onerror = function(error) {
+console.error("ข้อผิดพลาดใน WebSocket: ", error);
+};
+
+// เมื่อการเชื่อมต่อปิดลง
+ws.onclose = function() {
+console.log("การเชื่อมต่อ WebSocket ถูกปิด");
+};
+ </script>
+
+  </body>
+</html>

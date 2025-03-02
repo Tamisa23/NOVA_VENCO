@@ -1,0 +1,117 @@
+   /* ตั้งค่าให้ html และ body ครอบคลุมหน้าจอทั้งหมด */
+   html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    background: url('../image/HOME/BG_01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+
+    /* ทำให้พื้นหลังเฟดเข้ามา */
+    animation: fadeInBackground 2s ease-in-out;
+}
+
+/* สร้าง overlay ให้พื้นหลังจางๆ */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* ปรับความจางที่นี่ (0.4 = 40% ทึบ) */
+    z-index: -1;
+    animation: fadeOverlay 2s ease-in-out;
+}
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOverlay {
+    from {
+        opacity: 0.8; /* เริ่มต้นให้ทึบมากกว่าปกติ */
+    }
+    to {
+        opacity: 0.4; /* ค่อยๆ จางลงจนเป็น 40% */
+    }
+}
+
+/* ✅ Navbar ที่อยู่ด้านบนและปรับขนาดอัตโนมัติ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10vh; /* ทำให้สูง 10% ของหน้าจอ */
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  display: flex;
+  align-items: center;
+  padding: 0 5vw; /* ใช้ vw เพื่อปรับให้เข้ากับหน้าจอ */
+  z-index: 2000;
+}
+
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ✅ Navbar Logo ปรับขนาดอัตโนมัติ */
+.navbar-logo {
+  font-size: 3vw; /* ปรับขนาดตามหน้าจอ */
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ Responsive Navbar */
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 12vh; /* เพิ่มขนาด Navbar บนมือถือ */
+    padding: 0 3vw;
+  }
+  .navbar-logo {
+    font-size: 5vw;
+  }
+}
+
+/* ✅ วิดีโอแบบเต็มจอ เล่นอัตโนมัติ */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container video {
+  max-width: 60%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ ปรับขนาดวิดีโอสำหรับมือถือ */
+@media screen and (max-width: 768px) {
+  .video-container video {
+    width: 90vw;
+    height: auto;
+  }
+}
