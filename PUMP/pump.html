@@ -6,26 +6,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Pump.css" />
+    <link rel="stylesheet" href="../PUMP/Pump.css" />
     <title>Pump</title>
 </head>
 <body>
-
-    <h2>ข้อมูลจาก Node-RED</h2>
-    <div id="data">รอข้อมูล...</div>
-
-    <div class="GP">
-      <a><img src="image/Pump.jpg"></a>
-    </div>
 
       <!-- Navbar -->
       <nav class="navbar">
         <div class="navbar-container">
           <a class="navbar-logo" >PUMP</a>
           <ul class="navbar-menu">
-            <li class="navbar-item"><a href="index.html">Home</a></li>
-            <li class="navbar-item"><a href="non-chem.html">NON-CHEMICAL</a></li>
-            <li class="navbar-item"><a href="DOAR-P1.html">DOAR</a></li>
+            <li class="navbar-item"><a href="../HOME/index.html">Home</a></li>
+            <li class="navbar-item"><a href="../NON/non-chem.html">NON-CHEMICAL</a></li>
+            <li class="navbar-item"><a href="../DOAR/DOAR-P1.html">DOAR</a></li>
           </ul>
         </div>
       </nav>
@@ -34,49 +27,42 @@
       <!-- ช่องแสดงค่าการทำงาน 7 ช่อง -->
       <div class="display-fields">
         <div class="field">
-          <div class="field-header">MOTOR STATUS</div>
+          <div class="field-header">MOTOR</div>
           <div id="motorValue" class="field-value">OFF</div>
         </div>
         <div class="field">
           <div class="field-header">VOLTAGE</div>
           <div class="field-value">
-              <span id="voltageValue" class="value-number">0.00</span>
-              <span class="unit voltage">V</span>
+              <span id="voltageValue" class="value-number">0.00 V</span>
           </div>
         </div>
         <div class="field">
           <div class="field-header">CURRENT</div>
           <div class="field-value">
-            <span id="currentValue" class="value-number">0.00</span>
-            <span class="unit current">A</span>
-        </div>
+            <span id="currentValue" class="value-number">0.00 A</span>        </div>
         </div>
         <div class="field">
           <div class="field-header">VSD SPEED</div>
           <div class="field-value">
-              <span id="speedValue" class="value-number">0.00</span>
-              <span class="unit speed">%</span>
+              <span id="speedValue" class="value-number">0.00 %</span>
         </div>
         </div>
         <div class="field">
-          <div class="field-header">OPERATION POWER</div>
+          <div class="field-header">POWER</div>
           <div class="field-value">
-            <span id="powerValue" class="value-number">0.00</span>
-            <span class="unit power">kW</span>
+            <span id="powerValue" class="value-number">0.00 kW</span>
         </div>
         </div>
         <div class="field">
           <div class="field-header">HEAD</div>
           <div class="field-value">
-            <span id="headValue" class="value-number">0.00</span>
-            <span class="unit head">ft</span>
+            <span id="headValue" class="value-number">0.00 ft</span>
         </div>
         </div>
         <div class="field">
           <div class="field-header">FLOW</div>
           <div class="field-value">
-            <span id="flowValue" class="value-number">0.00</span>
-            <span class="unit flow">GPM</span>
+            <span id="flowValue" class="value-number">0.00 GPM</span>
         </div>
         </div>
       </div>

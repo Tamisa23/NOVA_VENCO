@@ -1,192 +1,304 @@
-   /* ตั้งค่าให้ html และ body ครอบคลุมหน้าจอทั้งหมด */
-   html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  /* ตั้งค่าพื้นหลังของ body ให้แสดงภาพที่ครอบคลุมหน้าจอ */
+/* ✅ ตั้งค่า Background ให้เต็มหน้าจอ */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ✅ ปรับขนาด Background */
+body {
+  background: url('../image/PUMP/Pump.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Roboto", serif;
+}
+
+/* ✅ Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10vh;
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  z-index: 2000;
+}
+
+/* ✅ Container จัดเรียง Navbar */
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ✅ โลโก้ */
+.navbar-logo {
+  font-size: 3.5vw;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ✅ เมนูหลัก */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-left: 30px;
+}
+
+.navbar-item a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5vw;
+  transition: color 0.3s;
+}
+
+.navbar-item a:hover {
+  color: #FFCC00;
+}
+
+/* ✅ Container ของตาราง */
+.display-fields {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 ช่องใน 1 แถว */
+  gap: 10px;
+  justify-content: center;
+  position: absolute;
+  top: 90%; /* ปรับตำแหน่งแนวตั้ง */
+  left: 50%; /* ปรับตำแหน่งแนวนอน */
+  transform: translate(-50%, -50%); /* ทำให้ Grid อยู่กึ่งกลาง */
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* ✅ ช่องข้อมูล */
+.field {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  padding: 5px;
+  text-align: center;
+}
+
+/* ✅ หัวข้อของช่อง */
+.field-header {
+  background-color: #4D4D4D;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #ffffff;
+  padding: 5px;
+}
+
+/* ✅ ค่าที่แสดง */
+.field-value {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ✅ Responsive สำหรับแท็บเล็ต */
+@media (max-width: 1024px) {
   body {
-    /* background: url('image/Pump.jpg') no-repeat center center fixed; */
-    background-size: cover;
+    background: url('../image/PUMP/Pump.jpg') no-repeat center center;
+    background-size: contain;
+    background-attachment: fixed;
     font-family: "Roboto", serif;
-    font-optical-sizing: auto;
-    font-weight: 550;
-    font-style: normal;
   }
-  .GP {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
-}
-.GP a {
-    position: absolute;
-    display: flex;  
-}
-   /* Navbar ที่อยู่ด้านบน */
-   .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 105px;
-    background: linear-gradient(to right, #2BAAE0 , #1E327D);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 2000;
-  }
-  
-  .navbar-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-logo {
-    font-size: 3em;
-    text-decoration: none;
-    color: #000000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .navbar-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-item {
-    margin-left: 60px;
-
-  }
-  
-  .navbar-item a {
-    text-decoration: none;
-    color: #ADB5B2;
-    font-size: 1.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  
-  @media (max-width: 1500px) {
-    .sidebar {
-      width: 30%;  /* Sidebar ครอบคลุมความกว้างเต็มจอ */
-    }
-  }
-
-  @media (min-width: 800px) {
-    .status-table 
-    .sidebar{
-      width: 80%;            /* ตารางจะมีความกว้าง 80% ของ container */
-      margin: 40px auto 0;   /* จัดให้อยู่ตรงกลางโดยใช้ margin ซ้ายขวา auto */
-    }
-  }
-
-   /* Container มี padding ด้านล่าง */
-   .container {
-    padding-bottom: 20px; /* ปรับระยะห่างด้านล่างได้ตามต้องการ */
-    margin: 0 auto;
-    width: 95%;
-    margin-left: 25px;
-  }
-  /* จัดเรียง 7 ช่องในแถวเดียว */
   .display-fields {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 120px;
-    position: absolute;
-  }
-  /* สไตล์ของแต่ละช่อง */
+    grid-template-columns: repeat(7, 1fr); /* 2 ช่องต่อแถว */
+    top: 66%;  /* ปรับตำแหน่งแนวตั้ง */
+    left: 50%; /* ปรับตำแหน่งแนวนอน */
+    transform: translate(-50%, -50%);
+}
+/* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
+.navbar {
+  position: fixed;
+  top: 27%;  /* อยู่กึ่งกลางจอ */
+  left: 50%; /* อยู่กึ่งกลางจอแนวนอน */
+  transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+  width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+  height: 6vh;
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 1vw;
+  z-index: 2000;
+  border-radius: 10px;
+}
+.navbar-item a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 2.5vw;
+  transition: color 0.3s;
+}
+
   .field {
-    position: relative;
-    flex: 1;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin: 700px 0 0;
-    height: 90px; /* ปรับความสูงได้ตามต้องการ */
+    justify-content: center;
+    height: 90px;
     padding: 5px;
+    text-align: center;
+      height: 50px;
   }
-  /* สไตล์หัวข้อในแต่ละช่อง */
+
   .field-header {
     background-color: #4D4D4D;
     border-radius: 5px;
-    width: 230px;
+    width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 1.5em;
     color: #ffffff;
-    margin-bottom: 5px;
+    padding: 5px;
+      font-size: 0.9em;
   }
-  /* สไตล์ค่าที่แสดงในแต่ละช่อง */
+
   .field-value {
+      font-size: 1.2em;
+  }
+}
+
+/* ✅ Responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+  body {
+    background: url('../image/PUMP/Pump.jpg') no-repeat center center;
+    background-size: contain;
+    background-attachment: fixed;
+    font-family: "Roboto", serif;
+    background-position: 30% 8%;
+
+  }
+  .display-fields {
+    grid-template-columns: repeat(2, 1fr); /* 2 ช่องต่อแถว */
+    top: 60%;  /* ปรับตำแหน่งแนวตั้ง */
+    left: 50%; /* ปรับตำแหน่งแนวนอน */
+    transform: translate(-50%, -50%);
+}
+/* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
+.navbar {
+  position: fixed;
+  top: 3%;  /* อยู่กึ่งกลางจอ */
+  left: 50%; /* อยู่กึ่งกลางจอแนวนอน */
+  transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+  width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+  height: 7vh;
+  background: linear-gradient(to right, #2BAAE0 , #1E327D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1vw;
+  z-index: 2000;
+  border-radius: 10px;
+}
+
+  .field {
+      height: 70px;
+  }
+
+  .field-header {
+      font-size: 0.9em;
+  }
+
+  .field-value {
+      font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .display-fields {
+      grid-template-columns: repeat(1, minmax(50px, 1fr)); /* 1 ช่องต่อแถว */
+      top: 65%;
+  }
+  .navbar-item a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 4vw;
+    transition: color 0.3s;
+  }
+
+  .field {
+      height: 70px;
+      width: 95%;
+  }
+
+  .field-header {
+      font-size: 0.8em;
+  }
+
+  .field-value {
+      font-size: 1.2em;
+  }
+}
+@media (max-height: 500px) and (max-width: 1024px) {
+  body {
+    background: url('../image/PUMP/Pump.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Roboto", serif;
+    background-position: 30% 8%;
+
+  }
+  .navbar {
+    position: fixed;
+    top: 7%;  /* อยู่กึ่งกลางจอ */
+    left: 50%; /* อยู่กึ่งกลางจอแนวนอน */
+    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+    width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+    height: 15vh;
+    background: linear-gradient(to right, #2BAAE0 , #1E327D);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333;
-    padding-bottom: 10px;
-    gap: 0px;
+    padding: 0 1vw;
+    z-index: 2000;
+    border-radius: 10px;
+  }
+  .display-fields {
+    grid-template-columns: repeat(7, minmax(50px, 1fr)); /* 1 ช่องต่อแถว */
+    top: 90%;
+}
+.navbar-item a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 2vw;
+  transition: color 0.3s;
 }
 
-/* ปรับให้หน่วย V อยู่ติดกับตัวเลข */
-.unit {
-  position: absolute;
-  right: 15px; /* ปรับระยะห่างจากขอบขวา */
-  font-size: 1em;
-  font-weight: bold;
+.field {
+    height: 40px;
+    width: 95%;
 }
 
-/* สีของหน่วย */
-.voltage {
-    color: red;
-    font-weight: normal;
-    font-size: 20px;
+.field-header {
+    font-size: 0.8em;
 }
 
-.current {
-    color: red;
-    font-weight: normal;
-    font-size: 20px;
+.field-value {
+    font-size: 1.2em;
 }
-
-.speed {
-  color: red;
-  font-weight: normal;
-  font-size: 20px;
-}
-
-.power {
-  color: red;
-  font-weight: normal;
-  font-size: 20px;
-}
-
-.head {
-  color: red;
-  font-weight: normal;
-  font-size: 20px;
-}
-
-.flow {
-  color: red;
-  font-weight: normal;
-  font-size: 20px;
-}
-.percent {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: red;
-  margin-left: 5px;
 }

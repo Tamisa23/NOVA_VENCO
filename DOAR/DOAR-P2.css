@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',serif;
+}
+html, body {
+    overflow: hidden;
+  }
+  
+
+.GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
+.pxgraphic {
+    display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 250px 50px;
+}
+.settingP2 {   
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 900px;
+    padding-top: 15px;
+}
+.energyP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1100px;
+    padding-top: 15px;
+    
+}
+.simP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 700px;
+    padding-top: 15px;
+}
+.EmerP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1750px;
+    padding-top: 10px;
+}
+.AQIP2 { 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.AQIP2 a{
+    position: absolute;
+    display: flex;  
+}
+.Filter {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+    display: flex;
+}
+.Filter a {
+    position: absolute;
+    padding-top: 1085px;
+}
+.sa {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+}
+.sa a {
+    position:absolute;
+    display: flex;
+    transform: translate(81px, -5px);
+}
+.ea {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    align-items: center;
+    padding-left: 0px;
+    position: absolute;
+}
+.ea a {
+    position:absolute;
+    display: flex;
+    transform: translate(29px, 10px);
+}
+
+.smoke{
+    padding-left: 115px;
+    padding-top: 217px;
+}
+.box{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    font-size: 0.9cm;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 60px; /* ปรับความสูงได้ตามต้องการ */
+}
+.SAflow{
+    padding-left: 400px;
+    padding-top: 0px;
+}
+.SAtemp{
+    padding-left: 730px;
+    padding-top: 0px;
+}
+.RAfilter{
+    padding-left: 985px;
+    padding-top: 0px;
+}
+.RAfilter2{
+    padding-left: 1100px;
+    padding-top: 0px;
+}
+.RAtemp{
+    padding-left: 1300px;
+    padding-top: 0px;
+}
+.RAhum{
+    padding-left: 1460px;
+    padding-top: 0px;
+}
+.EAflow{
+    padding-left: 1700px;
+    padding-top: 0px;
+}
+/* ---------------------------------FAN-------------------------------------- */
+.boxfan{
+    position: absolute;
+    color: white;
+    display: flex;
+    font-size: 0.9cm;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 60px; /* ปรับความสูงได้ตามต้องการ */
+}
+.EBM{
+    padding-left: 430px;
+    padding-top: 135px;
+}
+.EBMspeed{
+    padding-left: 430px;
+    padding-top: 45px;
+}
+.ZA2{
+    padding-left: 1750px;
+    padding-top: 30px;
+}
+.ZA2speed{
+    padding-left: 1750px;
+    padding-top: 45px;
+}
+.ZA1{
+    padding-left: 430px;
+    padding-top: 0px;
+}
+.ZA1speed{
+    padding-left: 430px;
+    padding-top: 45px;
+}
+/* ---------------------------------------------------------------------- */
+.box2{
+    position: absolute;
+    color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 0.9cm;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 60px; /* ปรับความสูงได้ตามต้องการ */
+}
+.DPT{
+    padding-left: 70px;
+    padding-top: 40px;
+}
+.EVtemp1{
+    padding-left: 290px;
+    padding-top: 435px;
+}
+.EVtemp2{
+    padding-left: 290px;
+    padding-top: 0px;
+}
+.valvepercent{
+    padding-left: 420px;
+    padding-top: 0px;
+}
+.valveflow{
+    padding-left: 580px;
+    padding-top: 0px;
+}
+.LEVtemp{
+    padding-left: 800px;
+    padding-top: 0px;
+}
+.LEVhum{
+    padding-left: 960px;
+    padding-top: 0px;
+}
+.EFF{
+    padding-left: 1160px;
+    padding-top: 0px;
+}
+.OAtemp{
+    padding-left: 1360px;
+    padding-top: 0px;
+}
+.OAhum{
+    padding-left: 1520px;
+    padding-top: 0px;
+}
+.OAfilter1{
+    padding-left: 1675px;
+    padding-top: 0px;
+}
+.OAfilter2{
+    padding-left: 1785px;
+    padding-top: 0px;
+}
+
+.sim {
+    position: absolute;
+    top: 5px; /* ระยะห่างจากด้านบน */
+    left: 680px; /* ระยะห่างจากด้านซ้าย */
+    width: 10vw; /* ขนาดของพื้นที่กด */
+    height: 15vh; 
+    background: transparent; /* พื้นหลังโปร่งใส */
+    border-radius: 10px; /* ให้ขอบโค้งมน */
+    cursor: pointer;
+    z-index: 2000;
+    transition: background 0.3s;
+}
+.Energy {
+    position: absolute;
+    top: 5px; /* ระยะห่างจากด้านบน */
+    left: 1080px; /* ระยะห่างจากด้านซ้าย */
+    width: 10vw; /* ขนาดของพื้นที่กด */
+    height: 15vh; 
+    background: transparent; /* พื้นหลังโปร่งใส */
+    border-radius: 10px; /* ให้ขอบโค้งมน */
+    cursor: pointer;
+    z-index: 2000;
+    transition: background 0.3s;
+}
+.wheel {
+    position: absolute;
+    top: 400px; /* ระยะห่างจากด้านบน */
+    left: 1000px; /* ระยะห่างจากด้านซ้าย */
+    width: 10vw; /* ขนาดของพื้นที่กด */
+    height: 50vh; 
+    background: transparent; /* พื้นหลังโปร่งใส */
+    border-radius: 10px; /* ให้ขอบโค้งมน */
+    cursor: pointer;
+    z-index: 2000;
+    transition: background 0.3s;
+}
+.PM25{
+    position: absolute;
+    top: 650px; /* ระยะห่างจากด้านบน */
+    left: 1300px; /* ระยะห่างจากด้านซ้าย */
+    width: 10vw; /* ขนาดของพื้นที่กด */
+    height: 20vh; 
+    background: transparent; /* พื้นหลังโปร่งใส */
+    border-radius: 10px; /* ให้ขอบโค้งมน */
+    cursor: pointer;
+    z-index: 2000;
+    transition: background 0.3s;
+}
+
+
+

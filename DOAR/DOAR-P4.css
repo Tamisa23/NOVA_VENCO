@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',serif;
+}
+html, body {
+    overflow: hidden;
+  }
+  
+
+.GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
+.pxgraphic {
+    display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 60px 50px;
+}
+.home { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 15px;
+}
+.tool{
+    position: absolute;
+    top: 0%;
+}
+.simP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 700px;
+    padding-top: 15px;
+}
+.EmerP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1750px;
+    padding-top: 10px;
+}
+
+.Normal {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 640px;
+    padding-top: 15px;
+}
+.fresh {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 800px;
+    padding-top: 15px;
+}
+.exhaust {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 960px;
+    padding-top: 15px;
+}
+.testsmoke {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1120px;
+    padding-top: 15px;
+}
+.start {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 120px;
+    padding-top: 240px;
+}
+.stop {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 410px;
+    padding-top: 240px;
+}
+.wheel {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 700px;
+    padding-top: 240px;
+}
+.lighting {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 990px;
+    padding-top: 240px;
+}
+.auto {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1280px;
+    padding-top: 240px;
+}
+.manual {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1570px;
+    padding-top: 240px;
+}
+.Next {
+    
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    padding-left: 1670px;
+    padding-top: 750px;
+
+    
+}
+.GPbox1{
+    padding-left: 765px;
+    padding-top: 660px;
+}
+.box{
+    position: absolute;
+    background-color: gray;
+    background-image: linear-gradient(to right,rgb(189, 186, 186),rgb(241, 240, 240) 120%);
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    border : 6px solid rgb(161, 161, 161);
+    font-size: 1.5cm;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 275px;
+    height: 73px; /* ปรับความสูงได้ตามต้องการ */
+
+}
+.GPbox2{
+    padding-left: 765px;
+    padding-top: 137px;
+}
+.GPbox3{
+    padding-left: 765px;
+    padding-top: 137px;
+}
+.GPbox4{
+    padding-left: 510px;
+    padding-top: 0px;
+}
+.GPbox5{
+    padding-left: 510px;
+    padding-top: 0px;
+}
+.GPbox6{
+    padding-left: 510px;
+    padding-top: 0px;
+}
+
+.pxgraphic div {
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.preview_image{
+    position: absolute;
+}

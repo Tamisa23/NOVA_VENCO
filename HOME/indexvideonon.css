@@ -55,7 +55,7 @@ body::before {
   top: 0;
   left: 0;
   right: 0;
-  height: 10vh; /* ทำให้สูง 10% ของหน้าจอ */
+  height: 12vh; /* ทำให้สูง 10% ของหน้าจอ */
   background: linear-gradient(to right, #2BAAE0 , #1E327D);
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@ body::before {
 
 /* ✅ Navbar Logo ปรับขนาดอัตโนมัติ */
 .navbar-logo {
-  font-size: 3vw; /* ปรับขนาดตามหน้าจอ */
+  font-size: 5vw; /* ปรับขนาดตามหน้าจอ */
   text-decoration: none;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -114,4 +114,36 @@ body::before {
     width: 90vw;
     height: auto;
   }
+}
+@media (max-width: 480px) {
+  .video-container video {
+    width: 90vw;
+    height: auto;
+  }
+   
+  body {
+    background: black;
+    background-size: contain;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+}
+}
+
+@media (max-width: 1024px) {
+  .video-container video {
+    width: 90vw;
+    height: auto;
+  }
+   
+  body {
+    background: url('../image/HOME/BG_01.jpg') no-repeat center center fixed;
+    background-size: contain;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+}
+
 }
