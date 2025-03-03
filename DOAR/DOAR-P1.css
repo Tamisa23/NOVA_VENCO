@@ -168,7 +168,7 @@
 }
 }
 
-@media (max-height: 820px) and (max-width: 1180px) {
+@media (max-height: 500px) and (max-width: 1024px) {
     body {
         overflow: hidden; /* ปิด Scroll */
         height: 100vh; /* ให้เต็มจอ */

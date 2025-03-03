@@ -72,64 +72,28 @@ body {
   color: #FFCC00;
 }
 
-/* ✅ Hamburger Menu (มือถือ) */
-.menu-toggle {
-  display: none;
-  font-size: 3vw;
-  cursor: pointer;
-  color: #ffffff;
-}
-
 /* ✅ Sidebar (ปรับขนาดตามหน้าจอ) */
 .sidebar {
   position: fixed;
-  top: 10vh; /* ขยับลงเพื่อไม่ให้ทับ Navbar */
-  left: 0;
+  top: 15svh; /* ขยับลงเพื่อไม่ให้ทับ Navbar */
+  left: 1vw;
   width: 20vw;
   height: 90vh;
   padding: 10px;
   box-sizing: border-box;
   overflow-y: auto;
-  background: rgba(255, 255, 255, 0.9);
 }
 
-/* ✅ ตารางสถานะ */
-.status-table {
-  width: 100%;
-  max-width: 100%;
-  border-collapse: separate;
-  border-spacing: 5px;
-  margin-top: 50px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-.status-table th {
-  background: linear-gradient(to right, #2BAAE0 , #1E327D);
-  color: #fff;
-  padding: 8px;
-  text-align: center;
-}
-
-.status-table th, .status-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
-  overflow-wrap: break-word;
-}
 
 /* ✅ ตารางมุมขวาล่าง */
 .bottom-right-table {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-  padding: 10px;
-  width: 30vw;
-  max-width: 400px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  bottom: 1vh;
+  right: 1vh;
+  padding: 1vh;
+  width: 20vw;
+  max-width: 20vw;
+  border-radius: 1vh;
 }
 
 /* ✅ ตารางสถานะ (Responsive) */
@@ -140,14 +104,14 @@ body {
 
 .status-table {
   width: 100%;
-  max-width: 100%;
-  border-collapse: collapse;
-  border-spacing: 5px;
-  margin-top: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  table-layout: fixed; /* คอลัมน์กว้างเท่ากัน */
+  border-collapse: separate; /* ใช้ separate เพื่อให้ border-spacing ทำงาน */
+  border-spacing: 0.5vh; /* เพิ่มระยะห่างระหว่างเซลล์ */
+  background-color: #ffffff;
+  border-radius: 1vh; /* ทำให้ขอบมนเป็นวงรี */
+
 }
+
 
 .status-table th {
   background: linear-gradient(to right, #2BAAE0 , #1E327D);
@@ -156,13 +120,25 @@ body {
   text-align: center;
 }
 
-.status-table th, .status-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
+.status-table th, 
+.status-table td {
+  border: none; /* เอาเส้นขอบออก */
+  padding: 1vh 0.01vh; /* เพิ่มระยะห่างภายในเซลล์ */
   text-align: center;
-  overflow-wrap: break-word;
-  font-size: 1vw; /* ทำให้ข้อความปรับขนาดตามหน้าจอ */
+  font-size: 1vw;
 }
+
+.rounded-cell {
+  background-color: #4D4D4D; /* สีเทา */
+  border-radius: 25px; /* ทำให้ขอบมนเป็นวงรี */
+  text-align: center;
+  font-size: 1vw;
+  color: #ffffff;
+  padding: 15px 25px; /* ขยายขอบภายใน */
+  display: inline-block; /* ป้องกันการยืดเต็มช่อง */
+  width: 100%; /* ทำให้ขนาดเซลล์เท่ากัน */
+}
+
 /* ✅ Responsive Background */
 @media (max-width: 1440px) {
   body {
@@ -182,7 +158,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
-    background: rgba(255, 255, 255, 0.9);
   }
   /* ✅ ตารางมุมขวาล่าง */
 .bottom-right-table {
@@ -192,7 +167,6 @@ body {
   padding: 5px;
   width: 30vw;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -262,7 +236,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
-    background: rgba(255, 255, 255, 0.9);
   }
   /* ✅ ตารางมุมขวาล่าง */
 .bottom-right-table {
@@ -274,7 +247,6 @@ body {
   max-width: 400px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
@@ -317,7 +289,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
-    background: rgba(255, 255, 255, 0.9);
   }
   /* ✅ ตารางมุมขวาล่าง */
 .bottom-right-table {
@@ -327,9 +298,7 @@ body {
   padding: 5px;
   width: 20vw;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
@@ -361,4 +330,5 @@ body {
   .status-table {
     width: 100%;
   }
+
 }

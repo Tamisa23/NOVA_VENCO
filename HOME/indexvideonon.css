@@ -17,6 +17,10 @@
     /* ทำให้พื้นหลังเฟดเข้ามา */
     animation: fadeInBackground 2s ease-in-out;
 }
+.fade-out {
+  opacity: 0;
+  transition: opacity 1.5s ease-out; /* ค่อยๆ จางหายใน 1.5 วินาที */
+}
 
 /* สร้าง overlay ให้พื้นหลังจางๆ */
 body::before {

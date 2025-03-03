@@ -18,11 +18,20 @@
     <!-- คอนเทนต์แสดงวิดีโอ -->
     <div class="video-container">
         <h1>DOAR</h1>
-        <video autoplay loop muted playsinline>
+        <video id="videoPlayer" controls autoplay>
             <source src="../video/TC-ECFAN-COM.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+
+    <script>
+        document.getElementById('videoPlayer').addEventListener('ended', function() {
+            document.body.classList.add('fade-out'); // เพิ่มคลาส fade-out ให้กับ <body>
+            setTimeout(function() {
+                window.location.href = 'index.html'; // เปลี่ยนหน้าเมื่อเอฟเฟกต์เสร็จสิ้น
+            }, 1500); // รอ 1.5 วินาทีให้เฟดเสร็จก่อนเปลี่ยนหน้า
+        });
+    </script>
 
 </body>
 </html>
