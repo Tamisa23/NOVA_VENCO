@@ -7,7 +7,7 @@
   }
   
   body {
-    background: url('../image/HOME/BG_01.jpg') no-repeat center center fixed;
+    background: url('/image/HOME/BG.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;

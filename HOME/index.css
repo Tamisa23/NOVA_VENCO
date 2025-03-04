@@ -7,7 +7,9 @@ body {
     width: 100vw;
     position: relative;
     background-attachment: fixed;
-    overflow: hidden; /* ป้องกันการ Scroll */
+    overflow: hidden;
+    overscroll-behavior: none; /* ป้องกันการลากเลื่อนบนมือถือ */
+    touch-action: none; /* ป้องกันการเลื่อนจากการสัมผัสหน้าจอ */
 }
 
 /* พื้นหลัง BG.jpg */
@@ -137,7 +139,6 @@ body {
 .bg-icon.left {
     position: absolute;
     top: 4vh;
-    left: -1vh;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
@@ -163,7 +164,7 @@ body {
     top: 7%;  /* อยู่กึ่งกลางจอ */
     left: 43%; /* อยู่กึ่งกลางจอแนวนอน */
     transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
-    width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+    width: 106vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
     height: 15vh;
     background: linear-gradient(to right, #2BAAE0 , #1E327D);
     display: flex;
@@ -175,11 +176,11 @@ body {
   }
   
 /* ✅ ตำแหน่งของไอคอนปกติ */
-.top-left { top: 25vh; left: 9vw; }
-.center { top: 48vh; right: 13vw; }
-.top-right { top: 25vh; right: 9vw; }
-.bottom-left { bottom: 8vh; left: 9vw; }
-.bottom-right { bottom: 8vh; right: 9vw; }
+.top-left { top: 25vh; left: 8vw; }
+.center { top: 48vh; right: 15vw; }
+.top-right { top: 25vh; right: 12vw; }
+.bottom-left { bottom: 20vh; left: 8vw; }
+.bottom-right { bottom: 12vh; right: 10vw; }
 
 /* ✅ กล่องวิดีโอ */
 .video-section {
@@ -189,9 +190,9 @@ body {
 }
 
 /* ✅ ตำแหน่งวิดีโอ */
-.video-top-left { top: 20vh; left: 2.5vw; }
-.video-top-right { top: 20vh; right: 2.5vw; }
-.video-bottom-right { bottom: 7vh; right: 2vw; }
+.video-top-left { top: 18vh; left: 3vw; }
+.video-top-right { top: 18vh; right: 8vw; }
+.video-bottom-right { bottom: 8vh; right: 6vw; }
 
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
@@ -273,56 +274,6 @@ body {
     .video-top-left { top: 15vh; left: 2vw; }
     .video-top-right { top: 15vh; right: 2vw; }
     .video-bottom-right { bottom: 5vh; right: 2vw; }
-}
-
-/* ✅ Responsive สำหรับมือถือจอเล็กสุด */
-@media (max-width: 480px) {
-    body {
-        font-family: "Roboto", serif;
-        background-size: contain;
-        background-position: center;
-      }
-      /* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
-.navbar {
-    position: fixed;
-    top: 37%;  /* อยู่กึ่งกลางจอ */
-    left: 48%; /* อยู่กึ่งกลางจอแนวนอน */
-    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
-    width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
-    height: 6vh;
-    background: linear-gradient(to right, #2BAAE0 , #1E327D);
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding: 0 1vw;
-    font-size: 20px;
-    z-index: 2000;
-  }
-    .corner-link img {
-        width: 10vw;
-        max-width: 100px;
-    }
-
-    .video-link img {
-        width: 5vw;
-        max-width: 100px;
-    }
-
-    /* ปรับตำแหน่งไอคอน */
-    .top-left { top: 44vh; left: 8vw; }
-    .top-right { top: 44vh; right: 8vw; }
-    .center { top: 51vh; right: 15vw; }
-    .bottom-left { bottom: 40vh; left: 8vw; }
-    .bottom-right { bottom: 40vh; right: 8vw; }
-
-    /* ปรับตำแหน่งวิดีโอ */
-    .video-section {
-        flex-direction: column;
-        gap: 5px;
-    }
-    .video-top-left { top: 44vh; left: 2.5vw; }
-    .video-top-right { top: 44vh; right: 2.5vw; }
-    .video-bottom-right { bottom: 38vh; right: 3.5vw; }
 }
 
 /* ✅ Responsive สำหรับมือถือแนวนอน */
