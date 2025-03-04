@@ -137,7 +137,7 @@ body {
 .bg-icon.left {
     position: absolute;
     top: 4vh;
-    left: -10vh;
+    left: -1vh;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
@@ -150,7 +150,7 @@ body {
 .bg-icon.right {
     position: absolute;
     top: 4vh;
-    right: -10vh;
+    right: -1vh;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-R.png') no-repeat right center;
@@ -161,7 +161,7 @@ body {
 .navbar {
     position: fixed;
     top: 7%;  /* อยู่กึ่งกลางจอ */
-    left: 35%; /* อยู่กึ่งกลางจอแนวนอน */
+    left: 43%; /* อยู่กึ่งกลางจอแนวนอน */
     transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
     width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
     height: 15vh;
@@ -173,6 +173,35 @@ body {
     z-index: 2000;
     border-radius: 1px;
   }
+  
+/* ✅ ตำแหน่งของไอคอนปกติ */
+.top-left { top: 25vh; left: 9vw; }
+.center { top: 48vh; right: 13vw; }
+.top-right { top: 25vh; right: 9vw; }
+.bottom-left { bottom: 8vh; left: 9vw; }
+.bottom-right { bottom: 8vh; right: 9vw; }
+
+/* ✅ กล่องวิดีโอ */
+.video-section {
+    position: fixed;
+    display: flex;
+    gap: 10px;
+}
+
+/* ✅ ตำแหน่งวิดีโอ */
+.video-top-left { top: 20vh; left: 2.5vw; }
+.video-top-right { top: 20vh; right: 2.5vw; }
+.video-bottom-right { bottom: 7vh; right: 2vw; }
+
+/* ✅ กำหนดขนาดของไอคอน */
+.corner-link img {
+    width: 10vw;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
   }
 
 /* ✅ Responsive สำหรับแท็บเล็ต (แนวตั้งและแนวนอน) */
@@ -256,8 +285,8 @@ body {
       /* ✅ Navbar (จัดตำแหน่งตรงกลางจอ) */
 .navbar {
     position: fixed;
-    top: 35%;  /* อยู่กึ่งกลางจอ */
-    left: 50%; /* อยู่กึ่งกลางจอแนวนอน */
+    top: 37%;  /* อยู่กึ่งกลางจอ */
+    left: 48%; /* อยู่กึ่งกลางจอแนวนอน */
     transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
     width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
     height: 6vh;
@@ -266,8 +295,8 @@ body {
     align-items: center;
     justify-content: right;
     padding: 0 1vw;
+    font-size: 20px;
     z-index: 2000;
-    border-radius: 10px;
   }
     .corner-link img {
         width: 10vw;
@@ -275,13 +304,14 @@ body {
     }
 
     .video-link img {
-        width: 7vw;
+        width: 5vw;
         max-width: 100px;
     }
 
     /* ปรับตำแหน่งไอคอน */
     .top-left { top: 44vh; left: 8vw; }
     .top-right { top: 44vh; right: 8vw; }
+    .center { top: 51vh; right: 15vw; }
     .bottom-left { bottom: 40vh; left: 8vw; }
     .bottom-right { bottom: 40vh; right: 8vw; }
 
@@ -290,49 +320,184 @@ body {
         flex-direction: column;
         gap: 5px;
     }
-    .video-top-left { top: 42vh; left: 1vw; }
-    .video-top-right { top: 42vh; right: 1vw; }
-    .video-bottom-right { bottom: 38vh; right: 1vw; }
+    .video-top-left { top: 44vh; left: 2.5vw; }
+    .video-top-right { top: 44vh; right: 2.5vw; }
+    .video-bottom-right { bottom: 38vh; right: 3.5vw; }
 }
 
 /* ✅ Responsive สำหรับมือถือแนวนอน */
 @media (max-height: 500px) and (max-width: 1024px) {
     body {
         font-family: "Roboto", serif;
-        background-size: cover;
-        background-position: center;
-      }
-    .corner-link img {
-        width: 8vw;
-        max-width: 130px;
+      background-size: cover;
+      background-position: center;
     }
-    .video-link img {
-        width: 5vw;
-        max-width: 90px;
-    }
-    .navbar {
-        position: fixed;
-        top: 8%;
-        left: 0;
-        width: 200%;
-        background: linear-gradient(to right, #2BAAE0, #1E327D);
-        color: white;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 20px 0px;
-        font-size: 30px;
-        font-weight: bold;
-        z-index: 1000;
-    }
-    /* ปรับตำแหน่งไอคอน */
-    .top-left { top: 25vh; left: 10vw; }
-    .top-right { top: 25vh; right: 10vw; }
-    .bottom-left { bottom: 3vh; left: 10vw; }
-    .bottom-right { bottom: 3vh; right: 10vw; }
 
-
-    .video-top-left { top: 24vh; left: 3vw; }
-    .video-top-right { top: 24vh; right: 3vw; }
-    .video-bottom-right { bottom: 4vh; right: 3vw; }
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('/image/HOME/BD.png') no-repeat center center fixed;
+    background-size: contain;
+    z-index: -3;
 }
+
+
+/* BG-ICON-L (ซ้าย) */
+.bg-icon.left {
+    position: absolute;
+    top: 4vh;
+    left: -3vh;
+    width: 20vw;
+    height: 100vh;
+    background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
+    background-size: contain;
+    z-index: -2;
+
+}
+
+/* BG-ICON-R (ขวา) */
+.bg-icon.right {
+    position: absolute;
+    top: 4vh;
+    right: -1vh;
+    width: 20vw;
+    height: 100vh;
+    background: url('/image/HOME/BG-ICON-R.png') no-repeat right center;
+    background-size: contain;
+    z-index: -1;
+
+}
+.navbar {
+    position: fixed;
+    top: 7%;  /* อยู่กึ่งกลางจอ */
+    left: 48%; /* อยู่กึ่งกลางจอแนวนอน */
+    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+    width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+    height: 15vh;
+    background: linear-gradient(to right, #2BAAE0 , #1E327D);
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 1vw;
+    z-index: 2000;
+    font-size: 35px;
+    border-radius: 1px;
+  }
+  .corner-link img {
+    width: 11.5vw;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+.video-link img {
+    width: 4vw;
+    max-width: 100px;
+}
+    /* ปรับตำแหน่งไอคอน */
+    .top-left { top: 25vh; left: 8vw; }
+    .top-right { top: 23vh; right: 8vw; }
+    .center{top: 46vh; right: 11vw;}
+    .bottom-left { bottom: 12vh; left: 8vw; }
+    .bottom-right { bottom: 6vh; right: 7vw; }
+
+
+    .video-top-left { top: 21vh; left: 6vw; }
+    .video-top-right { top: 19vh; right: 5vw; }
+    .video-bottom-right { bottom: 10vh; right: 3vw; }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    body {
+        font-family: "Roboto", serif;
+      background-size: cover;
+      background-position: center;
+    }
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('/image/HOME/BD.png') no-repeat center center fixed;
+    background-size: contain;
+    z-index: -3;
+}
+
+
+/* BG-ICON-L (ซ้าย) */
+.bg-icon.left {
+    position: absolute;
+    top: 4vh;
+    left: -3vh;
+    width: 25vw;
+    height: 100vh;
+    background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
+    background-size: contain;
+    z-index: -2;
+
+}
+
+/* BG-ICON-R (ขวา) */
+.bg-icon.right {
+    position: absolute;
+    top: 4vh;
+    right: -1vh;
+    width: 25vw;
+    height: 100vh;
+    background: url('/image/HOME/BG-ICON-R.png') no-repeat right center;
+    background-size: contain;
+    z-index: -1;
+
+}
+.navbar {
+    position: fixed;
+    top: 7%;  /* อยู่กึ่งกลางจอ */
+    left: 48%; /* อยู่กึ่งกลางจอแนวนอน */
+    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+    width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
+    height: 15vh;
+    background: linear-gradient(to right, #2BAAE0 , #1E327D);
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 1vw;
+    z-index: 2000;
+    border-radius: 1px;
+  }
+  
+/* ✅ ตำแหน่งของไอคอนปกติ */
+.top-left { top: 28vh; left: 10vw; }
+.center { top: 46vh; right: 14vw; }
+.top-right { top: 25vh; right: 9vw; }
+.bottom-left { bottom: 20vh; left: 9vw; }
+.bottom-right { bottom: 15vh; right: 9vw; }
+
+/* ✅ กล่องวิดีโอ */
+.video-section {
+    position: fixed;
+    display: flex;
+    gap: 10px;
+}
+
+/* ✅ ตำแหน่งวิดีโอ */
+.video-top-left { top: 25vh; left: 5vw; }
+.video-top-right { top: 24vh; right: 5vw; }
+.video-bottom-right { bottom: 16vh; right: 4vw; }
+
+/* ✅ กำหนดขนาดของไอคอน */
+.corner-link img {
+    width: 13vw;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+  }
+  
+  
