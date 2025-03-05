@@ -131,9 +131,9 @@ function toggleMenu() {
   document.querySelector(".navbar-menu").classList.toggle("active");
 }
 
+const protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+const ws = new WebSocket(protocol + window.location.host + "/ws/non");
 
-      // สร้างการเชื่อมต่อ WebSocket
-var ws = new WebSocket("ws://10.121.15.37:1880/ws/non");
 
 // เมื่อเชื่อมต่อสำเร็จ
 ws.onopen = function() {
