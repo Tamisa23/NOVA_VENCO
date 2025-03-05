@@ -144,6 +144,7 @@ body {
     background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
     background-size: contain;
     z-index: -2;
+    transform: translateX(10px); 
 
 }
 
@@ -151,12 +152,12 @@ body {
 .bg-icon.right {
     position: absolute;
     top: 4vh;
-    right: -1vh;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-R.png') no-repeat right center;
     background-size: contain;
     z-index: -1;
+    transform: translateX(40px); 
 
 }
 .navbar {
@@ -376,6 +377,8 @@ body {
     height: 100vh;
     background: url('/image/HOME/BD.png') no-repeat center center fixed;
     background-size: contain;
+    transform: translate(-1%, 1%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+
     z-index: -3;
 }
 
@@ -384,32 +387,31 @@ body {
 .bg-icon.left {
     position: absolute;
     top: 4vh;
-    left: -3vh;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-L.png') no-repeat left center;
     background-size: contain;
     z-index: -2;
+    transform: translateX(60px); /* ปรับค่าตรงนี้เพื่อขยับขวา (+) หรือซ้าย (-) */
 
 }
 
-/* BG-ICON-R (ขวา) */
 .bg-icon.right {
     position: absolute;
     top: 4vh;
-    right: -1vh;
+    right: 0;
     width: 25vw;
     height: 100vh;
     background: url('/image/HOME/BG-ICON-R.png') no-repeat right center;
     background-size: contain;
     z-index: -1;
-
+    transform: translateX(20px); /* ปรับค่าตรงนี้เพื่อขยับขวา (+) หรือซ้าย (-) */
 }
 .navbar {
     position: fixed;
     top: 7%;  /* อยู่กึ่งกลางจอ */
     left: 48%; /* อยู่กึ่งกลางจอแนวนอน */
-    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
+    transform: translate(-49%, -50%); /* จัดตำแหน่งให้อยู่ตรงกลาง */
     width: 100vw; /* ปรับขนาดให้พอดีกับหน้าจอ */
     height: 15vh;
     background: linear-gradient(to right, #2BAAE0 , #1E327D);
