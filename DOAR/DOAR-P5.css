@@ -205,7 +205,7 @@ html, body {
     .GP {
         background-size: contain;
         background-position: center;
-        top: 20%;
+        top: 0%;
     }
     .GP a {
         background-size: contain;
@@ -224,7 +224,7 @@ html, body {
         display: block;
         margin: auto;
         align-items: center;
-        top: 40%;
+        top: 0%;
     }
     .GP a {
         background-size: contain;
