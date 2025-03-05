@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
@@ -125,85 +126,76 @@
       <div id="stateconduct" class="field-value"></div>
     </div>
 
-<script>
+    <script>
 
-function toggleMenu() {
-  document.querySelector(".navbar-menu").classList.toggle("active");
-}
-
-const protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
-const ws = new WebSocket(protocol + window.location.host + "/ws/non");
-
+// เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+    username: "Venco",
+    password: "12345678Venco",
+    rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+});
 
 // เมื่อเชื่อมต่อสำเร็จ
-ws.onopen = function() {
-console.log("เชื่อมต่อ WebSocket สำเร็จ");
-};
+mqttClient.on("connect", function () {
+    console.log("✅ MQTT Connected!");
+    mqttClient.subscribe("non", function (err) {
+        if (!err) {
+            console.log("✅ Subscribed to non-chemical/data");
+        }
+    });
+});
 
-// เมื่อได้รับข้อความ
-ws.onmessage = function(event) {
-// รับข้อมูลในรูปแบบ string และแปลงเป็น JSON object
-var data = JSON.parse(event.data);
+// เมื่อได้รับข้อมูลจาก MQTT
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
 
-// สมมุติว่า JSON มีโครงสร้างเช่น
-// { "voltage": 220, "current": 5, "speed": 60, "power": 2.5 }
+        console.log("Received data:", data);  // เพิ่มบรรทัดนี้เพื่อตรวจสอบข้อมูลที่ได้รับ
 
-// อัปเดตข้อมูลลงใน element HTML ที่มี id ตามที่กำหนดไว้
-document.getElementById("phValue").innerText = data.ph + " pH";
-document.getElementById("conductivityValue").innerText = data.conductivity + " mS";
-document.getElementById("voltValue").innerText = data.volt + " V";
-document.getElementById("ampValue").innerText = data.amp + " A";
-document.getElementById("cycleValue").innerText = data.cycle + " ";  // หรือหน่วยที่เหมาะสม
-document.getElementById("scraperValue").innerText = data.scraper; // ถ้าเป็นสถานะ เช่น "ON"/"OFF"
-document.getElementById("circulationValue").innerText = data.circulation; // เช่น "ON"/"OFF"
-document.getElementById("onValue").innerText = data.on + " pH";
-document.getElementById("offValue").innerText = data.off + " pH";
-document.getElementById("washingValue").innerText = data.washing + " min"; // ปรับตามหน่วยที่ต้องการ
-document.getElementById("timeValue").innerText = data.time + " sec";
-document.getElementById("dosingValue").innerText = data.dosing;
+        // อัปเดตข้อมูลลงใน element HTML
+        document.getElementById("phValue").innerText = data.ph + " pH";
+        document.getElementById("conductivityValue").innerText = data.conductivity + " mS";
+        document.getElementById("voltValue").innerText = data.volt + " V";
+        document.getElementById("ampValue").innerText = data.amp + " A";
+        document.getElementById("cycleValue").innerText = data.cycle;
+        document.getElementById("scraperValue").innerText = data.scraper;
+        document.getElementById("circulationValue").innerText = data.circulation;
+        document.getElementById("onValue").innerText = data.on + " pH";
+        document.getElementById("offValue").innerText = data.off + " pH";
+        document.getElementById("washingValue").innerText = data.washing + " min";
+        document.getElementById("timeValue").innerText = data.time + " sec";
+        document.getElementById("dosingValue").innerText = data.dosing;
 
+        // ปรับสีของ Washing Header
+        updateHeader("washingFlowHeader", data.stateflow);
+        updateHeader("washingTimeHeader", data.statetime);
+        updateHeader("washingConductHeader", data.stateconduct);
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
 
-var washingFlowHeader = document.getElementById("washingFlowHeader");
-if (data.stateflow === false) {
-  washingFlowHeader.innerText = "Washing By Flow";
-  washingFlowHeader.classList.add("grayStyle");
-} else {
-  washingFlowHeader.innerText = "Washing By Flow";
-  washingFlowHeader.classList.remove("grayStyle");
+// ฟังก์ชันอัปเดตสีของ Header
+function updateHeader(elementId, state) {
+    var header = document.getElementById(elementId);
+    if (state === false) {
+        header.classList.add("grayStyle");
+    } else {
+        header.classList.remove("grayStyle");
+    }
 }
 
+// จัดการข้อผิดพลาด
+mqttClient.on("error", function (error) {
+    console.error("❌ MQTT Error:", error);
+});
 
-var washingFlowHeader = document.getElementById("washingTimeHeader");
-if (data.statetime === false) {
-  washingTimeHeader.innerText = "Washing By Time";
-  washingTimeHeader.classList.add("grayStyle");
-} else {
-  washingTimeHeader.innerText = "Washing By Time";
-  washingTimeHeader.classList.remove("grayStyle");
-}
+mqttClient.on("close", function () {
+    console.log("⚠️ MQTT Disconnected! Reconnecting...");
+});
 
-
-var washingFlowHeader = document.getElementById("washingConductHeader");
-if (data.stateconduct === false) {
-  washingConductHeader.innerText = "Washing By Conductivity";
-  washingConductHeader.classList.add("grayStyle");
-} else {
-  washingConductHeader.innerText = "Washing By Conductivity";
-  washingConductHeader.classList.remove("grayStyle");
-}
-};
-
-
-// เมื่อเกิดข้อผิดพลาด
-ws.onerror = function(error) {
-console.error("ข้อผิดพลาดใน WebSocket: ", error);
-};
-
-// เมื่อการเชื่อมต่อปิดลง
-ws.onclose = function() {
-console.log("การเชื่อมต่อ WebSocket ถูกปิด");
-};
- </script>
+    
+      </script>
 
   </body>
 </html>
