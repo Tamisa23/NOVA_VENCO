@@ -16,6 +16,7 @@ html, body {
     background-attachment: fixed; 
     background-size:cover;
     position: absolute;
+    font-family: 'Roboto',serif;
 }
 .GP a {
     position: absolute;
@@ -130,14 +131,14 @@ html, body {
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    padding-left: 70px;
+    padding-left: 170px;
     padding-top: 750px;
 
     
 }
 .GPbox1{
     padding-left: 765px;
-    padding-top: 657px;
+    padding-top: 660px;
 }
 .box{
     position: absolute;
@@ -157,7 +158,7 @@ html, body {
 }
 .GPbox2{
     padding-left: 765px;
-    padding-top: 140px;
+    padding-top: 137px;
 }
 .GPbox3{
     padding-left: 765px;
@@ -183,4 +184,52 @@ html, body {
 
 .preview_image{
     position: absolute;
+}
+
+
+
+/* ✅ Responsive สำหรับ PC ความกว้างสูงสุด 1920px */
+@media screen and (max-width: 1920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+}
+@media (max-width: 1440px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 20%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+
+}
+
+/* ✅ Responsive สำหรับ iPad */
+@media screen and (max-width: 1024px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        bottom: auto;
+        display: block;
+        margin: auto;
+        align-items: center;
+        top: 40%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+
 }

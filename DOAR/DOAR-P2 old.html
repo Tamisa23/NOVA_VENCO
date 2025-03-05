@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viveport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="/DOAR/DOAR-P2 old.css" />
+
+  </head>
+  <body>
+
+
+  <div class="GP">
+    <a><img src="/image/DOAR/P2/BG.jpg"></a> 
+    <a><img src="/image/DOAR/P2/ST.png"></a>    
+    <a><img src="/image/DOAR/P2/Air-BG.png"></a>
+  </div>
+
+  
+</div>
+
+
+<div class="GP">
+  <div class="AQIP2">
+    <a><img id="aqi_good" src="/image/DOAR/P2/Good.png" style="display: none;"></a>
+    <a><img id="aqi_mod" src="/image/DOAR/P2/Mod.png" style="display: none;"></a>
+    <a><img id="aqi_bad" src="/image/DOAR/P2/Bad.png" style="display: none;"></a>
+  </div>
+  
+  <div class="Filter">
+    <a><img id="Wheel_Off" src="/image/DOAR/P2/GIF/BG-Wheel.png"></a>
+    <a><img id="Wheel_On" src="/image/DOAR/P2/GIF/GIF-Wheel.gif"></a>
+    <a><img id="Filter_Off" src="/image/DOAR/P2/GIF/BG-AIR FILTER.png"></a>
+    <a><img id="Filter_On" src="/image/DOAR/P2/GIF/GIF-AIR-FILTER.gif"></a>
+  </div>
+  
+  
+  <div class="sa">
+    <a><img id="ebm_gif" src="/image/DOAR/P2/GIF/EBM-GIF-DOAR.gif"></a>
+    <a><img id="sa1_gif" src="/image/DOAR/P2/GIF/ZA(1)-GIF-DOAR.gif"></a>
+  </div>
+  
+  <div class="ea">
+    <a><img id="ea_gif" src="/image/DOAR/P2/GIF/ZA(2)-GIF-DOAR.gif"></a>
+  </div>
+
+
+
+    <a><img src="/image/DOAR/P2/line.png"width="1860" height="1075"></a>
+
+
+    <div class="smoke">
+      <div class="box">Normal</div>
+    </div>
+    <div class="SAflow">
+      <div id="flow_sa" class="box">1000</div>
+    </div>
+    <div class="SAtemp">
+      <div id="sa_t" class="box">25</div>
+    </div>
+    <div class="RAfilter">
+      <div class="box">CLEAR</div>
+    </div>
+    <div class="RAfilter2">
+      <div class="box">1000</div>
+    </div>
+    <div class="RAtemp">
+      <div id="ra_t" class="box">25</div>
+    </div>
+    <div class="RAhum">
+      <div id="ra_h" class="box">80</div>
+    </div>
+    <div class="EAflow">
+      <div id="flow_ea" class="box">800</div>
+    </div>
+    
+    <div class="EBM">
+      <div id="ebm_st" class="boxfan">RUN</div>
+    </div>
+    <div class="EBMspeed">
+      <div id="ebm_ac" class="boxfan">800</div>
+    </div>
+    <div class="ZA2">
+      <div id="ea_st" class="boxfan">RUN</div>
+    </div>
+    <div class="ZA2speed">
+      <div id="ea_ac" class="boxfan">800</div>
+    </div>
+    <div class="ZA1">
+      <div id="sa1_st" class="boxfan">RUN</div>
+    </div>
+    <div class="ZA1speed">
+      <div id="sa1_ac" class="boxfan">800</div>
+    </div>
+    <div class="EVtemp1">
+      <div class="box3">10</div>
+    </div>
+    <div class="DPT">
+      <div class="box2">1000</div>
+    </div>
+    <div class="EVtemp2">
+      <div class="box2">10</div>
+    </div>
+    
+    <div class="valvepercent">
+      <div class="box2">100</div>
+    </div>
+    <div class="valveflow">
+      <div class="box2">700</div>
+    </div>
+    <div class="LEVtemp">
+      <div id="oa_lev_t" class="box2">25</div>
+    </div>
+    <div class="LEVhum">
+      <div id="oa_lev_h" class="box2">80</div>
+    </div>
+    <div class="EFF">
+      <div id="eff" class="box2">88</div>
+    </div>
+    <div class="OAtemp">
+      <div id="oa_t" class="box2">30</div>
+    </div>
+    <div class="OAhum">
+      <div id="oa_h" class="box2">90</div>
+    </div>
+    <div class="OAfilter1">
+      <div class="box2">CLEAR</div>
+    </div>
+    <div class="OAfilter2">
+      <div class="box2">1000</div>
+    </div>
+    
+    </div>
+    
+
+
+<div class="GP">
+
+ 
+  <div class="APFilter">
+    <a href="/DOAR/DOAR-P4 PM.html"><img src="/image/DOAR/P1/Not.png" width="150" height="200"></a>
+  </div>
+  <div class="wheel">
+    <a href="/DOAR/DOAR-P2 WHEEL.html"><img src="/image/DOAR/P1/Not.png" width="200" height="600"></a>
+  </div>
+
+
+
+  <div class="EmerP2">
+    <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
+  </div>
+
+  <div class="settingP2">
+    <a href="/DOAR/login.html"><img src="/image/DOAR/P2/P2-SETTING.png" width="128" height="129"></a>
+  </div>
+  <div class="simP2">
+    <a href="/DOAR/DOAR-P2 SIM.html"><img src="/image/DOAR/P2/P2-SIMULATION.png" width="128" height="129"></a>
+  </div>
+  <div class="home">
+    <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="340" height="140"></a>
+  </div>
+  <div class="energyP2">
+    <a href="/DOAR/DOAR-P3.html"><img src="/image/DOAR/P2/P2-ENERGY.png" width="128" height="129"></a>
+  </div>
+
+</div>
+
+<script>
+  // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+  const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+      username: "Venco",
+      password: "12345678Venco",
+      rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+  });
+
+  // เมื่อเชื่อมต่อสำเร็จ
+  mqttClient.on("connect", function () {
+      console.log("✅ MQTT Connected!");
+      mqttClient.subscribe("DOAR", function (err) {
+          if (!err) {
+              console.log("✅ Subscribed to DOAR");
+          }
+      });
+  });
+
+  // ฟังก์ชันอัปเดตค่าใน HTML
+  function updateElement(id, value) {
+      let element = document.getElementById(id);
+      if (element && value !== undefined) {
+          element.innerText = parseFloat(value).toFixed(2); // แปลงเป็นทศนิยม 2 ตำแหน่ง
+      }
+  }
+
+  // ฟังก์ชันอัปเดต AQI
+  function updateAQI(aqiValue) {
+      let imgGood = document.getElementById("aqi_good");
+      let imgMod = document.getElementById("aqi_mod");
+      let imgBad = document.getElementById("aqi_bad");
+
+      if (!imgGood || !imgMod || !imgBad) return;
+
+      // ซ่อนทุกภาพก่อน
+      imgGood.style.display = "none";
+      imgMod.style.display = "none";
+      imgBad.style.display = "none";
+
+      // แสดงรูปภาพตามค่า AQI
+      if (aqiValue === 1) {
+          imgGood.style.display = "block";  
+      } else if (aqiValue === 2) {
+          imgMod.style.display = "block";  
+      } else {
+          imgBad.style.display = "block";  
+      }
+  }
+
+  // ฟังก์ชันอัปเดต Wheel GIF
+  function updateWheel(WheelValue) {
+      let imgWheelOn = document.getElementById("Wheel_On");
+      let imgWheelOff = document.getElementById("Wheel_Off");
+
+      if (!imgWheelOn || !imgWheelOff) return;
+
+      // ซ่อนทุกภาพก่อน
+      imgWheelOn.style.display = "none";
+      imgWheelOff.style.display = "none";
+
+      // แสดงรูปภาพตามค่า WheelValue
+      if (WheelValue === 1) {
+          imgWheelOn.style.display = "block";  
+      } else {
+          imgWheelOff.style.display = "block";
+      }
+  }
+
+   // ฟังก์ชันอัปเดต Filter
+   function updateFilter(FilterValue) {
+      let imgFilterOn = document.getElementById("Filter_On");
+      let imgFilterOff = document.getElementById("Filter_Off");
+
+      if (!imgFilterOn || !imgFilterOff) return;
+
+      // ซ่อนทุกภาพก่อน
+      imgFilterOn.style.display = "none";
+      imgFilterOff.style.display = "none";
+
+      if (parseInt(FilterValue) === 1) {
+    imgFilterOn.style.display = "block";  
+} else {
+    imgFilterOff.style.display = "block";
+}
+   }
+
+
+  function updateFanGIF(id, value) {
+    let fanGif = document.getElementById(id);
+    if (!fanGif) return; // ถ้าไม่มี element ให้ return ทันที
+
+    // ถ้า `value` เป็น `undefined` หรือ `NaN` → ให้ซ่อน GIF
+    if (value === undefined || isNaN(parseFloat(value))) {
+        fanGif.style.display = "none";
+        return;
+    }
+
+    // แปลงค่าเป็นตัวเลขก่อนเช็คเงื่อนไข
+    let numericValue = parseFloat(value);
+    
+    if (numericValue > 1) {
+        fanGif.style.display = "block";  
+    } else {
+        fanGif.style.display = "none";
+    }
+}
+
+
+  // รับค่าจาก MQTT และอัปเดตข้อมูล
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log("📩 Received MQTT Data:", data);
+
+          // อัปเดตค่าต่างๆ ลงใน HTML
+          updateElement("ra_t", data.ra_t);
+          updateElement("ra_h", data.ra_h);
+          updateElement("sa_t", data.sa_t);
+          updateElement("oa_t", data.oa_t);
+          updateElement("oa_h", data.oa_h);
+          updateElement("oa_lev_t", data.oa_lev_t);
+          updateElement("oa_lev_h", data.oa_lev_h);
+          updateElement("sa1_ac", data.sa1_ac);
+          updateElement("sa1_st", data.sa1_st);
+          updateElement("ebm_ac", data.ebm_ac);
+          updateElement("ebm_st", data.ebm_st);
+          updateElement("ea_ac", data.ea_ac);
+          updateElement("ea_st", data.ea_st);
+          updateElement("flow_ea", data.flow_ea);
+          updateElement("flow_sa", data.flow_sa);
+          updateElement("eff", data.eff);
+
+          // อัปเดต AQI ถ้ามีค่า AQI
+          if (data.AQI !== undefined) {
+              updateAQI(data.AQI);
+          }
+
+          // อัปเดต Wheel ถ้ามีค่า Wheel
+          if (data.Wheel !== undefined) {
+              updateWheel(data.Wheel);
+          }
+
+          if (data.Filter !== undefined) {
+    updateFilter(data.Filter);
+}
+
+
+                 // ตรวจสอบว่ามีค่า ebm_ac ใน message หรือไม่
+        if (data.hasOwnProperty("ebm_ac")) {
+            updateFanGIF("ebm_gif", data.ebm_ac);
+        } else {
+            updateFanGIF("ebm_gif", undefined); // ซ่อน GIF ถ้าไม่มีค่า
+        }
+
+        // ตรวจสอบว่า sa1_ac มีค่าหรือไม่
+        if (data.hasOwnProperty("sa1_ac")) {
+            updateFanGIF("sa1_gif", data.sa1_ac);
+        } else {
+            updateFanGIF("sa1_gif", undefined);
+        }
+
+        // ตรวจสอบว่า ea_ac มีค่าหรือไม่
+        if (data.hasOwnProperty("ea_ac")) {
+            updateFanGIF("ea_gif", data.ea_ac);
+        } else {
+            updateFanGIF("ea_gif", undefined);
+        }
+
+
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+
+  // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
+  });
+
+  // จัดการข้อผิดพลาดของ MQTT
+  mqttClient.on("error", function (error) {
+      console.error("❌ MQTT Error:", error);
+  });
+
+  mqttClient.on("close", function () {
+      console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+  });
+
+  console.log("✅ MQTT Data:", data);
+
+
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>

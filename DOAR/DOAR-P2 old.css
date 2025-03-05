@@ -16,6 +16,8 @@ html, body {
     background-attachment: fixed; 
     background-size:cover;
     position: absolute;
+    font-family: 'Roboto',serif;
+    
 }
 .GP a {
     position: absolute;
@@ -29,12 +31,32 @@ html, body {
     text-align: center;
     padding: 250px 50px;
 }
+.home { 
+
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 0px;
+    z-index: 999;
+}
+.wheel { 
+    position: absolute;
+    padding-left: 1000px;
+    padding-top: 300px;
+    z-index: 999;
+}
+.APFilter { 
+    position: absolute;
+    padding-left: 1300px;
+    padding-top: 650px;
+    z-index: 999;
+}
 .settingP2 {   
     align-items: center;
     justify-content: center;
     position: absolute;
     padding-left: 900px;
     padding-top: 15px;
+    z-index: 999;
 }
 .energyP2 { 
     align-items: center;
@@ -42,7 +64,7 @@ html, body {
     position: absolute;
     padding-left: 1100px;
     padding-top: 15px;
-    
+    z-index: 999;
 }
 .simP2 { 
     align-items: center;
@@ -50,6 +72,7 @@ html, body {
     position: absolute;
     padding-left: 700px;
     padding-top: 15px;
+    z-index: 999;
 }
 .EmerP2 { 
     align-items: center;
@@ -57,6 +80,7 @@ html, body {
     position: absolute;
     padding-left: 1750px;
     padding-top: 10px;
+    z-index: 999;
 }
 .AQIP2 { 
     background-repeat: no-repeat;
@@ -154,7 +178,7 @@ html, body {
 /* ---------------------------------FAN-------------------------------------- */
 .boxfan{
     position: absolute;
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     font-size: 0.9cm;
     flex-direction: row;
@@ -189,6 +213,17 @@ html, body {
 }
 /* ---------------------------------------------------------------------- */
 .box2{
+    position: absolute;
+    color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 0.9cm;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 60px; /* ปรับความสูงได้ตามต้องการ */
+}
+.box3{
     position: absolute;
     color: rgb(0, 0, 0);
     display: flex;
@@ -248,54 +283,62 @@ html, body {
     padding-top: 0px;
 }
 
-.sim {
-    position: absolute;
-    top: 5px; /* ระยะห่างจากด้านบน */
-    left: 680px; /* ระยะห่างจากด้านซ้าย */
-    width: 10vw; /* ขนาดของพื้นที่กด */
-    height: 15vh; 
-    background: transparent; /* พื้นหลังโปร่งใส */
-    border-radius: 10px; /* ให้ขอบโค้งมน */
-    cursor: pointer;
-    z-index: 2000;
-    transition: background 0.3s;
-}
-.Energy {
-    position: absolute;
-    top: 5px; /* ระยะห่างจากด้านบน */
-    left: 1080px; /* ระยะห่างจากด้านซ้าย */
-    width: 10vw; /* ขนาดของพื้นที่กด */
-    height: 15vh; 
-    background: transparent; /* พื้นหลังโปร่งใส */
-    border-radius: 10px; /* ให้ขอบโค้งมน */
-    cursor: pointer;
-    z-index: 2000;
-    transition: background 0.3s;
-}
-.wheel {
-    position: absolute;
-    top: 400px; /* ระยะห่างจากด้านบน */
-    left: 1000px; /* ระยะห่างจากด้านซ้าย */
-    width: 10vw; /* ขนาดของพื้นที่กด */
-    height: 50vh; 
-    background: transparent; /* พื้นหลังโปร่งใส */
-    border-radius: 10px; /* ให้ขอบโค้งมน */
-    cursor: pointer;
-    z-index: 2000;
-    transition: background 0.3s;
-}
-.PM25{
-    position: absolute;
-    top: 650px; /* ระยะห่างจากด้านบน */
-    left: 1300px; /* ระยะห่างจากด้านซ้าย */
-    width: 10vw; /* ขนาดของพื้นที่กด */
-    height: 20vh; 
-    background: transparent; /* พื้นหลังโปร่งใส */
-    border-radius: 10px; /* ให้ขอบโค้งมน */
-    cursor: pointer;
-    z-index: 2000;
-    transition: background 0.3s;
+
+@media screen and (max-width: 1920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        height: 100vh;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    
+
 }
 
 
+@media (min-width: 810px) and (max-width: 1440px) {
 
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 20%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+  
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 40%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+   
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 50%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    
+}

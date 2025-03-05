@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viveport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="/DOAR/DOAR-P4 PM.css" />
+
+  </head>
+  <body>
+
+
+  <div class="GP">
+    <a><img src="/image/DOAR/PM2.5/BG.jpg"></a>
+    <a><img src="/image/DOAR/PM2.5/ST.png"></a>
+  
+    </div>
+    
+    
+
+
+    <div class="GP">
+      
+     
+
+        <div class="goodair">
+          <a><img id="Filter_On" src="/image/DOAR/PM2.5/GIF/GIF-AIR-FILTER--PM.gif"></a>  
+        </div>
+        <div class="goodair2">
+          <a><img src="/image/DOAR/PM2.5/Good AIR.png" width="1920" height="1080"></a>
+        </div>
+        
+        <div class="PMgood">
+            <a><img id="aqi_good" src="/image/DOAR/PM2.5/Good.png"></a>
+        </div>
+        <div class="PMmod">
+            <a><img id="aqi_mod" src="/image/DOAR/PM2.5/Mod.png"></a>
+        </div>
+        <div class="PMbad">
+            <a><img id="aqi_bad" src="/image/DOAR/PM2.5/Bad.png"></a>
+        </div>
+        <div class="smoke">
+            <a href="#"><img src="/image/DOAR/PM2.5/smoke.png" width="235" height="230"></a>    
+        </div>
+        <div class="AR">
+            <a href="#"><img src="/image/DOAR/PM2.5/ar.png" width="235" height="230"></a>    
+        </div>
+
+        <div class="home">
+            <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
+        </div>
+        <div class="EmerP2">
+            <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
+        </div>
+          
+
+
+  
+    <div class="GPbox1">
+      <div  class="box">10</div>
+    </div>
+    <div class="GPbox2">
+      <div class="box">20</div>
+    </div>
+    <div class="GPbox3">
+        <div class="box">10</div>
+      </div>
+
+    </div>
+    <script>
+      // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+      const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+          username: "Venco",
+          password: "12345678Venco",
+          rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+      });
+    
+      // เมื่อเชื่อมต่อสำเร็จ
+      mqttClient.on("connect", function () {
+          console.log("✅ MQTT Connected!");
+          mqttClient.subscribe("DOAR", function (err) {
+              if (!err) {
+                  console.log("✅ Subscribed to DOAR");
+              }
+          });
+      });
+    
+      // ฟังก์ชันอัปเดตค่าใน HTML
+      function updateElement(id, value) {
+          let element = document.getElementById(id);
+          if (element && value !== undefined) {
+              element.innerText = parseFloat(value).toFixed(2); // แปลงเป็นทศนิยม 2 ตำแหน่ง
+          }
+      }
+    
+      // ฟังก์ชันอัปเดต AQI
+      function updateAQI(aqiValue) {
+          let imgGood = document.getElementById("aqi_good");
+          let imgMod = document.getElementById("aqi_mod");
+          let imgBad = document.getElementById("aqi_bad");
+    
+          if (!imgGood || !imgMod || !imgBad) return;
+    
+          // ซ่อนทุกภาพก่อน
+          imgGood.style.display = "none";
+          imgMod.style.display = "none";
+          imgBad.style.display = "none";
+    
+          // แสดงรูปภาพตามค่า AQI
+          if (aqiValue === 1) {
+              imgGood.style.display = "block";  
+          } else if (aqiValue === 2) {
+              imgMod.style.display = "block";  
+          } else {
+              imgBad.style.display = "block";  
+          }
+      }
+    
+      // ฟังก์ชันอัปเดต Wheel GIF
+      function updateWheel(WheelValue) {
+          let imgWheelOn = document.getElementById("Wheel_On");
+          let imgWheelOff = document.getElementById("Wheel_Off");
+    
+          if (!imgWheelOn || !imgWheelOff) return;
+    
+          // ซ่อนทุกภาพก่อน
+          imgWheelOn.style.display = "none";
+          imgWheelOff.style.display = "none";
+    
+          // แสดงรูปภาพตามค่า WheelValue
+          if (WheelValue === 1) {
+              imgWheelOn.style.display = "block";  
+          } else {
+              imgWheelOff.style.display = "block";
+          }
+      }
+    
+       // ฟังก์ชันอัปเดต Filter
+       function updateFilter(FilterValue) {
+          let imgFilterOn = document.getElementById("Filter_On");
+          let imgFilterOff = document.getElementById("Filter_Off");
+    
+          if (!imgFilterOn || !imgFilterOff) return;
+    
+          // ซ่อนทุกภาพก่อน
+          imgFilterOn.style.display = "none";
+          imgFilterOff.style.display = "none";
+    
+          if (parseInt(FilterValue) === 1) {
+        imgFilterOn.style.display = "block";  
+    } else {
+        imgFilterOff.style.display = "block";
+    }
+       }
+    
+    
+        // แปลงค่าเป็นตัวเลขก่อนเช็คเงื่อนไข
+        let numericValue = parseFloat(value);
+        
+        if (numericValue > 1) {
+            fanGif.style.display = "block";  
+        } else {
+            fanGif.style.display = "none";
+        }
+    
+    
+    
+      // รับค่าจาก MQTT และอัปเดตข้อมูล
+      mqttClient.on("message", function (topic, message) {
+          try {
+              var data = JSON.parse(message.toString());
+              console.log("📩 Received MQTT Data:", data);
+
+              // อัปเดต AQI ถ้ามีค่า AQI
+              if (data.AQI !== undefined) {
+                  updateAQI(data.AQI);
+              }
+    
+              // อัปเดต Wheel ถ้ามีค่า Wheel
+              if (data.Wheel !== undefined) {
+                  updateWheel(data.Wheel);
+              }
+    
+              if (data.Filter !== undefined) {
+        updateFilter(data.Filter);
+    }
+    
+          } catch (error) {
+              console.error("❌ Error parsing MQTT message:", error);
+          }
+      });
+    
+      // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
+      document.addEventListener("DOMContentLoaded", function() {
+          console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
+      });
+    
+      // จัดการข้อผิดพลาดของ MQTT
+      mqttClient.on("error", function (error) {
+          console.error("❌ MQTT Error:", error);
+      });
+    
+      mqttClient.on("close", function () {
+          console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+      });
+    
+      console.log("✅ MQTT Data:", data);
+    
+    
+    </script>
+    
+
+
+
+
+
+  </body>
+</html>

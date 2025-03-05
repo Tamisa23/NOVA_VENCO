@@ -37,9 +37,62 @@ html, body {
     padding-top: 15px;
 }
 .EmerP2 { 
-
     padding-left: 1750px;
     padding-top: 10px;
+}
+.PMgood {
+    margin-top: -10px;
+}
+.PMmod {
+    margin-top: -10px;
+}
+.PMbad {
+    margin-top: -10px;
+}
+.GPbox1{
+    padding-left: 810px;
+    padding-top: 220px;
+}
+.box{
+    position: absolute;
+    display: flex;
+    font-size: 1cm;
+    flex-direction: row;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 275px;
+    height: 73px; /* ปรับความสูงได้ตามต้องการ */
+
+}
+.GPbox2{
+    padding-left: 1480px;
+    padding-top: 0px;
+}
+.GPbox3{
+    padding-left: 810px;
+    padding-top: 735px;
+}
+.smoke {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1580px;
+    padding-top: 500px;
+}
+.AR {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1580px;
+    padding-top: 240px;
+}
+.goodair {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -14px;
 }
 
 
@@ -74,7 +127,7 @@ html, body {
     .GP {
         background-size: contain;
         background-position: center;
-        top: 25%;
+        top: 35%;
     }
     .GP a {
         background-size: contain;

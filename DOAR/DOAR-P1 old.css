@@ -36,10 +36,17 @@ html, body {
     padding-left: 0px;
     padding-top: 15px;
 }
+.P2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 250px;
+}
 .EmerP2 { 
 
-    padding-left: 1750px;
-    padding-top: 10px;
+    padding-left: 1730px;
+    padding-top: 30px;
 }
 
 
@@ -74,7 +81,7 @@ html, body {
     .GP {
         background-size: contain;
         background-position: center;
-        top: 25%;
+        top: 35%;
     }
     .GP a {
         background-size: contain;

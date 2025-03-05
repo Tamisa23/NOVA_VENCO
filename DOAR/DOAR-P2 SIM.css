@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',serif;
+}
+html, body {
+    overflow: hidden;
+  }
+  
+
+.GP {
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
+    position: absolute;
+}
+.GP a {
+    position: absolute;
+    display: flex;  
+}
+.pxgraphic {
+    display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 250px 50px;
+}
+.settingP2 {   
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 895px;
+    padding-top: 10px;
+}
+.energyP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1077px;
+    padding-top: 9px;
+}
+.simP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 715px;
+    padding-top: 10px;
+}
+.EmerP2 { 
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1750px;
+    padding-top: 7px;
+}
+.home { 
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding-left: 0px;
+  padding-top: 0px;
+}
+
+@media screen and (max-width: 1920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        height: 100vh;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    .AQIP2 {
+        background-size: contain;
+        background-position: center;
+    }
+    .AQIP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .Filter {
+        background-size: contain;
+        background-position: center;
+    }
+    .Filter a {
+        background-size: contain;
+        background-position: center;
+    }
+    .sa {
+        background-size: contain;
+        background-position: center;
+    }
+    .sa a {
+        background-size: contain;
+        background-position: center;
+    }
+    .ea {
+        background-size: contain;
+        background-position: center;
+    }
+    .ea a {
+        background-size: contain;
+        background-position: center;
+    }
+    .energyP2 {
+        background-size: contain;
+        background-position: center;
+    }
+    .energyP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .simP2 {
+        background-size: contain;
+        background-position: center;
+    }
+    .simP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .EmerP2 {
+        background-size: contain;
+        background-position: center;
+    }
+    .EmerP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .settingP2 {
+        background-size: contain;
+        background-position: center;
+    }
+    .settingP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .box3 {
+        background-size: contain;
+        background-position: center;
+        top: 88%;
+    }
+    
+
+    .pxgraphic {
+        width: 80vw;
+        height: 50vh;
+    }
+
+    .service {
+        top: 5%;
+        right: 5%;
+        width: 120vw;
+        height: 120vh;
+    }
+
+    .home {
+      width: 30vw;
+      height: 20vh;
+      top: 0%;
+  }
+
+}
+
+
+@media (min-width: 810px) and (max-width: 1440px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 20%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    
+    .energyP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .energyP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .simP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .simP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .EmerP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .EmerP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .settingP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .settingP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    
+    .home {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    
+    .energyP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .energyP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .simP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .simP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .EmerP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .EmerP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .settingP2 {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .settingP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .home {
+      width: 28vw;
+      height: 30vh;
+      top: 0%;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+    .AQIP2 {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .AQIP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .Filter {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .Filter a {
+        background-size: contain;
+        background-position: center;
+    }
+    .sa {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .sa a {
+        background-size: contain;
+        background-position: center;
+    }
+    .ea {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .ea a {
+        background-size: contain;
+        background-position: center;
+    }
+    .energyP2 {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .energyP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .simP2 {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .simP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .EmerP2 {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .EmerP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .settingP2 {
+        background-size: contain;
+        background-position: center;
+        top: 45%;
+    }
+    .settingP2 a {
+        background-size: contain;
+        background-position: center;
+    }
+    .box {
+        background-size: contain;
+        background-position: center;
+        top: 65%;
+    }
+    .box2 {
+        background-size: contain;
+        background-position: center;
+        top: 137%;
+    }
+    .box3 {
+        background-size: contain;
+        background-position: center;
+        top: 133%;
+    }
+    .EVtemp2 {
+        background-size: contain;
+        background-position: center;
+        top: 1%;
+    }
+    .EBM {
+        background-size: contain;
+        background-position: center;
+        position: relative;
+        top: 70%;
+        margin-top: 485px;
+    }
+    
+
+    .pxgraphic {
+        width: 80vw;
+        height: 50vh;
+    }
+
+    .service {
+        top: 5%;
+        right: 5%;
+        width: 120vw;
+        height: 120vh;
+    }
+
+}

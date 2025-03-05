@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viveport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="/DOAR/DOAR-P2 WHEEL.css" />
+
+  </head>
+  <body>
+
+
+  <div class="GP">
+    <a><img id="Wheel_Off" src="/image/DOAR/Wheel/BG.jpg"></a>
+    <a><img id="Wheel_On" src="/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif"></a>
+    </div>
+    
+    
+
+
+    <div class="GP">
+
+        
+        
+        <!-- <div class="PMgood">
+            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Good.png"></a>
+        </div>
+        <div class="PMmod">
+            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Mod.png"></a>
+        </div>
+        <div class="PMbad">
+            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Bad.png"></a>
+        </div>
+        <div class="smoke">
+            <a href="#"><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/smoke.png" width="235" height="230"></a>    
+        </div>
+        <div class="AR">
+            <a href="#"><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/ar.png" width="235" height="230"></a>    
+        </div> -->
+
+        <div class="home">
+            <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
+        </div>
+        <div class="EmerP2">
+            <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
+        </div>
+          
+
+
+  
+    <div class="GPbox1">
+      <div id="flow_sa" class="box">40</div>
+    </div>
+    <div class="GPbox2">
+      <div id="eff" class="box">20</div>
+    </div>
+    <div class="GPbox3">
+        <div id="flow_ea" class="box">10</div>
+      </div>
+
+    </div>
+
+    <script>
+      // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+      const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+          username: "Venco",
+          password: "12345678Venco",
+          rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+      });
+    
+      // เมื่อเชื่อมต่อสำเร็จ
+      mqttClient.on("connect", function () {
+          console.log("✅ MQTT Connected!");
+          mqttClient.subscribe("DOAR", function (err) {
+              if (!err) {
+                  console.log("✅ Subscribed to DOAR");
+              }
+          });
+      });
+    
+      // ฟังก์ชันอัปเดตค่าใน HTML
+      function updateElement(id, value) {
+          let element = document.getElementById(id);
+          if (element) {
+              element.innerText = parseFloat(value).toFixed(2); // แปลงเป็นทศนิยม 2 ตำแหน่ง
+          } else {
+              console.warn(`⚠️ Element with ID '${id}' not found`);
+          }
+      }
+  
+    
+      // ฟังก์ชันอัปเดต Wheel GIF
+      function updateWheel(WheelValue) {
+          let imgWheelOn = document.getElementById("Wheel_On");
+          let imgWheelOff = document.getElementById("Wheel_Off");
+    
+          if (!imgWheelOn || !imgWheelOff) {
+              console.warn("⚠️ Wheel images not found in the DOM");
+              return;
+          }
+    
+          // ซ่อนทุกภาพก่อน
+          imgWheelOn.style.display = "none";
+          imgWheelOff.style.display = "none";
+    
+          // แสดงรูปภาพตามค่า WheelValue
+          if (WheelValue === 1) {
+              imgWheelOn.style.display = "block";  
+          } else {
+              imgWheelOff.style.display = "block";
+          }
+      }
+    
+      // รับค่าจาก MQTT และอัปเดตข้อมูล
+      mqttClient.on("message", function (topic, message) {
+          try {
+              var data = JSON.parse(message.toString());
+              console.log("📩 Received MQTT Data:", data); // Debug log 
+              updateElement("flow_ea", data.flow_ea);
+              updateElement("flow_sa", data.flow_sa);
+              updateElement("eff", data.eff);
+
+              // อัปเดต Wheel ถ้ามีค่า Wheel
+              if (data.Wheel !== undefined) {
+                  console.log(`⚙️ Wheel Value: ${data.Wheel}`);  // Debug ค่า Wheel
+                  updateWheel(data.Wheel);
+              }
+    
+          } catch (error) {
+              console.error("❌ Error parsing MQTT message:", error);
+          }
+      });
+    
+      // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
+      document.addEventListener("DOMContentLoaded", function() {
+          console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
+      });
+    
+      // จัดการข้อผิดพลาดของ MQTT
+      mqttClient.on("error", function (error) {
+          console.error("❌ MQTT Error:", error);
+      });
+    
+      mqttClient.on("close", function () {
+          console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+      });
+    
+    </script>
+    
+
+
+
+
+  </body>
+</html>

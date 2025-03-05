@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/DOAR/login.css">
+    <script>
+        // ฟังก์ชั่นตรวจสอบข้อมูล Login
+        function checkLogin(event) {
+            event.preventDefault(); // ป้องกันการส่งฟอร์ม
+
+            // รับค่าจาก input
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // ข้อมูลของผู้ใช้
+            var users = {
+                "user": {password: "12345678", redirectPage: "/DOAR/DOAR-P4.html"},
+                "admin": {password: "Venco6343", redirectPage: "/DOAR/DOAR-P4.html"}
+            };
+
+            // ตรวจสอบข้อมูล
+            if (users[username] && users[username].password === password) {
+                alert("เข้าสู่ระบบสำเร็จ");
+                window.location.href = users[username].redirectPage; // เปลี่ยนหน้าไปที่หน้าเหมาะสม
+            } else {
+                alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <form action="/DOAR/DOAR-P4.html" method="post" class="login-form" onsubmit="checkLogin(event)">
+            <h2>LOGIN</h2>
+            <div class="input-group">
+                <label for="username">USER</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="sub">
+                <button type="submit" class="login-btn">LOGIN</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

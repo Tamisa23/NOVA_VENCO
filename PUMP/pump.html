@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
@@ -69,42 +70,50 @@
     </div>
 
     <script>
-         // สร้างการเชื่อมต่อ WebSocket
- var ws = new WebSocket("ws://10.121.15.37:1880/ws/pump");
+// เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+    username: "Venco",
+    password: "12345678Venco",
+    rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+});
 
 // เมื่อเชื่อมต่อสำเร็จ
-ws.onopen = function() {
-  console.log("เชื่อมต่อ WebSocket สำเร็จ");
-};
+mqttClient.on("connect", function () {
+    console.log("✅ MQTT Connected!");
+    mqttClient.subscribe("pump", function (err) {
+        if (!err) {
+            console.log("✅ Subscribed to non-chemical/data");
+        }
+    });
+});
 
-// เมื่อได้รับข้อความ
-ws.onmessage = function(event) {
-// รับข้อมูลในรูปแบบ string และแปลงเป็น JSON object
-var data = JSON.parse(event.data);
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
 
-  // สมมุติว่า JSON มีโครงสร้างเช่น
-  // { "voltage": 220, "current": 5, "speed": 60, "power": 2.5 }
+        console.log("Received data:", data);  // เพิ่มบรรทัดนี้เพื่อตรวจสอบข้อมูลที่ได้รับ
   
   // อัปเดตข้อมูลลงใน element HTML ที่มี id ตามที่กำหนดไว้
-  document.getElementById("voltageValue").innerText = data.voltage;
-  document.getElementById("currentValue").innerText = data.current;
-  document.getElementById("speedValue").innerText = data.speed;
-  document.getElementById("powerValue").innerText = data.power;
-  document.getElementById("headValue").innerText = data.head;
-  document.getElementById("flowValue").innerText = data.flow;
+  document.getElementById("voltageValue").innerText = data.voltage + " V";
+  document.getElementById("currentValue").innerText = data.current + " A";
+  document.getElementById("speedValue").innerText = data.speed + " %";
+  document.getElementById("powerValue").innerText = data.power + " kW";
+  document.getElementById("headValue").innerText = data.head + " ft" ;
+  document.getElementById("flowValue").innerText = data.flow + " GPM";
   document.getElementById("motorValue").innerText = data.motor;
+} catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
   
-  
-};
+});
 
-// เมื่อเกิดข้อผิดพลาด
-ws.onerror = function(error) {
-  console.error("ข้อผิดพลาดใน WebSocket: ", error);
-};
+// จัดการข้อผิดพลาด
+mqttClient.on("error", function (error) {
+    console.error("❌ MQTT Error:", error);
+});
 
-// เมื่อการเชื่อมต่อปิดลง
-ws.onclose = function() {
-  console.log("การเชื่อมต่อ WebSocket ถูกปิด");
-};
+mqttClient.on("close", function () {
+    console.log("⚠️ MQTT Disconnected! Reconnecting...");
+});
     </script>
   </body>

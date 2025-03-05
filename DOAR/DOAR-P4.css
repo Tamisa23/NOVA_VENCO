@@ -184,3 +184,51 @@ html, body {
 .preview_image{
     position: absolute;
 }
+
+
+
+/* ✅ Responsive สำหรับ PC ความกว้างสูงสุด 1920px */
+@media screen and (max-width: 1920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+}
+@media (max-width: 1440px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 20%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+
+}
+
+/* ✅ Responsive สำหรับ iPad */
+@media screen and (max-width: 1024px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        bottom: auto;
+        display: block;
+        margin: auto;
+        align-items: center;
+        top: 40%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+
+}
