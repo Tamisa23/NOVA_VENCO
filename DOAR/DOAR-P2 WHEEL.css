@@ -1,79 +1,289 @@
-/* ✅ ตั้งค่า layout พื้นฐาน */
-html, body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Roboto',serif;
+}
+html, body {
     overflow: hidden;
-}
+  }
+  
 
-/* ✅ ทำให้พื้นหลังเต็มจอ */
-.GP {
-    width: 100vw;
-    height: 100vh;
-    background-image: url("/image/DOAR/Wheel/BG.jpg");
-    background-size: cover; 
+  .GP {
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
+    position: absolute;
+    top: 0%;
+    width: 100%;
 }
-
-/* ✅ ป้องกันการขยายของค่าตัวเลข */
-.value-box {
-    position: fixed;
-    right: 2%;  /* ✅ ชิดขวา */
-    top: 20%;  /* ✅ ค่าตัวเลขเลื่อนขึ้น */
-    transform: translateY(-50%);
-    width: 100px; 
-    height: 40px;
-    background-color: white;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+.GP img {
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+}
+.BG {
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+}
+.BG img {
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    position: absolute;
+}
+.pxgraphic {
     display: flex;
+    top: 53%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 60px 50px;
+}
+.home { 
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 0px;
+    width: 300px;
+    height: 120px;
+    z-index: 999;
+}
+.EmerP2 { 
     align-items: center;
     justify-content: center;
-    max-width: 120px;  /* ✅ จำกัดความกว้าง */
-    max-height: 50px;
+    position: absolute;
+    padding-left: 50px;
+    padding-top: 10px;
+    width: 140px;
+    height: 140px;
+    z-index: 999;
+}
+.PMgood {
+    margin-top: -10px;
+}
+.PMmod {
+    margin-top: -10px;
+}
+.PMbad {
+    margin-top: -10px;
+}
+.GPbox1{
+    padding-left: 820px;
+    padding-top: 230px;
+}
+.box{
+    position: absolute;
+    display: flex;
+    font-size: 1.2cm;
+    flex-direction: row;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 275px;
+    height: 73px; /* ปรับความสูงได้ตามต้องการ */
+
+}
+.GPbox2{
+    padding-left: 1480px;
+    padding-top: 0px;
+}
+.GPbox3{
+    padding-left: 820px;
+    padding-top: 735px;
+}
+.smoke {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1580px;
+    padding-top: 500px;
+}
+.AR {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding-left: 1580px;
+    padding-top: 240px;
+}
+.goodair {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -14px;
 }
 
-/* ✅ ปรับตำแหน่งตัวเลขให้สอดคล้องกับ BG */
-.GPbox1 { top: 20%; }
-.GPbox2 { top: 40%; }
-.GPbox3 { top: 60%; }
 
-/* ✅ ปรับปุ่ม EMC ให้อยู่บนหน้าจอ */
-.EmerP2 {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 9999;
-}
-
-/* ✅ ปรับปุ่ม HOME */
-.home {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 9999;
-}
-
-/* ✅ รองรับหน้าจอขนาดเล็ก */
-@media screen and (max-width: 1440px) {
-    .value-box {
-        width: 90px;
-        height: 35px;
-        font-size: 16px;
-        right: 3%;
+/* ✅ Responsive สำหรับ PC ความกว้างสูงสุด 1920px */
+@media (max-width: 1920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
     }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .EmerP2 img {
+        margin-top: -3px;
+        margin-left: 1700px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .home img {
+        margin-top: 10px;
+        margin-left: 30px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
+    }  
 }
 
-@media screen and (max-width: 1024px) {
-    .value-box {
-        width: 80px;
-        height: 30px;
-        font-size: 14px;
-        right: 3%;
+/* ✅ Responsive สำหรับ iPad */
+@media (max-width: 1440px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
     }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .EmerP2 img {
+        margin-top: 0px;
+        margin-left: 1270px;
+        padding-left: 0px;
+        width: 70%;
+        height: 70%;
+    }
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 75%;
+        height: 75%;
+    } 
+    .GPbox1 {
+        scale: 0.723618;
+        margin-left: -205px;
+        margin-top: -25px;
+    }
+    .GPbox2 {
+        scale: 0.723618;
+        margin-left: -170px;
+        margin-top: -30px;
+    }
+    .GPbox3 {
+        scale: 0.723618;
+        margin-left: -205px;
+        margin-top: -115px;
+    }
+
+}
+@media (max-width: 1180px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .EmerP2 img {
+        margin-top: -5px;
+        margin-left: 1020px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }
+    .home img {
+        margin-top: 10px;
+        margin-left: -150px;
+        width: 100%;
+        height: 100%;
+    } 
+    .GPbox1 {
+        scale: 0.614583;
+        margin-left: -285px;
+        margin-top: -45px;
+    }
+    .GPbox2 {
+        scale: 0.614583;
+        margin-left: -280px;
+        margin-top: -45px;
+    }
+    .GPbox3 {
+        scale: 0.614583;
+        margin-left: -285px;
+        margin-top: -185px;
+    }
+
 }

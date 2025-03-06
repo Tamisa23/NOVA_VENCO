@@ -6,53 +6,44 @@
     <meta name="viveport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
     <link rel="stylesheet" href="/DOAR/DOAR-P2 WHEEL.css" />
+    <link rel="icon" type="image/x-icon" href="/image/HOME/LOGO VENCO .png">
+
 
   </head>
   <body>
 
 
+  <div class="BG">
+    <a><img id="imgWheelOff" src="/image/DOAR/Wheel/BG.jpg"></a>
+    <a><img id="imgWheelOn" src="/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif"></a>
+    </div>
+    
     
 
 
-    <div class="GP">
+    <div class="GP"> 
+        
+      
+        <div class="EmerP2">
+            <a href="#" id="EMCImg" class="hover-effect float"><img src="/image/DOAR/P2/BG-EMC.png"></a>
+        </div>
+          
 
-        
-        
-        <!-- <div class="PMgood">
-            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Good.png"></a>
-        </div>
-        <div class="PMmod">
-            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Mod.png"></a>
-        </div>
-        <div class="PMbad">
-            <a><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/Bad.png"></a>
-        </div>
-        <div class="smoke">
-            <a href="#"><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/smoke.png" width="235" height="230"></a>    
-        </div>
-        <div class="AR">
-            <a href="#"><img src="DOAR-WEB-COM GP/N4-COM GP/P4(PM2.5)/ar.png" width="235" height="230"></a>    
-        </div> -->
 
         <div class="home">
-            <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
-        </div>
-        <div class="EmerP2">
-            <a  onclick="toggleEMC()">
-                <img id="EMCImg" class="hover-effect float"src="/image/DOAR/P2/BG-EMC.png" width="128" height="129">
-              </a>
-
-
-    <div class="GPbox1">
-      <div id="flow_sa" class="box">40</div>
-    </div>
-    <div class="GPbox2">
-      <div id="eff" class="box">20</div>
-    </div>
-    <div class="GPbox3">
-        <div id="flow_ea" class="box">10</div>
+          <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png"></a>
       </div>
-
+  
+      <div class="GPbox1">
+        <div id="flow_sa" class="box">40</div>
+      </div>
+      <div class="GPbox2">
+        <div id="eff" class="box">20</div>
+      </div>
+      <div class="GPbox3">
+          <div id="flow_ea" class="box">10</div>
+        </div>
+  
 
     <script>
       // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
@@ -84,53 +75,48 @@
 
   
     
-      // ฟังก์ชันอัปเดต Wheel GIF
-      function updateWheel(WheelValue) {
-          let imgWheelOn = document.getElementById("Wheel_On");
-          let imgWheelOff = document.getElementById("Wheel_Off");
-    
-          if (!imgWheelOn || !imgWheelOff) {
-              console.warn("⚠️ Wheel images not found in the DOM");
-              return;
-          }
-    
-          // ซ่อนทุกภาพก่อน
-          imgWheelOn.style.display = "none";
-          imgWheelOff.style.display = "none";
-    
-          // แสดงรูปภาพตามค่า WheelValue
-          if (WheelValue === 1) {
-              imgWheelOn.style.display = "block";  
-          } else {
-              imgWheelOff.style.display = "block";
-          }
-      }
+    // ฟังก์ชันอัปเดต Wheel GIF
+function updateWheel(WheelValue) {
+    let imgWheelOn = document.getElementById("imgWheelOn");  // ใช้ ID ที่ถูกต้อง
+    let imgWheelOff = document.getElementById("imgWheelOff");
+
+    if (!imgWheelOn || !imgWheelOff) {
+        console.warn("⚠️ Wheel images not found in the DOM");
+        return;
+    }
+
+    // ซ่อนทุกภาพก่อน
+    imgWheelOn.style.display = "none";
+    imgWheelOff.style.display = "none";
+
+    // แสดงรูปภาพตามค่า WheelValue
+    if (WheelValue === 1) {
+        imgWheelOn.src = "/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif?random=" + new Date().getTime();  // รีเฟรช GIF
+        imgWheelOn.style.display = "block";  
+    } else {
+        imgWheelOff.style.display = "block";
+    }
+}
+
+
     
 mqttClient.on("message", function (topic, message) {
     try {
         var data = JSON.parse(message.toString());
         console.log("📩 Received MQTT Data:", data); // Debug log 
 
-        // ตรวจสอบว่าค่ามีอยู่จริงก่อนอัปเดต
-        if (data.flow_ea !== undefined) {
-            console.log("⚙️ flow_ea:", data.flow_ea);
-            updateElement("flow_ea", data.flow_ea);
-        }
-
-        if (data.flow_sa !== undefined) {
-            console.log("⚙️ flow_sa:", data.flow_sa);
-            updateElement("flow_sa", data.flow_sa);
-        }
-
-        if (data.eff !== undefined) {
-            console.log("⚙️ eff:", data.eff);
-            updateElement("eff", data.eff);
+        // อัปเดตค่า Wheel
+        if (data.Wheel !== undefined) {
+            let WheelValue = parseInt(data.Wheel, 10);
+            console.log("⚙️ Wheel:", WheelValue);
+            updateWheel(WheelValue); // อัปเดต UI ตามค่าที่ได้รับ
         }
 
     } catch (error) {
         console.error("❌ Error parsing MQTT message:", error);
     }
 });
+
 
 
       // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
@@ -200,6 +186,7 @@ mqttClient.on("message", function (topic, message) {
 
     </script>
     
+
 
 
 

@@ -11,15 +11,33 @@ html, body {
   }
   
 
-.GP {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
+  .GP {
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
     position: absolute;
+    top: 0%;
+    width: 100%;
 }
-.GP a {
+.GP img {
+    background-size: contain;
+    background-position: center;
     position: absolute;
-    display: flex;  
+    width: 100%;
+}
+.BG {
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+}
+.BG img {
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    position: absolute;
 }
 .pxgraphic {
     display: flex;
@@ -33,375 +51,274 @@ html, body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 895px;
+    padding-left: 50px;
     padding-top: 10px;
+    width: 138px;
+    height: 139px;
+    z-index: 999;
 }
 .energyP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 1077px;
-    padding-top: 9px;
+    padding-left: 50px;
+    padding-top: 10px;
+    width: 138px;
+    height: 139px;
+    z-index: 999;
 }
 .simP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 715px;
+    padding-left: 50px;
     padding-top: 10px;
+    width: 138px;
+    height: 139px;
+    z-index: 999;
 }
 .EmerP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 1750px;
-    padding-top: 7px;
+    padding-left: 50px;
+    padding-top: 10px;
+    width: 140px;
+    height: 140px;
+    z-index: 999;
 }
 .home { 
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  padding-left: 0px;
-  padding-top: 0px;
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 0px;
+    width: 300px;
+    height: 120px;
+    z-index: 999;
 }
 
-@media screen and (max-width: 1920px) {
+@media (max-width: 1920px) {
     .GP {
         background-size: contain;
         background-position: center;
-        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
     }
-    .GP a {
+    .GP img {
         background-size: contain;
         background-position: center;
+        position: absolute;
+        width: 100%;
     }
-    .AQIP2 {
+    .BG {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
     }
-    .AQIP2 a {
+    .BG img {
         background-size: contain;
         background-position: center;
+        width: 100%;
+        position: absolute;
     }
-    .Filter {
-        background-size: contain;
-        background-position: center;
+    .EmerP2 img {
+        margin-top: -3px;
+        margin-left: 1700px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
     }
-    .Filter a {
-        background-size: contain;
-        background-position: center;
+    .home img {
+        margin-top: 10px;
+        margin-left: 30px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
+    }  
+    .energyP2 img {
+        margin-top: 0px;
+        margin-left: 1030px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
+    }   
+    .simP2 img {
+        margin-top: 0px;
+        margin-left: 665px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
     }
-    .sa {
-        background-size: contain;
-        background-position: center;
+    .settingP2 img {
+        margin-top: 0px;
+        margin-left: 845px;
+        padding-left: 0px;
+        width: 100%;
+        height: 100%;
     }
-    .sa a {
-        background-size: contain;
-        background-position: center;
-    }
-    .ea {
-        background-size: contain;
-        background-position: center;
-    }
-    .ea a {
-        background-size: contain;
-        background-position: center;
-    }
-    .energyP2 {
-        background-size: contain;
-        background-position: center;
-    }
-    .energyP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .simP2 {
-        background-size: contain;
-        background-position: center;
-    }
-    .simP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .EmerP2 {
-        background-size: contain;
-        background-position: center;
-    }
-    .EmerP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .settingP2 {
-        background-size: contain;
-        background-position: center;
-    }
-    .settingP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .box3 {
-        background-size: contain;
-        background-position: center;
-        top: 88%;
-    }
-    
-
-    .pxgraphic {
-        width: 80vw;
-        height: 50vh;
-    }
-
-    .service {
-        top: 5%;
-        right: 5%;
-        width: 120vw;
-        height: 120vh;
-    }
-
-    .home {
-      width: 30vw;
-      height: 20vh;
-      top: 0%;
-  }
 
 }
 
 
-@media (min-width: 810px) and (max-width: 1440px) {
+@media (max-width: 1440px) {
 
     .GP {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
         top: 0%;
+        width: 100%;
     }
-    .GP a {
+    .GP img {
         background-size: contain;
         background-position: center;
+        position: absolute;
+        width: 100%;
     }
-    
-    .energyP2 {
+    .BG {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
         top: 0%;
+        width: 100%;
     }
-    .energyP2 a {
+    .BG img {
         background-size: contain;
         background-position: center;
+        width: 100%;
+        position: absolute;
     }
-    .simP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .EmerP2 img {
+        margin-top: 0px;
+        margin-left: 1270px;
+        padding-left: 0px;
+        width: 70%;
+        height: 70%;
     }
-    .simP2 a {
-        background-size: contain;
-        background-position: center;
+    .settingP2 img {
+        margin-top: -3px;
+        margin-left: 620px;
+        padding-left: 0px;
+        width: 75%;
+        height: 75%;
     }
-    .EmerP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .simP2 img {
+        margin-top: -3px;
+        margin-left: 485px;
+        padding-left: 0px;
+        width: 75%;
+        height: 75%;
     }
-    .EmerP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .settingP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
-    }
-    .settingP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    
-    .home {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
-  }
+    .energyP2 img {
+        margin-top: -3px;
+        margin-left: 760px;
+        padding-left: 0px;
+        width: 75%;
+        height: 75%;
+    }  
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 75%;
+        height: 75%;
+    } 
 }
 
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1180px) {
 
     .GP {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
         top: 0%;
+        width: 100%;
     }
-    .GP a {
+    .text {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
+        scale: 0.61458333;
+        margin-top: -190px;
+        margin-left: -230px;
     }
-    
-    .energyP2 {
+    .GP img {
         background-size: contain;
         background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
         top: 0%;
+        width: 100%;
     }
-    .energyP2 a {
+    .BG img {
         background-size: contain;
         background-position: center;
+        width: 100%;
+        position: absolute;
     }
-    .simP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .EmerP2 img {
+        margin-top: -3px;
+        margin-left: 1030px;
+        padding-left: 0px;
+        width: 57%;
+        height: 57%;
     }
-    .simP2 a {
-        background-size: contain;
-        background-position: center;
+    .settingP2 img {
+        margin-top: -5px;
+        margin-left: 500px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
     }
-    .EmerP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .simP2 img {
+        margin-top: -5px;
+        margin-left: 390px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
     }
-    .EmerP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .settingP2 {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
-    }
-    .settingP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .home {
-      width: 28vw;
-      height: 30vh;
-      top: 0%;
-  }
+    .energyP2 img {
+        margin-top: -5px;
+        margin-left: 610px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
+    }    
+    .APFilter img {
+        margin-top: 380px;
+        margin-left: 770px;
+        padding-left: 0px;
+        width: 50%;
+        height: 50%;
+    }    
+    .wheel img {
+        margin-top: 220px;
+        margin-left: 580px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }    
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }  
 }
 
-
-@media screen and (max-width: 767px) {
-
-    .GP {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .GP a {
-        background-size: contain;
-        background-position: center;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .AQIP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .Filter a {
-        background-size: contain;
-        background-position: center;
-    }
-    .sa {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .sa a {
-        background-size: contain;
-        background-position: center;
-    }
-    .ea {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .ea a {
-        background-size: contain;
-        background-position: center;
-    }
-    .energyP2 {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .energyP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .simP2 {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .simP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .EmerP2 {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .EmerP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .settingP2 {
-        background-size: contain;
-        background-position: center;
-        top: 45%;
-    }
-    .settingP2 a {
-        background-size: contain;
-        background-position: center;
-    }
-    .box {
-        background-size: contain;
-        background-position: center;
-        top: 65%;
-    }
-    .box2 {
-        background-size: contain;
-        background-position: center;
-        top: 137%;
-    }
-    .box3 {
-        background-size: contain;
-        background-position: center;
-        top: 133%;
-    }
-    .EVtemp2 {
-        background-size: contain;
-        background-position: center;
-        top: 1%;
-    }
-    .EBM {
-        background-size: contain;
-        background-position: center;
-        position: relative;
-        top: 70%;
-        margin-top: 485px;
-    }
-    
-
-    .pxgraphic {
-        width: 80vw;
-        height: 50vh;
-    }
-
-    .service {
-        top: 5%;
-        right: 5%;
-        width: 120vw;
-        height: 120vh;
-    }
-
-}
