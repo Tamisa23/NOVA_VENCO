@@ -11,11 +11,6 @@
   <body>
 
 
-  <div class="GP">
-    <a><img id="Wheel_Off" src="/image/DOAR/Wheel/BG.jpg"></a>
-    <a><img id="Wheel_On" src="/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif"></a>
-    </div>
-    
     
 
 
@@ -43,12 +38,11 @@
             <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
         </div>
         <div class="EmerP2">
-            <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
-        </div>
-          
+            <a  onclick="toggleEMC()">
+                <img id="EMCImg" class="hover-effect float"src="/image/DOAR/P2/BG-EMC.png" width="128" height="129">
+              </a>
 
 
-  
     <div class="GPbox1">
       <div id="flow_sa" class="box">40</div>
     </div>
@@ -59,7 +53,6 @@
         <div id="flow_ea" class="box">10</div>
       </div>
 
-    </div>
 
     <script>
       // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
@@ -78,16 +71,17 @@
               }
           });
       });
-    
-      // ฟังก์ชันอัปเดตค่าใน HTML
+
       function updateElement(id, value) {
-          let element = document.getElementById(id);
-          if (element) {
-              element.innerText = parseFloat(value).toFixed(2); // แปลงเป็นทศนิยม 2 ตำแหน่ง
-          } else {
-              console.warn(`⚠️ Element with ID '${id}' not found`);
-          }
-      }
+    let element = document.getElementById(id);
+    if (element) {
+        let displayValue = Array.isArray(value) ? value[0] : value; // ถ้าเป็นอาร์เรย์ ใช้ค่าตัวแรก
+        element.innerText = parseFloat(displayValue).toFixed(2); // แสดงผลทศนิยม 2 ตำแหน่ง
+    } else {
+        console.warn(`⚠️ Element with ID '${id}' not found`);
+    }
+}
+
   
     
       // ฟังก์ชันอัปเดต Wheel GIF
@@ -112,26 +106,33 @@
           }
       }
     
-      // รับค่าจาก MQTT และอัปเดตข้อมูล
-      mqttClient.on("message", function (topic, message) {
-          try {
-              var data = JSON.parse(message.toString());
-              console.log("📩 Received MQTT Data:", data); // Debug log 
-              updateElement("flow_ea", data.flow_ea);
-              updateElement("flow_sa", data.flow_sa);
-              updateElement("eff", data.eff);
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data); // Debug log 
 
-              // อัปเดต Wheel ถ้ามีค่า Wheel
-              if (data.Wheel !== undefined) {
-                  console.log(`⚙️ Wheel Value: ${data.Wheel}`);  // Debug ค่า Wheel
-                  updateWheel(data.Wheel);
-              }
-    
-          } catch (error) {
-              console.error("❌ Error parsing MQTT message:", error);
-          }
-      });
-    
+        // ตรวจสอบว่าค่ามีอยู่จริงก่อนอัปเดต
+        if (data.flow_ea !== undefined) {
+            console.log("⚙️ flow_ea:", data.flow_ea);
+            updateElement("flow_ea", data.flow_ea);
+        }
+
+        if (data.flow_sa !== undefined) {
+            console.log("⚙️ flow_sa:", data.flow_sa);
+            updateElement("flow_sa", data.flow_sa);
+        }
+
+        if (data.eff !== undefined) {
+            console.log("⚙️ eff:", data.eff);
+            updateElement("eff", data.eff);
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
       // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
       document.addEventListener("DOMContentLoaded", function() {
           console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
@@ -146,6 +147,57 @@
           console.warn("⚠️ MQTT Disconnected! Reconnecting...");
       });
     
+// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
+function updateEMCGUI(value) {
+    let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
+
+    if (EMCImg) {
+        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
+        if (value === 1) {
+            EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
+        } else {
+            EMCImg.src = "/image/DOAR/P2/BG-EMC.png"; // รูป EMC ปิด
+        }
+    } else {
+        console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
+    }
+}
+
+// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
+let EMCState = 0;
+
+// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
+function toggleEMC() {
+    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
+
+    // อัปเดต UI
+    updateEMCGUI(EMCState);
+}
+
+// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.EMC !== undefined) {
+            let EMCValue = parseInt(data.EMC, 10);
+            console.log("✅ EMC Value Received:", EMCValue);
+            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
+                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
+                updateEMCGUI(EMCValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
     </script>
     
 

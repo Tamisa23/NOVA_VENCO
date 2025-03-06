@@ -20,14 +20,35 @@
       </style>
   <body>
 
-  <div class="GP">
+  <div class="BG">
     <a><img src="/image/DOAR/P4/BG.jpg"></a>
   </div>
 
 <div class="GP">
   <div class="Next">
-    <a href="/DOAR/DOAR-P5.html"><img src="/image/DOAR/P4/Next.png" width="159" height="175"></a>
+    <a href="/DOAR/DOAR-P5.html"><img src="/image/DOAR/P4/Next.png" ></a>
 </div>
+<div class="GP">
+    <div class="setsa">
+      <a href="#" onclick="setSaEaValues('set_sa')"><img src="/image/DOAR/P1/Not.png" ></a>
+  </div>
+  <div class="setsa2">
+    <a href="#" onclick="setSaEaValues('set_sa2')"><img src="/image/DOAR/P1/Not.png" ></a>
+</div>
+<div class="setea">
+    <a href="#"  onclick="setSaEaValues('set_ea')"><img src="/image/DOAR/P1/Not.png" ></a>
+</div>
+<div class="setmaxsa">
+    <a href="#"><img src="/image/DOAR/P1/Not.png" ></a>
+</div>
+<div class="setmaxsa2">
+    <a href="#"><img src="/image/DOAR/P1/Not.png" ></a>
+</div>
+<div class="setmaxea">
+    <a href="#"><img src="/image/DOAR/P1/Not.png" ></a>
+</div>
+</div>
+
   <div class="GPbox1">
     <div id="set_ebm" class="box">100</div>
     <div class="GPbox4">
@@ -52,51 +73,68 @@
 <div class="GP">
   <div class="start">
       <a href="#" onclick="toggleStartStop('start')">
-          <img id="startImg" class="hover-effect float" src="/image/DOAR/P4/BG-START.png" width="212" height="217">
+          <img id="startImg" class="hover-effect float" src="/image/DOAR/P4/BG-START.png">
       </a>
   </div>
   <div class="stop">
       <a href="#" onclick="toggleStartStop('stop')">
-          <img id="stopImg" class="hover-effect float" src="/image/DOAR/P4/BG-STOP.png" width="212" height="217">
+          <img id="stopImg" class="hover-effect float" src="/image/DOAR/P4/BG-STOP.png">
       </a>
   </div>
   <div class="wheel">
-    <a href="#"><img src="/image/DOAR/P4/BG-WHEEL p4.png" width="212" height="217"></a>
-  </div>
+    <a href="#" onclick="toggleWheel()">
+        <img id="wheelImg" class="hover-effect float" src="/image/DOAR/P4/BG-WHEEL p4.png">
+    </a>
+</div>
+
   <div class="lighting">
-    <a href="#"><img src="/image/DOAR/P4/BG-LIGHTING.png" width="212" height="217"></a>
+    <a href="#" onclick="toggleLTG()">
+    <img id="LTGImg" class="hover-effect float" src="/image/DOAR/P4/BG-LIGHTING.png" ></a>
   </div>
 
   <div class="auto">
     <a href="#" onclick="toggleAutoManual('Auto')">
-        <img id="autoImg" class="hover-effect float" src="/image/DOAR/icon/BG-AUTO.png" width="212" height="217">
+        <img id="autoImg" class="hover-effect float" src="/image/DOAR/P4/BG-AUTO.png" >
     </a>
 </div>
 <div class="manual">
     <a href="#" onclick="toggleAutoManual('Manual')">
-        <img id="manualImg" class="hover-effect float" src="/image/DOAR/icon/BG-MANUAL.png" width="212" height="217">
+        <img id="manualImg" class="hover-effect float" src="/image/DOAR/P4/BG-MANUAL.png" >
     </a>
 </div>
 
-  <div class="EmerP2">
-    <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
-  </div>
-  <div class="testsmoke">
-    <a href="#"><img src="/image/DOAR/P4/BG-Test Smoke-31.png" width="128" height="129"></a>
-  </div>
-  <div class="exhaust">
-    <a href="#"><img src="/image/DOAR/P4/BG-EXHAUST.png" width="128" height="129"></a>
-  </div>
-  <div class="fresh">
-    <a href="#"><img src="/image/DOAR/P4/BG-FRESH AIR.png" width="128" height="129"></a>
-  </div>
-  <div class="Normal">
-    <a href="#"><img src="/image/DOAR/P4/BG-NORMAL.png" width="128" height="129"></a>
-  </div>
-  
-  <div class="home">
-    <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
-  </div>
+<div class="GP">
+    <div class="EmerP2">
+        <a href="#" onclick="toggleEMC()">
+            <img id="EMCImg" class="hover-effect float" src="/image/DOAR/P2/BG-EMC.png">
+      </a>
+    </div>
+      <div class="Normal">
+          <a href="#" onclick="setMode(1)">
+              <img id="modeImg1" class="hover-effect float" src="/image/DOAR/P4/BG-NORMAL.png">
+        </a>
+    </div>
+    <div class="exhaust">
+        <a href="#" onclick="setMode(2)">
+            <img id="modeImg2" class="hover-effect float" src="/image/DOAR/P4/BG-EXHAUST.png">
+        </a>
+    </div>
+    <div class="fresh">
+        <a href="#" onclick="setMode(3)">
+            <img id="modeImg3" class="hover-effect float" src="/image/DOAR/P4/BG-FRESH AIR.png">
+        </a>
+    </div>
+    <div class="testsmoke">
+        <a href="#" onclick="setMode(4)">
+            <img id="modeImg4" class="hover-effect float" src="/image/DOAR/P4/BG-Test Smoke-31.png">
+        </a>
+    </div>
+    
+    <div class="home">
+        <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>
+    </div>
+    
+
 
 </div>
 
@@ -157,6 +195,42 @@ mqttClient.on("message", function (topic, message) {
         console.error("❌ Error parsing MQTT message:", error);
     }
 });
+// เก็บค่าปัจจุบันของ set_sa, set_sa2, และ set_ea ไว้ในตัวแปร
+let currentValues = {
+    set_sa: 0,  // ค่าตั้งต้น
+    set_sa2: 0, // ค่าตั้งต้น
+    set_ea: 0   // ค่าตั้งต้น
+};
+
+function setSaEaValues(type) {
+    let promptText = "";
+
+    if (type === "set_sa") {
+        promptText = "กรุณากรอกค่า SET SA:";
+    } else if (type === "set_sa2") {
+        promptText = "กรุณากรอกค่า SET SA2:";
+    } else if (type === "set_ea") {
+        promptText = "กรุณากรอกค่า SET EA:";
+    }
+
+    let newValue = prompt(promptText, currentValues[type]); // แสดงค่าปัจจุบัน
+
+    if (newValue !== null && newValue.trim() !== "" && !isNaN(newValue)) {
+        newValue = parseFloat(newValue);
+        console.log(`🚀 เปลี่ยนค่า ${type.toUpperCase()} เป็น ${newValue}`);
+
+        // อัปเดตค่าที่เก็บไว้
+        currentValues[type] = newValue;
+
+        // ส่งค่าทั้งหมดไป MQTT
+        mqttClient.publish("DOAR/command", JSON.stringify(currentValues));
+
+        // อัปเดตค่าบน UI
+        updateElement(type, newValue);
+    } else {
+        alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้อง!");
+    }
+}
 
 // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม START/STOP ตามค่าจาก `cmd`
 function updateStartStopUI(value) {
@@ -195,6 +269,59 @@ function updateAutoManualUI(value) {
         console.warn("⚠️ ไม่พบ autoImg หรือ manualImg ใน DOM");
     }
 }
+
+// ตัวแปรเก็บสถานะของ Wheel (ค่าเริ่มต้นเป็น 0)
+let wheelState = 0;
+
+// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม Wheel ตามค่าจาก `Wheel`
+function updateWheelUI(value) {
+    let wheelImg = document.getElementById("wheelImg");
+
+    if (wheelImg) {
+        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า Wheel:", value);
+        if (value === 1) {
+            wheelImg.src = "/image/DOAR/icon/N4-21.png"; // รูป Wheel เปิด
+        } else {
+            wheelImg.src = "/image/DOAR/P4/BG-WHEEL p4.png"; // รูป Wheel ปิด
+        }
+    } else {
+        console.warn("⚠️ ไม่พบ wheelImg ใน DOM");
+    }
+}
+
+// 📌 ฟังก์ชัน Toggle Wheel (0 <-> 1) และส่งค่าไป MQTT
+function toggleWheel() {
+    wheelState = wheelState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: Wheel = ${wheelState}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ Wheel: wheelState }));
+
+    // อัปเดต UI
+    updateWheelUI(wheelState);
+}
+
+// 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.Wheel !== undefined && Array.isArray(data.Wheel)) {
+            let wheelValue = parseInt(data.Wheel[0], 10);
+            console.log("✅ Wheel Value Received:", wheelValue);
+            if (!isNaN(wheelValue) && (wheelValue === 0 || wheelValue === 1)) {
+                wheelState = wheelValue; // อัปเดตสถานะในตัวแปร
+                updateWheelUI(wheelValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
 
 // 📌 ฟังก์ชันส่งค่า MQTT ไปที่ `DOAR/command` เมื่อกด START หรือ STOP
 function toggleStartStop(action) {
@@ -246,6 +373,165 @@ mqttClient.on("error", function (error) {
 mqttClient.on("close", function () {
     console.warn("⚠️ MQTT Disconnected! Reconnecting...");
 });
+
+// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม LTG ตามค่าจาก `LTG`
+function updateLTGUI(value) {
+    let LTGImg = document.getElementById("LTGImg"); // ใช้ LTGImg แทน wheelImg
+
+    if (LTGImg) {
+        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า LTG:", value);
+        if (value === 1) {
+            LTGImg.src = "/image/DOAR/icon/N4-22.png"; // รูป LTG เปิด
+        } else {
+            LTGImg.src = "/image/DOAR/P4/BG-LIGHTING.png"; // รูป LTG ปิด
+        }
+    } else {
+        console.warn("⚠️ ไม่พบ LTGImg ใน DOM");
+    }
+}
+// ตัวแปรเก็บสถานะของ LTG (ค่าเริ่มต้นเป็น 0)
+let LTGState = 0;
+
+// 📌 ฟังก์ชัน Toggle LTG (0 <-> 1) และส่งค่าไป MQTT
+function toggleLTG() {
+    LTGState = LTGState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: LTG = ${LTGState}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ LTG: LTGState }));
+
+    // อัปเดต UI
+    updateLTGUI(LTGState);
+}
+
+// 📌 รับค่า LTG จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.LTG !== undefined && Array.isArray(data.LTG)) {
+            let LTGValue = parseInt(data.LTG[0], 10);
+            console.log("✅ LTG Value Received:", LTGValue);
+            if (!isNaN(LTGValue) && (LTGValue === 0 || LTGValue === 1)) {
+                LTGState = LTGValue; // อัปเดตสถานะในตัวแปร
+                updateLTGUI(LTGValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
+
+
+
+// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
+function updateEMCGUI(value) {
+    let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
+
+    if (EMCImg) {
+        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
+        if (value === 1) {
+            EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
+        } else {
+            EMCImg.src = "/image/DOAR/P2/BG-EMC.png"; // รูป EMC ปิด
+        }
+    } else {
+        console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
+    }
+}
+
+// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
+let EMCState = 0;
+
+// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
+function toggleEMC() {
+    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
+
+    // อัปเดต UI
+    updateEMCGUI(EMCState);
+}
+
+// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.EMC !== undefined) {
+            let EMCValue = parseInt(data.EMC, 10);
+            console.log("✅ EMC Value Received:", EMCValue);
+            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
+                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
+                updateEMCGUI(EMCValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
+function updateModeUI(value) {
+    let modeImg1 = document.getElementById("modeImg1");
+    let modeImg2 = document.getElementById("modeImg2");
+    let modeImg3 = document.getElementById("modeImg3");
+    let modeImg4 = document.getElementById("modeImg4");
+
+    console.log("🔄 อัปเดต Mode UI ตามค่า:", value);
+
+    // ตั้งค่าเริ่มต้นให้รูปภาพทั้งหมดเป็นปิดก่อน
+    modeImg1.src = "/image/DOAR/icon/BG-NORMAL.png";
+    modeImg2.src = "/image/DOAR/icon/BG-FRESH AIR.png";
+    modeImg3.src = "/image/DOAR/icon/BG-EXHAUST.png";
+    modeImg4.src = "/image/DOAR/icon/BG-Test Smoke-31.png";
+
+    // เปลี่ยนรูปของ Mode ที่ถูกเลือกให้เป็น "เปิด"
+    if (value === 1) {
+        modeImg1.src = "/image/DOAR/icon/N4-15.png"; // รูป Normal On
+    } else if (value === 2) {
+        modeImg2.src = "/image/DOAR/icon/N4-16.png"; // รูป Exhaust On
+    } else if (value === 3) {
+        modeImg3.src = "/image/DOAR/icon/N4-17.png"; // รูป Fresh Air On
+    } else if (value === 4) {
+        modeImg4.src = "/image/DOAR/icon/N4-18.png"; // รูป Test On
+    }
+    
+}
+function setMode(mode) {
+    console.log(`🚀 ส่ง MQTT: Mode = ${mode}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ Mode: mode }));
+
+    // อัปเดต UI
+    updateModeUI(mode);
+}
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.mode !== undefined && Array.isArray(data.mode)) {
+            let modeValue = parseInt(data.mode[0], 10);
+            console.log("✅ Mode Value Received:", modeValue);
+            if (!isNaN(modeValue) && modeValue >= 1 && modeValue <= 4) {
+                updateModeUI(modeValue);
+            }
+        }
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
 
 
 

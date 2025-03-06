@@ -1,137 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-* {
+/* ✅ ตั้งค่า layout พื้นฐาน */
+html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto',serif;
-}
-html, body {
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-  }
-  
+}
 
+/* ✅ ทำให้พื้นหลังเต็มจอ */
 .GP {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/image/DOAR/Wheel/BG.jpg");
+    background-size: cover; 
+    background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
 }
-.GP a {
-    position: absolute;
-    display: flex;  
-}
-.pxgraphic {
-    display: flex;
-    top: 53%;
-    left: 50%;
-    width: 100%;
+
+/* ✅ ป้องกันการขยายของค่าตัวเลข */
+.value-box {
+    position: fixed;
+    right: 2%;  /* ✅ ชิดขวา */
+    top: 20%;  /* ✅ ค่าตัวเลขเลื่อนขึ้น */
+    transform: translateY(-50%);
+    width: 100px; 
+    height: 40px;
+    background-color: white;
     text-align: center;
-    padding: 60px 50px;
-}
-.home { 
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    padding-left: 0px;
-    padding-top: 15px;
-}
-.EmerP2 { 
-    padding-left: 1750px;
-    padding-top: 10px;
-}
-.PMgood {
-    margin-top: -10px;
-}
-.PMmod {
-    margin-top: -10px;
-}
-.PMbad {
-    margin-top: -10px;
-}
-.GPbox1{
-    padding-left: 810px;
-    padding-top: 220px;
-}
-.box{
-    position: absolute;
-    display: flex;
-    font-size: 1cm;
-    flex-direction: row;
+    font-size: 18px;
     font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 275px;
-    height: 73px; /* ปรับความสูงได้ตามต้องการ */
-
-}
-.GPbox2{
-    padding-left: 1480px;
-    padding-top: 0px;
-}
-.GPbox3{
-    padding-left: 810px;
-    padding-top: 735px;
-}
-.smoke {
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    padding-left: 1580px;
-    padding-top: 500px;
-}
-.AR {
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    padding-left: 1580px;
-    padding-top: 240px;
-}
-.goodair {
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    margin-left: -22px;
-    margin-top: -14px;
+    max-width: 120px;  /* ✅ จำกัดความกว้าง */
+    max-height: 50px;
 }
 
+/* ✅ ปรับตำแหน่งตัวเลขให้สอดคล้องกับ BG */
+.GPbox1 { top: 20%; }
+.GPbox2 { top: 40%; }
+.GPbox3 { top: 60%; }
 
-/* ✅ Responsive สำหรับ PC ความกว้างสูงสุด 1920px */
-@media screen and (max-width: 1920px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
-    }
-    .GP a {
-        background-size: contain;
-        background-position: center;
-    }
+/* ✅ ปรับปุ่ม EMC ให้อยู่บนหน้าจอ */
+.EmerP2 {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
 }
+
+/* ✅ ปรับปุ่ม HOME */
+.home {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+}
+
+/* ✅ รองรับหน้าจอขนาดเล็ก */
 @media screen and (max-width: 1440px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .value-box {
+        width: 90px;
+        height: 35px;
+        font-size: 16px;
+        right: 3%;
     }
-    .GP a {
-        background-size: contain;
-        background-position: center;
-    }
-
-
 }
 
-/* ✅ Responsive สำหรับ iPad */
 @media screen and (max-width: 1024px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        top: 0%;
+    .value-box {
+        width: 80px;
+        height: 30px;
+        font-size: 14px;
+        right: 3%;
     }
-    .GP a {
-        background-size: contain;
-        background-position: center;
-    }
-
 }
