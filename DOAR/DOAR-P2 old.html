@@ -76,38 +76,38 @@
     </div>
     
     <div class="EBM">
-      <div id="ebm_st" class="boxfan">RUN</div>
+      <div id="ebm_st" class="boxfan"></div>
     </div>
     <div class="EBMspeed">
       <div id="ebm_ac" class="boxfan">800</div>
     </div>
     <div class="ZA2">
-      <div id="ea_st" class="boxfan">RUN</div>
+      <div id="ea_st" class="boxfan"></div>
     </div>
     <div class="ZA2speed">
       <div id="ea_ac" class="boxfan">800</div>
     </div>
     <div class="ZA1">
-      <div id="sa1_st" class="boxfan">RUN</div>
+      <div id="sa1_st" class="boxfan"></div>
     </div>
     <div class="ZA1speed">
       <div id="sa1_ac" class="boxfan">800</div>
     </div>
     <div class="EVtemp1">
-      <div class="box3">10</div>
+      <div id="t1_ev" class="box3">10</div>
     </div>
     <div class="DPT">
       <div class="box2">1000</div>
     </div>
     <div class="EVtemp2">
-      <div class="box2">10</div>
+      <div id="t2_ev" class="box2">10</div>
     </div>
     
     <div class="valvepercent">
       <div class="box2">100</div>
     </div>
     <div class="valveflow">
-      <div class="box2">700</div>
+      <div class="box2">26.75</div>
     </div>
     <div class="LEVtemp">
       <div id="oa_lev_t" class="box2">25</div>
@@ -199,21 +199,29 @@
       let imgBad = document.getElementById("aqi_bad");
 
       if (!imgGood || !imgMod || !imgBad) return;
+ // ✅ Debugging: แสดงค่า AQI ที่ได้รับ
+ console.log("AQI Value Received:", aqiValue, "Type:", typeof aqiValue);
 
-      // ซ่อนทุกภาพก่อน
-      imgGood.style.display = "none";
-      imgMod.style.display = "none";
-      imgBad.style.display = "none";
+// แปลงให้แน่ใจว่าเป็นตัวเลข
+let numericAQI = parseInt(aqiValue);
 
-      // แสดงรูปภาพตามค่า AQI
-      if (aqiValue === 1) {
-          imgGood.style.display = "block";  
-      } else if (aqiValue === 2) {
-          imgMod.style.display = "block";  
-      } else {
-          imgBad.style.display = "block";  
-      }
-  }
+// ซ่อนทุกภาพก่อน
+imgGood.style.display = "none";
+imgMod.style.display = "none";
+imgBad.style.display = "none";
+
+// ✅ ตรวจสอบค่าก่อนอัปเดต
+if (numericAQI === 1) {
+    console.log("✅ Showing Good AQI");
+    imgGood.style.display = "block";  
+} else if (numericAQI === 2) {
+    console.log("✅ Showing Moderate AQI");
+    imgMod.style.display = "block";  
+} else {
+    console.log("✅ Showing Bad AQI");
+    imgBad.style.display = "block";  
+}
+}
 
   // ฟังก์ชันอัปเดต Wheel GIF
   function updateWheel(WheelValue) {
@@ -252,93 +260,112 @@
 }
    }
 
+ // ✅ ฟังก์ชันอัปเดตค่าความเร็วพัดลม (ใช้กับ *_ac)
+ function updateIntegerElement(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        let numericValue = parseFloat(value);
+        element.textContent = !isNaN(numericValue) ? Math.round(numericValue) : "N/A"; // ปัดเศษเป็นจำนวนเต็ม
+    }
+}
 
-  function updateFanGIF(id, value) {
-    let fanGif = document.getElementById(id);
-    if (!fanGif) return; // ถ้าไม่มี element ให้ return ทันที
-
-    // ถ้า `value` เป็น `undefined` หรือ `NaN` → ให้ซ่อน GIF
-    if (value === undefined || isNaN(parseFloat(value))) {
-        fanGif.style.display = "none";
-        return;
+    // ✅ ฟังก์ชันอัปเดตสถานะ RUN / OFF (ใช้กับ *_st)
+    function updateStatusElement(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            let numericValue = parseFloat(value);
+            console.log(`Updating status for ${id}: ${numericValue}, Type: ${typeof numericValue}`);
+            if (!isNaN(numericValue)) {
+                element.textContent = numericValue > 10 ? "RUN" : "OFF";
+                console.log(`✅ Updated ${id} to: ${element.textContent}`);
+            } else {
+                element.textContent = "N/A";
+                console.log(`❌ Invalid value for ${id}, setting to N/A`);
+            }
+        } else {
+            console.error(`❌ Element with ID '${id}' not found.`);
+        }
     }
 
-    // แปลงค่าเป็นตัวเลขก่อนเช็คเงื่อนไข
+// ✅ ฟังก์ชันอัปเดต GIF (ถ้ามีการเคลื่อนที่)
+function updateFanGIF(id, value) {
+    let fanGif = document.getElementById(id);
+    if (!fanGif) return;
+
     let numericValue = parseFloat(value);
-    
-    if (numericValue > 1) {
+    if (!isNaN(numericValue) && numericValue > 10) {
         fanGif.style.display = "block";  
     } else {
         fanGif.style.display = "none";
     }
 }
 
+// ✅ รับค่าจาก MQTT และอัปเดตข้อมูล
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
 
-  // รับค่าจาก MQTT และอัปเดตข้อมูล
-  mqttClient.on("message", function (topic, message) {
-      try {
-          var data = JSON.parse(message.toString());
-          console.log("📩 Received MQTT Data:", data);
+            // ✅ Debugging log เช็คค่าที่ได้รับ
+            console.log("SA1 AC:", data.sa1_ac, "EBM AC:", data.ebm_ac, "EA AC:", data.ea_ac);
 
-          // อัปเดตค่าต่างๆ ลงใน HTML
-          updateElement("ra_t", data.ra_t);
-          updateElement("ra_h", data.ra_h);
-          updateElement("sa_t", data.sa_t);
-          updateElement("oa_t", data.oa_t);
-          updateElement("oa_h", data.oa_h);
-          updateElement("oa_lev_t", data.oa_lev_t);
-          updateElement("oa_lev_h", data.oa_lev_h);
-          updateElement("sa1_ac", data.sa1_ac);
-          updateElement("sa1_st", data.sa1_st);
-          updateElement("ebm_ac", data.ebm_ac);
-          updateElement("ebm_st", data.ebm_st);
-          updateElement("ea_ac", data.ea_ac);
-          updateElement("ea_st", data.ea_st);
-          updateElement("flow_ea", data.flow_ea);
-          updateElement("flow_sa", data.flow_sa);
-          updateElement("eff", data.eff);
+            // ✅ อัปเดตค่าความเร็วของพัดลม
+            if (data.sa1_ac !== undefined) {
+                console.log(`Updating SA1: ${data.sa1_ac} (Type: ${typeof data.sa1_ac})`);
+                updateIntegerElement("sa1_ac", data.sa1_ac);  
+                updateStatusElement("sa1_st", data.sa1_ac);
+            }
 
-          // อัปเดต AQI ถ้ามีค่า AQI
-          if (data.AQI !== undefined) {
-              updateAQI(data.AQI);
-          }
+            if (data.ebm_ac !== undefined) {
+                console.log(`Updating EBM: ${data.ebm_ac} (Type: ${typeof data.ebm_ac})`);
+                updateIntegerElement("ebm_ac", data.ebm_ac);  
+                updateStatusElement("ebm_st", data.ebm_ac);
+            }
 
-          // อัปเดต Wheel ถ้ามีค่า Wheel
-          if (data.Wheel !== undefined) {
-              updateWheel(data.Wheel);
-          }
-
-          if (data.Filter !== undefined) {
-    updateFilter(data.Filter);
-}
-
-
-                 // ตรวจสอบว่ามีค่า ebm_ac ใน message หรือไม่
-        if (data.hasOwnProperty("ebm_ac")) {
-            updateFanGIF("ebm_gif", data.ebm_ac);
-        } else {
-            updateFanGIF("ebm_gif", undefined); // ซ่อน GIF ถ้าไม่มีค่า
+            if (data.ea_ac !== undefined) {
+                console.log(`Updating EA: ${data.ea_ac} (Type: ${typeof data.ea_ac})`);
+                updateIntegerElement("ea_ac", data.ea_ac);  
+                updateStatusElement("ea_st", data.ea_ac);
+            }
+                    // อัปเดต AQI ถ้ามีค่า AQI
+        if (data.AQI !== undefined) {
+            updateAQI(data.AQI);
         }
 
-        // ตรวจสอบว่า sa1_ac มีค่าหรือไม่
-        if (data.hasOwnProperty("sa1_ac")) {
-            updateFanGIF("sa1_gif", data.sa1_ac);
-        } else {
-            updateFanGIF("sa1_gif", undefined);
+        // อัปเดต Wheel ถ้ามีค่า Wheel
+        if (data.Wheel !== undefined) {
+            updateWheel(data.Wheel);
         }
 
-        // ตรวจสอบว่า ea_ac มีค่าหรือไม่
-        if (data.hasOwnProperty("ea_ac")) {
-            updateFanGIF("ea_gif", data.ea_ac);
-        } else {
-            updateFanGIF("ea_gif", undefined);
+        // อัปเดต Filter ถ้ามีค่า Filter
+        if (data.Filter !== undefined) {
+            updateFilter(data.Filter);
         }
 
 
-      } catch (error) {
-          console.error("❌ Error parsing MQTT message:", error);
-      }
-  });
+        // ✅ อัปเดต GIF ของพัดลม
+        if (data.ebm_ac !== undefined) updateFanGIF("ebm_gif", data.ebm_ac);
+        if (data.sa1_ac !== undefined) updateFanGIF("sa1_gif", data.sa1_ac);
+        if (data.ea_ac !== undefined) updateFanGIF("ea_gif", data.ea_ac);
+
+        // ✅ อัปเดตค่าเซ็นเซอร์และระบบอื่น ๆ
+        if (data.ra_t !== undefined) updateElement("ra_t", data.ra_t);
+        if (data.ra_h !== undefined) updateElement("ra_h", data.ra_h);
+        if (data.sa_t !== undefined) updateElement("sa_t", data.sa_t);
+        if (data.oa_t !== undefined) updateElement("oa_t", data.oa_t);
+        if (data.oa_h !== undefined) updateElement("oa_h", data.oa_h);
+        if (data.oa_lev_t !== undefined) updateElement("oa_lev_t", data.oa_lev_t);
+        if (data.oa_lev_h !== undefined) updateElement("oa_lev_h", data.oa_lev_h);
+        if (data.flow_ea !== undefined) updateElement("flow_ea", data.flow_ea);
+        if (data.flow_sa !== undefined) updateElement("flow_sa", data.flow_sa);
+        if (data.eff !== undefined) updateElement("eff", data.eff);
+        if (data.t1_ev !== undefined) updateElement("t1_ev", data.t1_ev);
+        if (data.t2_ev !== undefined) updateElement("t2_ev", data.t2_ev);
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
 
   // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
   document.addEventListener("DOMContentLoaded", function() {
@@ -354,16 +381,9 @@
       console.warn("⚠️ MQTT Disconnected! Reconnecting...");
   });
 
-  console.log("✅ MQTT Data:", data);
 
 
 </script>
-
-
-
-
-
-
 
   </body>
 </html>
