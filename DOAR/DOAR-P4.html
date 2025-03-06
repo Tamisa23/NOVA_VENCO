@@ -68,10 +68,14 @@
   </div>
 
   <div class="auto">
-    <a href="#"><img id="autoImg" class="hover-effect float" src="/image/DOAR/icon/BG-AUTO.png" width="212" height="217"></a>
+    <a href="#" onclick="toggleAutoManual('Auto')">
+        <img id="autoImg" class="hover-effect float" src="/image/DOAR/icon/BG-AUTO.png" width="212" height="217">
+    </a>
 </div>
 <div class="manual">
-    <a href="#"><img id="manualImg" class="hover-effect float" src="/image/DOAR/icon/BG-MANUAL.png"  width="212" height="217"></a>
+    <a href="#" onclick="toggleAutoManual('Manual')">
+        <img id="manualImg" class="hover-effect float" src="/image/DOAR/icon/BG-MANUAL.png" width="212" height="217">
+    </a>
 </div>
 
   <div class="EmerP2">
@@ -208,15 +212,19 @@ function toggleStartStop(action) {
 
 // 📌 ฟังก์ชันส่งค่า MQTT ไปที่ `DOAR/command` เมื่อกด AUTO หรือ MANUAL
 function toggleAutoManual(action) {
+    let autoImg = document.getElementById("autoImg");
+    let manualImg = document.getElementById("manualImg");
+
     if (action === "Auto") {
-        mqttClient.publish("DOAR/command", JSON.stringify({ AUTO: 1 }));
+        console.log("🚀 ส่ง MQTT: A_M = 1 (AUTO MODE)");
+        mqttClient.publish("DOAR/command", JSON.stringify({ A_M: 1 }));
         updateAutoManualUI(1);
     } else if (action === "Manual") {
-        mqttClient.publish("DOAR/command", JSON.stringify({ AUTO: 0 }));
+        console.log("🚀 ส่ง MQTT: A_M = 0 (MANUAL MODE)");
+        mqttClient.publish("DOAR/command", JSON.stringify({ A_M: 0 }));
         updateAutoManualUI(0);
     }
 }
-
 // 📌 ฟังก์ชันอัปเดตค่าใน HTML
 function updateElement(id, value) {
     let element = document.getElementById(id);
