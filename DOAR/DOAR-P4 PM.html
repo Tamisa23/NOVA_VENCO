@@ -55,10 +55,10 @@
             <a><img id="aqi_bad" src="/image/DOAR/PM2.5/Bad.png"></a>
         </div>
         <div class="smoke">
-            <a href="#" onclick="toggleSmoke()"><img id="SmokeImg" class="hover-effect float" src="/image/DOAR/PM2.5/smoke.png" width="235" height="230"></a>    
+            <a href="#" onclick="toggleSmoke()"><img id="SmokeImg" class="hover-effect float" src="/image/DOAR/icon/smoke.png" width="235" height="230"></a>    
         </div>
         <div class="AR">
-            <a href="#" onclick="toggleAQE()"><img id="AqeImg" class="hover-effect float" src="/image/DOAR/PM2.5/ar.png" width="235" height="230"></a>    
+            <a href="#" onclick="toggleAQE()"><img id="AqeImg" class="hover-effect float" src="/image/DOAR/icon/ar.png" width="235" height="230"></a>    
         </div>
 
         <div class="home">
@@ -128,11 +128,11 @@
     }
 
     function updateAqeUI(value) {
-        document.getElementById("AqeImg").src = value === 1 ? "/image/DOAR/icon/AQE-ON.png" : "/image/DOAR/PM2.5/ar.png";
+        document.getElementById("AqeImg").src = value === 1 ? "/image/DOAR/icon/AQE-ON.png" : "/image/DOAR/icon/ar.png";
     }
 
     function updateSmokeUI(value) {
-        document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/SM-ON.png" : "/image/DOAR/PM2.5/smoke.png";
+        document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/SM-ON.png" : "/image/DOAR/icon/smoke.png";
     }
 
     function updateEMCGUI(value) {
