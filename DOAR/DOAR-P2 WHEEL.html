@@ -184,6 +184,112 @@ mqttClient.on("message", function (topic, message) {
     }
 });
 
+// ✅ โหลดค่าล่าสุดจาก `localStorage` ถ้ามี
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("📌 DOM Loaded, กำลังโหลดค่าที่เก็บไว้...");
+
+    // โหลดค่า Wheel จาก localStorage ถ้ามี
+    let savedWheel = localStorage.getItem("Wheel");
+    if (savedWheel !== null) {
+        let WheelValue = parseInt(savedWheel, 10);
+        updateWheel(WheelValue);
+    }
+
+    // โหลดค่า EMC จาก localStorage ถ้ามี
+    let savedEMC = localStorage.getItem("EMC");
+    if (savedEMC !== null) {
+        let EMCValue = parseInt(savedEMC, 10);
+        updateEMCGUI(EMCValue);
+    }
+
+    console.log("✅ ค่าที่โหลดมา:", { Wheel: savedWheel, EMC: savedEMC });
+});
+
+// ✅ ฟังก์ชันอัปเดตค่าและบันทึกลง localStorage
+function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, value);
+}
+
+// ✅ ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
+function toggleEMC() {
+    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
+
+    // ส่งค่าไป MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
+
+    // บันทึกค่า EMC ลง localStorage
+    saveToLocalStorage("EMC", EMCState);
+
+    // อัปเดต UI
+    updateEMCGUI(EMCState);
+}
+
+// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.EMC !== undefined) {
+            let EMCValue = parseInt(data.EMC, 10);
+            console.log("✅ EMC Value Received:", EMCValue);
+            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
+                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
+                saveToLocalStorage("EMC", EMCValue); // ✅ บันทึกค่า
+                updateEMCGUI(EMCValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+// ✅ อัปเดต Wheel และบันทึกค่า
+function updateWheel(WheelValue) {
+    let imgWheelOn = document.getElementById("imgWheelOn");
+    let imgWheelOff = document.getElementById("imgWheelOff");
+
+    if (!imgWheelOn || !imgWheelOff) {
+        console.warn("⚠️ Wheel images not found in the DOM");
+        return;
+    }
+
+    // ซ่อนทุกภาพก่อน
+    imgWheelOn.style.display = "none";
+    imgWheelOff.style.display = "none";
+
+    // แสดงรูปภาพตามค่า WheelValue
+    if (WheelValue === 1) {
+        imgWheelOn.src = "/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif?random=" + new Date().getTime();
+        imgWheelOn.style.display = "block";
+    } else {
+        imgWheelOff.style.display = "block";
+    }
+
+    // ✅ บันทึกค่า Wheel ลง `localStorage`
+    saveToLocalStorage("Wheel", WheelValue);
+}
+
+// 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
+
+        if (data.Wheel !== undefined) {
+            let WheelValue = parseInt(data.Wheel, 10);
+            console.log("⚙️ Wheel:", WheelValue);
+            updateWheel(WheelValue); // อัปเดต UI ตามค่าที่ได้รับ
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
     </script>
     
 

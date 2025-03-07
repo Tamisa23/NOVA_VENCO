@@ -136,385 +136,414 @@
 
 
 <script>
-  // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
-const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
-    username: "Venco",
-    password: "12345678Venco",
-    rejectUnauthorized: false 
-});
-
-// เมื่อเชื่อมต่อ MQTT สำเร็จ ให้ Subscribe ไปที่ `DOAR` และ `DOAR/command`
-mqttClient.on("connect", function () {
-    console.log("✅ MQTT Connected!");
-    
-    mqttClient.subscribe("DOAR", function (err) {
-        if (!err) console.log("✅ Subscribed to DOAR");
-    });
-
-    mqttClient.subscribe("DOAR/command", function (err) {
-        if (!err) console.log("✅ Subscribed to DOAR/command");
-    });
-});
-
-// 📩 รับค่าจาก MQTT และตรวจสอบค่า
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        // ✅ อัปเดตค่าเซ็นเซอร์และระบบอื่น ๆ
-        if (data.DPT_SP!== undefined) updateElement("DPT_SP", data.DPT_SP);
-        if (data.SA_SP !== undefined) updateElement("SA_SP", data.SA_SP);
-        
-        // ✅ อัปเดต START/STOP จาก `cmd`
-        if (topic === "DOAR" && data.cmd !== undefined && Array.isArray(data.cmd)) {
-            let cmdValue = parseInt(data.cmd[0], 10);
-            console.log("✅ CMD Value Received:", cmdValue);
-            if (!isNaN(cmdValue) && (cmdValue === 0 || cmdValue === 1)) {
-                updateStartStopUI(cmdValue);
-            }
-        }
-
-        // ✅ อัปเดต Auto/Manual จาก `A_M`
-        if (topic === "DOAR" && data.A_M !== undefined && Array.isArray(data.A_M)) {
-            let A_MValue = parseInt(data.A_M[0], 10);
-            console.log("✅ AUTO/MANUAL Value Received:", A_MValue);
-            if (!isNaN(A_MValue) && (A_MValue === 0 || A_MValue === 1)) {
-                updateAutoManualUI(A_MValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-function setSaAndDptSp() {
-    let saValue = prompt("กรุณากรอกค่า SA_SP:", "");
-    let dptValue = prompt("กรุณากรอกค่า DPT_SP:", "");
-
-    if ((saValue !== null && saValue.trim() !== "" && !isNaN(saValue)) &&
-        (dptValue !== null && dptValue.trim() !== "" && !isNaN(dptValue))) {
-        
-        saValue = parseFloat(saValue);
-        dptValue = parseFloat(dptValue);
-
-        console.log(`🚀 ส่ง MQTT: SA_SP = ${saValue}, DPT_SP = ${dptValue}`);
-
-        // ส่งค่าทั้งสองไปยัง MQTT พร้อมกัน
-        mqttClient.publish("DOAR/command", JSON.stringify({ SA_SP: saValue, DPT_SP: dptValue }));
-
-        // อัปเดตค่าบน UI
-        updateElement("SA_SP", saValue);
-        updateElement("DPT_SP", dptValue);
-    } else {
-        alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้องสำหรับ SA_SP และ DPT_SP!");
-    }
-}
-
-// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม START/STOP ตามค่าจาก `cmd`
-function updateStartStopUI(value) {
-    let startImg = document.getElementById("startImg");
-    let stopImg = document.getElementById("stopImg");
-
-    if (startImg && stopImg) {
-        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า CMD:", value);
-        if (value === 1) {
-            startImg.src = "/image/DOAR/icon/N4-19.png"; 
-            stopImg.src = "/image/DOAR/P4/BG-STOP.png";
-        } else {
-            stopImg.src = "/image/DOAR/icon/N4-20.png"; 
-            startImg.src = "/image/DOAR/P4/BG-START.png"; 
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ startImg หรือ stopImg ใน DOM");
-    }
-}
-
-// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม Auto/Manual ตามค่าจาก `A_M`
-function updateAutoManualUI(value) {
-    let autoImg = document.getElementById("autoImg");
-    let manualImg = document.getElementById("manualImg");
-
-    if (autoImg && manualImg) {
-        console.log("🔄 อัปเดตโหมด AUTO/MANUAL ตามค่า:", value);
-        if (value === 1) {
-            autoImg.src = "/image/DOAR/icon/N4-23.png"; 
-            manualImg.src = "/image/DOAR/icon/BG-MANUAL.png";
-        } else {
-            manualImg.src = "/image/DOAR/icon/N4-24.png"; 
-            autoImg.src = "/image/DOAR/icon/BG-AUTO.png";
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ autoImg หรือ manualImg ใน DOM");
-    }
-}
-
-// ตัวแปรเก็บสถานะของ Wheel (ค่าเริ่มต้นเป็น 0)
-let wheelState = 0;
-
-// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม Wheel ตามค่าจาก `Wheel`
-function updateWheelUI(value) {
-    let wheelImg = document.getElementById("wheelImg");
-
-    if (wheelImg) {
-        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า Wheel:", value);
-        if (value === 1) {
-            wheelImg.src = "/image/DOAR/icon/N4-21.png"; // รูป Wheel เปิด
-        } else {
-            wheelImg.src = "/image/DOAR/P4/BG-WHEEL p4.png"; // รูป Wheel ปิด
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ wheelImg ใน DOM");
-    }
-}
-
-// 📌 ฟังก์ชัน Toggle Wheel (0 <-> 1) และส่งค่าไป MQTT
-function toggleWheel() {
-    wheelState = wheelState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: Wheel = ${wheelState}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ Wheel: wheelState }));
-
-    // อัปเดต UI
-    updateWheelUI(wheelState);
-}
-
-// 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.Wheel !== undefined && Array.isArray(data.Wheel)) {
-            let wheelValue = parseInt(data.Wheel[0], 10);
-            console.log("✅ Wheel Value Received:", wheelValue);
-            if (!isNaN(wheelValue) && (wheelValue === 0 || wheelValue === 1)) {
-                wheelState = wheelValue; // อัปเดตสถานะในตัวแปร
-                updateWheelUI(wheelValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-
-
-
-// 📌 ฟังก์ชันส่งค่า MQTT ไปที่ `DOAR/command` เมื่อกด START หรือ STOP
-function toggleStartStop(action) {
-    let startImg = document.getElementById("startImg");
-    let stopImg = document.getElementById("stopImg");
-    
-    if (action === "start") {
-        mqttClient.publish("DOAR/command", JSON.stringify({ START: 1 }));
-        updateStartStopUI(1);
-    } else if (action === "stop") {
-        mqttClient.publish("DOAR/command", JSON.stringify({ START: 0 }));
-        updateStartStopUI(0);
-    }
-}
-
-// 📌 ฟังก์ชันส่งค่า MQTT ไปที่ `DOAR/command` เมื่อกด AUTO หรือ MANUAL
-function toggleAutoManual(action) {
-    let autoImg = document.getElementById("autoImg");
-    let manualImg = document.getElementById("manualImg");
-
-    if (action === "Auto") {
-        console.log("🚀 ส่ง MQTT: A_M = 1 (AUTO MODE)");
-        mqttClient.publish("DOAR/command", JSON.stringify({ A_M: 1 }));
-        updateAutoManualUI(1);
-    } else if (action === "Manual") {
-        console.log("🚀 ส่ง MQTT: A_M = 0 (MANUAL MODE)");
-        mqttClient.publish("DOAR/command", JSON.stringify({ A_M: 0 }));
-        updateAutoManualUI(0);
-    }
-}
-// 📌 ฟังก์ชันอัปเดตค่าใน HTML
-function updateElement(id, value) {
-    let element = document.getElementById(id);
-    if (element && value !== undefined) {
-        element.innerText = parseFloat(value); 
-    }
-}
-
-// ตรวจสอบว่า DOM โหลดเสร็จ
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
-});
-
-// จัดการข้อผิดพลาดของ MQTT
-mqttClient.on("error", function (error) {
-    console.error("❌ MQTT Error:", error);
-});
-
-mqttClient.on("close", function () {
-    console.warn("⚠️ MQTT Disconnected! Reconnecting...");
-});
-
-// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม LTG ตามค่าจาก `LTG`
-function updateLTGUI(value) {
-    let LTGImg = document.getElementById("LTGImg"); // ใช้ LTGImg แทน wheelImg
-
-    if (LTGImg) {
-        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า LTG:", value);
-        if (value === 1) {
-            LTGImg.src = "/image/DOAR/icon/N4-22.png"; // รูป LTG เปิด
-        } else {
-            LTGImg.src = "/image/DOAR/P4/BG-LIGHTING.png"; // รูป LTG ปิด
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ LTGImg ใน DOM");
-    }
-}
-// ตัวแปรเก็บสถานะของ LTG (ค่าเริ่มต้นเป็น 0)
-let LTGState = 0;
-
-// 📌 ฟังก์ชัน Toggle LTG (0 <-> 1) และส่งค่าไป MQTT
-function toggleLTG() {
-    LTGState = LTGState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: LTG = ${LTGState}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ LTG: LTGState }));
-
-    // อัปเดต UI
-    updateLTGUI(LTGState);
-}
-
-// 📌 รับค่า LTG จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.LTG !== undefined && Array.isArray(data.LTG)) {
-            let LTGValue = parseInt(data.LTG[0], 10);
-            console.log("✅ LTG Value Received:", LTGValue);
-            if (!isNaN(LTGValue) && (LTGValue === 0 || LTGValue === 1)) {
-                LTGState = LTGValue; // อัปเดตสถานะในตัวแปร
-                updateLTGUI(LTGValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-
-
-
-
-
-// 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
-function updateEMCGUI(value) {
-    let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
-
-    if (EMCImg) {
-        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
-        if (value === 1) {
-            EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
-        } else {
-            EMCImg.src = "/image/DOAR/P2/BG-EMC.png"; // รูป EMC ปิด
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
-    }
-}
-
-// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
-let EMCState = 0;
-
-// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
-function toggleEMC() {
-    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
-
-    // อัปเดต UI
-    updateEMCGUI(EMCState);
-}
-
-// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.EMC !== undefined) {
-            let EMCValue = parseInt(data.EMC, 10);
-            console.log("✅ EMC Value Received:", EMCValue);
-            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
-                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
-                updateEMCGUI(EMCValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-
-
-function updateModeUI(value) {
-    let modeImg1 = document.getElementById("modeImg1");
-    let modeImg2 = document.getElementById("modeImg2");
-    let modeImg3 = document.getElementById("modeImg3");
-    let modeImg4 = document.getElementById("modeImg4");
-
-    console.log("🔄 อัปเดต Mode UI ตามค่า:", value);
-
-    // ตั้งค่าเริ่มต้นให้รูปภาพทั้งหมดเป็นปิดก่อน
-    modeImg1.src = "/image/DOAR/icon/BG-NORMAL.png";
-    modeImg2.src = "/image/DOAR/icon/BG-FRESH AIR.png";
-    modeImg3.src = "/image/DOAR/icon/BG-EXHAUST.png";
-    modeImg4.src = "/image/DOAR/icon/BG-Test Smoke-31.png";
-
-    // เปลี่ยนรูปของ Mode ที่ถูกเลือกให้เป็น "เปิด"
-    if (value === 1) {
-        modeImg1.src = "/image/DOAR/icon/N4-15.png"; // รูป Normal On
-    } else if (value === 2) {
-        modeImg2.src = "/image/DOAR/icon/N4-16.png"; // รูป Exhaust On
-    } else if (value === 3) {
-        modeImg3.src = "/image/DOAR/icon/N4-17.png"; // รูป Fresh Air On
-    } else if (value === 4) {
-        modeImg4.src = "/image/DOAR/icon/N4-18.png"; // รูป Test On
-    }
-    
-}
-function setMode(mode) {
-    console.log(`🚀 ส่ง MQTT: Mode = ${mode}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ Mode: mode }));
-
-    // อัปเดต UI
-    updateModeUI(mode);
-}
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.mode !== undefined && Array.isArray(data.mode)) {
-            let modeValue = parseInt(data.mode[0], 10);
-            console.log("✅ Mode Value Received:", modeValue);
-            if (!isNaN(modeValue) && modeValue >= 1 && modeValue <= 4) {
-                updateModeUI(modeValue);
-            }
-        }
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-
-
-
-
-</script>
+    // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+  const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+      username: "Venco",
+      password: "12345678Venco",
+      rejectUnauthorized: false 
+  });
+  
+  // เมื่อเชื่อมต่อ MQTT สำเร็จ ให้ Subscribe ไปที่ `DOAR` และ `DOAR/command`
+  mqttClient.on("connect", function () {
+      console.log("✅ MQTT Connected!");
+      
+      mqttClient.subscribe("DOAR", function (err) {
+          if (!err) console.log("✅ Subscribed to DOAR");
+      });
+  
+      mqttClient.subscribe("DOAR/command/P5", function (err) {
+          if (!err) console.log("✅ Subscribed to DOAR/command/P5");
+      });
+  });
+  
+  // 📩 รับค่าจาก MQTT และตรวจสอบค่า
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          // ✅ อัปเดตค่าเซ็นเซอร์และระบบอื่น ๆ
+          if (data.set_ea !== undefined) updateElement("set_ea", data.set_ea);
+          if (data.set_sa !== undefined) updateElement("set_sa", data.set_sa);
+          if (data.set_ebm !== undefined) updateElement("set_ebm", data.set_ebm);
+          if (data.max_ea !== undefined) updateElement("max_ea", data.max_ea);
+          if (data.max_sa !== undefined) updateElement("max_sa", data.max_sa);
+          if (data.SA_SP !== undefined) updateElement("SA_SP", data.SA_SP);
+          if (data.DPT_SP !== undefined) updateElement("DPT_SP", data.DPT_SP)
+  
+          // ✅ อัปเดต START/STOP จาก `cmd`
+          if (topic === "DOAR" && data.cmd !== undefined && Array.isArray(data.cmd)) {
+              let cmdValue = parseInt(data.cmd[0], 10);
+              console.log("✅ CMD Value Received:", cmdValue);
+              if (!isNaN(cmdValue) && (cmdValue === 0 || cmdValue === 1)) {
+                  updateStartStopUI(cmdValue);
+              }
+          }
+  
+          // ✅ อัปเดต Auto/Manual จาก `A_M`
+          if (topic === "DOAR" && data.A_M !== undefined && Array.isArray(data.A_M)) {
+              let A_MValue = parseInt(data.A_M[0], 10);
+              console.log("✅ AUTO/MANUAL Value Received:", A_MValue);
+              if (!isNaN(A_MValue) && (A_MValue === 0 || A_MValue === 1)) {
+                  updateAutoManualUI(A_MValue);
+              }
+          }
+  
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  // ✅ โหลดค่า `commandData` จาก localStorage ถ้ามี
+  let commandData = JSON.parse(localStorage.getItem("commandData")) || {
+      START: 0,
+      A_M: 0,
+      Wheel: 0,
+      LTG: 0,
+      EMC: 0,
+      Mode: 0,
+      set_sa: 0,
+      set_sa2: 0,
+      set_ea: 0,
+      SA_SP:0,
+      DPT_SP:0
+  };
+  
+  // ✅ ฟังก์ชันบันทึกค่าไป localStorage ทุกครั้งที่มีการเปลี่ยนแปลง
+  function saveCommandData() {
+      localStorage.setItem("commandData", JSON.stringify(commandData));
+  }
+  
+  
+  function updateCommandAndSend(key, value) {
+      commandData[key] = value; // อัปเดตค่าใน object
+      saveCommandData(); // ✅ บันทึกลง localStorage
+      console.log(`🚀 ส่ง MQTT: ${key} = ${value}`, commandData);
+      
+      // ✅ ส่งค่าทั้งหมดไป MQTT
+      mqttClient.publish("DOAR/command/P5", JSON.stringify(commandData));
+  }
+  
+  
+  function setSaAndDptSp(type) {
+      let promptText = {
+          "SA_SP": "กรุณากรอกค่า SET SA_SP:",
+          "DPT_SP": "กรุณากรอกค่า SET DPT_SP:",
+      }[type];
+  
+      let newValue = prompt(promptText, commandData[type]);
+  
+      if (newValue !== null && newValue.trim() !== "" && !isNaN(newValue)) {
+          newValue = parseFloat(newValue);
+          updateCommandAndSend(type, newValue);
+          updateElement(type, newValue);
+      } else {
+          alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้อง!");
+      }
+  }
+  
+  
+  
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม START/STOP ตามค่าจาก `cmd`
+  function updateStartStopUI(value) {
+      let startImg = document.getElementById("startImg");
+      let stopImg = document.getElementById("stopImg");
+  
+      if (startImg && stopImg) {
+          console.log("🔄 อัปเดตรูปภาพ UI ตามค่า CMD:", value);
+          if (value === 1) {
+              startImg.src = "/image/DOAR/icon/N4-19.png"; 
+              stopImg.src = "/image/DOAR/P4/BG-STOP.png";
+          } else {
+              stopImg.src = "/image/DOAR/icon/N4-20.png"; 
+              startImg.src = "/image/DOAR/P4/BG-START.png"; 
+          }
+      } else {
+          console.warn("⚠️ ไม่พบ startImg หรือ stopImg ใน DOM");
+      }
+  }
+  
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม Auto/Manual ตามค่าจาก `A_M`
+  function updateAutoManualUI(value) {
+      let autoImg = document.getElementById("autoImg");
+      let manualImg = document.getElementById("manualImg");
+  
+      if (autoImg && manualImg) {
+          console.log("🔄 อัปเดตโหมด AUTO/MANUAL ตามค่า:", value);
+          if (value === 1) {
+              autoImg.src = "/image/DOAR/icon/N4-23.png"; 
+              manualImg.src = "/image/DOAR/icon/BG-MANUAL.png";
+          } else {
+              manualImg.src = "/image/DOAR/icon/N4-24.png"; 
+              autoImg.src = "/image/DOAR/icon/BG-AUTO.png";
+          }
+      } else {
+          console.warn("⚠️ ไม่พบ autoImg หรือ manualImg ใน DOM");
+      }
+  }
+  
+  // ตัวแปรเก็บสถานะของ Wheel (ค่าเริ่มต้นเป็น 0)
+  let wheelState = 0;
+  
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม Wheel ตามค่าจาก `Wheel`
+  function updateWheelUI(value) {
+      let wheelImg = document.getElementById("wheelImg");
+  
+      if (wheelImg) {
+          console.log("🔄 อัปเดตรูปภาพ UI ตามค่า Wheel:", value);
+          if (value === 1) {
+              wheelImg.src = "/image/DOAR/icon/N4-21.png"; // รูป Wheel เปิด
+          } else {
+              wheelImg.src = "/image/DOAR/P4/BG-WHEEL p4.png"; // รูป Wheel ปิด
+          }
+      } else {
+          console.warn("⚠️ ไม่พบ wheelImg ใน DOM");
+      }
+  }
+  
+  function toggleWheel() {
+      commandData.Wheel = commandData.Wheel === 0 ? 1 : 0;
+      updateCommandAndSend("Wheel", commandData.Wheel);
+      updateWheelUI(commandData.Wheel);
+  }
+  
+  // 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          if (topic === "DOAR" && data.Wheel !== undefined && Array.isArray(data.Wheel)) {
+              let wheelValue = parseInt(data.Wheel[0], 10);
+              console.log("✅ Wheel Value Received:", wheelValue);
+              if (!isNaN(wheelValue) && (wheelValue === 0 || wheelValue === 1)) {
+                  wheelState = wheelValue; // อัปเดตสถานะในตัวแปร
+                  updateWheelUI(wheelValue);
+              }
+          }
+  
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  
+  function toggleStartStop(action) {
+      let newValue = (action === "start") ? 1 : 0;
+      updateCommandAndSend("START", newValue);
+      updateStartStopUI(newValue);
+  }
+  function toggleAutoManual(action) {
+      let newValue = (action === "Auto") ? 1 : 0;
+      updateCommandAndSend("A_M", newValue);
+      updateAutoManualUI(newValue);
+  }
+  
+  
+  // 📌 ฟังก์ชันอัปเดตค่าใน HTML
+  function updateElement(id, value) {
+      let element = document.getElementById(id);
+      if (element && value !== undefined) {
+          element.innerText = parseFloat(value); 
+      }
+  }
+  
+  // ตรวจสอบว่า DOM โหลดเสร็จ
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
+  });
+  
+  // จัดการข้อผิดพลาดของ MQTT
+  mqttClient.on("error", function (error) {
+      console.error("❌ MQTT Error:", error);
+  });
+  
+  mqttClient.on("close", function () {
+      console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+  });
+  
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม LTG ตามค่าจาก `LTG`
+  function updateLTGUI(value) {
+      let LTGImg = document.getElementById("LTGImg"); // ใช้ LTGImg แทน wheelImg
+  
+      if (LTGImg) {
+          console.log("🔄 อัปเดตรูปภาพ UI ตามค่า LTG:", value);
+          if (value === 1) {
+              LTGImg.src = "/image/DOAR/icon/N4-22.png"; // รูป LTG เปิด
+          } else {
+              LTGImg.src = "/image/DOAR/P4/BG-LIGHTING.png"; // รูป LTG ปิด
+          }
+      } else {
+          console.warn("⚠️ ไม่พบ LTGImg ใน DOM");
+      }
+  }
+  // ตัวแปรเก็บสถานะของ LTG (ค่าเริ่มต้นเป็น 0)
+  let LTGState = 0;
+  
+  function toggleLTG() {
+      commandData.LTG = commandData.LTG === 0 ? 1 : 0;
+      updateCommandAndSend("LTG", commandData.LTG);
+      updateLTGUI(commandData.LTG);
+  }
+  
+  
+  // 📌 รับค่า LTG จาก MQTT และอัปเดต UI
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          if (topic === "DOAR" && data.LTG !== undefined && Array.isArray(data.LTG)) {
+              let LTGValue = parseInt(data.LTG[0], 10);
+              console.log("✅ LTG Value Received:", LTGValue);
+              if (!isNaN(LTGValue) && (LTGValue === 0 || LTGValue === 1)) {
+                  LTGState = LTGValue; // อัปเดตสถานะในตัวแปร
+                  updateLTGUI(LTGValue);
+              }
+          }
+  
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  
+  
+  
+  
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
+  function updateEMCGUI(value) {
+      let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
+  
+      if (EMCImg) {
+          console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
+          if (value === 1) {
+              EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
+          } else {
+              EMCImg.src = "/image/DOAR/P2/BG-EMC.png"; // รูป EMC ปิด
+          }
+      } else {
+          console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
+      }
+  }
+  
+  // 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
+  let EMCState = 0;
+  
+  function toggleEMC() {
+      commandData.EMC = commandData.EMC === 0 ? 1 : 0;
+      updateCommandAndSend("EMC", commandData.EMC);
+      updateEMCGUI(commandData.EMC);
+  }
+  
+  
+  // 📌 รับค่า EMC จาก MQTT และอัปเดต UI
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          if (topic === "DOAR" && data.EMC !== undefined) {
+              let EMCValue = parseInt(data.EMC, 10);
+              console.log("✅ EMC Value Received:", EMCValue);
+              if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
+                  EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
+                  updateEMCGUI(EMCValue);
+              }
+          }
+  
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  
+  function updateModeUI(value) {
+      let modeImg1 = document.getElementById("modeImg1");
+      let modeImg2 = document.getElementById("modeImg2");
+      let modeImg3 = document.getElementById("modeImg3");
+      let modeImg4 = document.getElementById("modeImg4");
+  
+      console.log("🔄 อัปเดต Mode UI ตามค่า:", value);
+  
+      // ตั้งค่าเริ่มต้นให้รูปภาพทั้งหมดเป็นปิดก่อน
+      modeImg1.src = "/image/DOAR/icon/BG-NORMAL.png";
+      modeImg2.src = "/image/DOAR/icon/BG-FRESH AIR.png";
+      modeImg3.src = "/image/DOAR/icon/BG-EXHAUST.png";
+      modeImg4.src = "/image/DOAR/icon/BG-Test Smoke-31.png";
+  
+      // เปลี่ยนรูปของ Mode ที่ถูกเลือกให้เป็น "เปิด"
+      if (value === 1) {
+          modeImg1.src = "/image/DOAR/icon/N4-15.png"; // รูป Normal On
+      } else if (value === 2) {
+          modeImg2.src = "/image/DOAR/icon/N4-16.png"; // รูป Exhaust On
+      } else if (value === 3) {
+          modeImg3.src = "/image/DOAR/icon/N4-17.png"; // รูป Fresh Air On
+      } else if (value === 4) {
+          modeImg4.src = "/image/DOAR/icon/N4-18.png"; // รูป Test On
+      }
+      
+  }
+  function setMode(mode) {
+      updateCommandAndSend("Mode", mode);
+      updateModeUI(mode);
+  }
+  
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          if (topic === "DOAR/command/P5") {
+              // ✅ อัปเดตค่าทั้งหมดที่ได้รับจาก MQTT ไปที่ commandData
+              Object.keys(data).forEach(key => {
+                  if (commandData.hasOwnProperty(key)) {
+                      commandData[key] = data[key];
+                  }
+              });
+  
+              saveCommandData(); // ✅ บันทึกค่าใหม่ลง localStorage
+  
+              // ✅ อัปเดต UI ตามค่าล่าสุด
+              updateElement("SA_SP", commandData.SA_SP);
+              updateElement("DPT_SP", commandData.DPT_SP);
+              updateElement("set_sa", commandData.set_sa);
+              updateElement("set_sa2", commandData.set_sa2);
+              updateElement("set_ea", commandData.set_ea);
+              updateStartStopUI(commandData.START);
+              updateAutoManualUI(commandData.A_M);
+              updateWheelUI(commandData.Wheel);
+              updateLTGUI(commandData.LTG);
+              updateEMCGUI(commandData.EMC);
+              updateModeUI(commandData.Mode);
+          }
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  
+  mqttClient.on("message", function (topic, message) {
+      try {
+          var data = JSON.parse(message.toString());
+          console.log(`📩 Received MQTT Data from ${topic}:`, data);
+  
+          if (topic === "DOAR" && data.mode !== undefined && Array.isArray(data.mode)) {
+              let modeValue = parseInt(data.mode[0], 10);
+              console.log("✅ Mode Value Received:", modeValue);
+              if (!isNaN(modeValue) && modeValue >= 1 && modeValue <= 4) {
+                  updateModeUI(modeValue);
+              }
+          }
+      } catch (error) {
+          console.error("❌ Error parsing MQTT message:", error);
+      }
+  });
+  
+  
+  
+  
+  </script>
 
   </body>
 </html>
