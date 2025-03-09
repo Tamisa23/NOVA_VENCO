@@ -10,43 +10,19 @@ html, body {
     overflow: hidden;
   }
   
-
   .GP {
-    background-size: contain;
-    background-position: center;
-    object-fit: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:cover;
     position: absolute;
-    top: 0%;
-    width: 100%;
+    font-family: 'Roboto',serif;
+    object-fit: cover;
 }
 .GP img {
-    background-size: contain;
-    background-position: center;
     position: absolute;
-    width: 100%;
-}
-.BG {
-    background-size: contain;
-    background-position: center;
     object-fit: cover;
-    position: absolute;
-    top: 0%;
-    width: 100%;
 }
-.BG img {
-    background-size: contain;
-    background-position: center;
-    width: 100%;
-    position: absolute;
-}
-.pxgraphic {
-    display: flex;
-    top: 53%;
-    left: 50%;
-    width: 100%;
-    text-align: center;
-    padding: 60px 50px;
-}
+
 .home { 
     position: absolute;
     padding-left: 0px;
@@ -59,10 +35,8 @@ html, body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+    padding-left: 1750px;
+    padding-top: 0px;
     z-index: 999;
 }
 .PMgood {
@@ -123,7 +97,7 @@ html, body {
 
 /* ✅ Responsive สำหรับ PC ความกว้างสูงสุด 1920px */
 @media (max-width: 1920px) {
-    .GP {
+    .text {
         background-size: contain;
         background-position: center;
         object-fit: cover;
@@ -131,44 +105,7 @@ html, body {
         top: 0%;
         width: 100%;
     }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .EmerP2 img {
-        margin-top: -3px;
-        margin-left: 1700px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: 30px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }  
-}
 
-/* ✅ Responsive สำหรับ iPad */
-@media (max-width: 1440px) {
     .GP {
         background-size: contain;
         background-position: center;
@@ -177,231 +114,6 @@ html, body {
         top: 0%;
         width: 100%;
     }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .EmerP2 img {
-        margin-top: 0px;
-        margin-left: 1270px;
-        padding-left: 0px;
-        width: 70%;
-        height: 70%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    } 
-    .GPbox1 {
-        scale: 0.723618;
-        margin-left: -205px;
-        margin-top: -25px;
-    }
-    .GPbox2 {
-        scale: 0.723618;
-        margin-left: -170px;
-        margin-top: -30px;
-    }
-    .GPbox3 {
-        scale: 0.723618;
-        margin-left: -205px;
-        margin-top: -115px;
-    }
+
 
 }
-@media  (max-width: 1180px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .EmerP2 img {
-        margin-top: -5px;
-        margin-left: 1020px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: -150px;
-        width: 100%;
-        height: 100%;
-    } 
-    .GPbox1 {
-        scale: 0.614583;
-        margin-left: -285px;
-        margin-top: -45px;
-    }
-    .GPbox2 {
-        scale: 0.614583;
-        margin-left: -280px;
-        margin-top: -45px;
-    }
-    .GPbox3 {
-        scale: 0.614583;
-        margin-left: -285px;
-        margin-top: -185px;
-    }
-
-}
-@media (min-width: 920px) and (max-width: 1024px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .EmerP2 img {
-        margin-top: -5px;
-        margin-left: 850px;
-        padding-left: 0px;
-        width: 50%;
-        height: 50%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: -150px;
-        width: 100%;
-        height: 100%;
-    } 
-    .GPbox1 {
-        scale: 0.5;
-        margin-left: -305px;
-        margin-top: -55px;
-    }
-    .GPbox2 {
-        scale: 0.5;
-        margin-left: -350px;
-        margin-top: -55px;
-    }
-    .GPbox3 {
-        scale: 0.5;
-        margin-left: -305px;
-        margin-top: -235px;
-    }
-
-}
-/* @media (min-width: 920px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .EmerP2 img {
-        margin-top: -5px;
-        margin-left: 850px;
-        padding-left: 0px;
-        width: 50%;
-        height: 50%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: -150px;
-        width: 100%;
-        height: 100%;
-    } 
-    .GPbox1 {
-        scale: 0.5;
-        margin-left: -305px;
-        margin-top: -55px;
-    }
-    .GPbox2 {
-        scale: 0.5;
-        margin-left: -350px;
-        margin-top: -55px;
-    }
-    .GPbox3 {
-        scale: 0.5;
-        margin-left: -305px;
-        margin-top: -235px;
-    }
-
-} */

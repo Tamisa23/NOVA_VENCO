@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: 'Roboto',serif;
 }
-html, body {
+body {
     overflow: hidden;
   }
   
@@ -40,14 +40,6 @@ html, body {
     background-size:cover;
     position: absolute;
 }
-.pxgraphic {
-    display: flex;
-    top: 53%;
-    left: 50%;
-    width: 100%;
-    text-align: center;
-    padding: 250px 50px;
-}
 .home { 
     position: absolute;
     padding-left: 0px;
@@ -57,155 +49,49 @@ html, body {
     z-index: 999;
 }
 .wheel { 
-    align-items: center;
-    justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 510px;
+    padding-left: 1000px;
+    padding-top: 360px;
     z-index: 999;
 }
 .APFilter { 
-    align-items: center;
-    justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 260px;
+    padding-left: 1340px;
+    padding-top: 620px;
     z-index: 999;
 }
 .emerP2 {   
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+    padding-left: 1750px;
+    padding-top: 0px;
     z-index: 999;
 }
 .settingP2 {   
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+    padding-left: 900px;
+    padding-top: 5px;
     z-index: 999;
 }
 .energyP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+    padding-left: 1100px;
+    padding-top: 5px;
     z-index: 999;
 }
 .simP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 140px;
-    height: 140px;
+    padding-left: 700px;
+    padding-top: 5px;
     z-index: 999;
 }
-
-.AQIP2 { 
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
-}
-.AQIP2 img {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-}
-.Filter { 
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
-}
-.Filter img {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-}
-
-
-/* .sa { 
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
-}
-.sa img {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-}
-.ea { 
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size:cover;
-    position: absolute;
-}
-.ea img {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-} */
-
-/* .Filter {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size: cover;
-    align-items: center;
-    padding-left: 0px;
-    position: absolute;
-    display: flex;
-    width: 1920px;
-    height: 1080px;
-} */
-
-/* .sa {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size: cover;
-    align-items: center;
-    padding-left: 0px;
-    position: absolute;
-    width: 1920px;
-    height: 1080px;
-} */
-/* .sa a {
-    position:absolute;
-    display: flex;
-    transform: translate(81px, -5px);
-} */
-/* .ea {
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size: cover;
-    align-items: center;
-    padding-left: 0px;
-    position: absolute;
-    width: 1920px;
-    height: 1080px;
-} */
-/* .ea a {
-    position:absolute;
-    display: flex;
-    transform: translate(29px, 10px);
-} */
 
 .smoke{
     padding-left: 115px;
@@ -368,116 +254,6 @@ html, body {
         top: 0%;
         width: 100%;
     }
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .AQIP2 img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .Filter img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-
-    .emerP2 img {
-        margin-top: 0px;
-        margin-left: 1700px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-    .settingP2 img {
-        margin-top: 0px;
-        margin-left: 850px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-    .simP2 img {
-        margin-top: 0px;
-        margin-left: 650px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-    .energyP2 img {
-        margin-top: 0px;
-        margin-left: 1050px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }    
-    .APFilter img {
-        margin-top: 600px;
-        margin-left: 1270px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }    
-    .wheel img {
-        margin-top: 350px;
-        margin-left: 970px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }    
-    .home img {
-        margin-top: 10px;
-        margin-left: 30px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }  
-
-}
-
-@media (max-width: 1440px) {
 
     .GP {
         background-size: contain;
@@ -487,472 +263,8 @@ html, body {
         top: 0%;
         width: 100%;
     }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .text {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        scale: 0.75;
-        margin-top: -125px;
-        margin-left: -180px;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .AQIP2 img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .Filter img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .emerP2 img {
-        margin-top: -3px;
-        margin-left: 1270px;
-        padding-left: 0px;
-        width: 70%;
-        height: 70%;
-    }
-    .settingP2 img {
-        margin-top: -3px;
-        margin-left: 630px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }
-    .simP2 img {
-        margin-top: -3px;
-        margin-left: 460px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }
-    .energyP2 img {
-        margin-top: -3px;
-        margin-left: 800px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }    
-    .APFilter img {
-        margin-top: 460px;
-        margin-left: 950px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .wheel img {
-        margin-top: 260px;
-        margin-left: 720px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }    
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }    
 
 
 }
 
 
-@media (max-width: 1180px) {
-
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .text {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        scale: 0.61458333;
-        margin-top: -190px;
-        margin-left: -230px;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .AQIP2 img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .Filter img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .emerP2 img {
-        margin-top: -7px;
-        margin-left: 1030px;
-        padding-left: 0px;
-        width: 57%;
-        height: 57%;
-    }
-    .settingP2 img {
-        margin-top: -5px;
-        margin-left: 500px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }
-    .simP2 img {
-        margin-top: -5px;
-        margin-left: 390px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }
-    .energyP2 img {
-        margin-top: -5px;
-        margin-left: 610px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }    
-    .APFilter img {
-        margin-top: 380px;
-        margin-left: 770px;
-        padding-left: 0px;
-        width: 50%;
-        height: 50%;
-    }    
-    .wheel img {
-        margin-top: 220px;
-        margin-left: 580px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-
-
-}
-@media (max-width: 1124px) {
-
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .text {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        scale: 0.58541667;
-        margin-top: -205px;
-        margin-left: -235px;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 10   0%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .AQIP2 img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .Filter img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .emerP2 img {
-        margin-top: -5px;
-        margin-left: 980px;
-        padding-left: 0px;
-        width: 55%;
-        height: 55%;
-    }
-    .settingP2 img {
-        margin-top: -8px;
-        margin-left: 470px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }
-    .simP2 img {
-        margin-top: -8px;
-        margin-left: 360px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }
-    .energyP2 img {
-        margin-top: -8px;
-        margin-left: 580px;
-        padding-left: 0px;
-        width: 65%;
-        height: 65%;
-    }    
-    .APFilter img {
-        margin-top: 360px;
-        margin-left: 720px;
-        padding-left: 0px;
-        width: 50%;
-        height: 50%;
-    }    
-    .wheel img {
-        margin-top: 200px;
-        margin-left: 550px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-
-
-}
-
-
-@media (min-width: 920px) and (max-width: 1024px) {
-
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .text {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        scale: 0.51;
-        margin-top: -240px;
-        margin-left: -240px;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 10   0%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .AQIP2 {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .AQIP2 img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Filter {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .Filter img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .emerP2 img {
-        margin-top: -7px;
-        margin-left: 850px;
-        padding-left: 0px;
-        width: 52%;
-        height: 52%;
-    }
-    .settingP2 img {
-        margin-top: -7px;
-        margin-left: 425px;
-        padding-left: 0px;
-        width: 55%;
-        height: 55%;
-    }
-    .simP2 img {
-        margin-top: -7px;
-        margin-left: 330px;
-        padding-left: 0px;
-        width: 55%;
-        height: 55%;
-    }
-    .energyP2 img {
-        margin-top: -7px;
-        margin-left: 520px;
-        padding-left: 0px;
-        width: 55%;
-        height: 55%;
-    }  
-    .APFilter img {
-        margin-top: 310px;
-        margin-left: 630px;
-        padding-left: 0px;
-        width: 45%;
-        height: 45%;
-    }    
-    .wheel img {
-        margin-top: 160px;
-        margin-left: 470px;
-        padding-left: 0px;
-        width: 55%;
-        height: 55%;
-    }    
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-
-}

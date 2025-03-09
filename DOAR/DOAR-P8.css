@@ -11,16 +11,19 @@ html, body {
   }
   
 
-.GP {
+  .GP {
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-size:cover;
     position: absolute;
+    font-family: 'Roboto',serif;
+    object-fit: cover;
 }
-.GP a {
+.GP img {
     position: absolute;
-    display: flex;  
+    object-fit: cover;
 }
+
 .pxgraphic {
     display: flex;
     top: 53%;
@@ -30,16 +33,20 @@ html, body {
     padding: 60px 50px;
 }
 .home { 
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 0px;
+    width: 300px;
+    height: 120px;
+    z-index: 999;
+}
+.EmerP2 { 
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 0px;
-    padding-top: 15px;
-}
-.EmerP2 { 
-
     padding-left: 1750px;
     padding-top: 10px;
+    z-index: 999;
 }
 
 
@@ -48,11 +55,10 @@ html, body {
     .GP {
         background-size: contain;
         background-position: center;
+        object-fit: cover;
+        position: absolute;
         top: 0%;
-    }
-    .GP a {
-        background-size: contain;
-        background-position: center;
+        width: 100%;
     }
 }
 @media screen and (max-width: 1440px) {

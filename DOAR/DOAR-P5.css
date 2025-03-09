@@ -54,6 +54,18 @@ html, body {
     position: absolute;
     top: 0%;
 }
+.home { 
+    position: absolute;
+    padding-left: 0px;
+    padding-top: 0px;
+    width: 300px;
+    height: 120px;
+    z-index: 999;
+}
+.tool{
+    position: absolute;
+    top: 0%;
+}
 .simP2 { 
     align-items: center;
     justify-content: center;
@@ -65,10 +77,8 @@ html, body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 128px;
-    height: 129px;
+    padding-left: 1750px;
+    padding-top: 0px;
     z-index: 999;
 }
 
@@ -76,134 +86,108 @@ html, body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 128px;
-    height: 129px;
+    padding-left: 700px;
+    padding-top: 15px;
     z-index: 999;
 }
 .fresh {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 128px;
-    height: 129px;
+    padding-left: 850px;
+    padding-top: 15px;
     z-index: 999;
 }
 .exhaust {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 128px;
-    height: 129px;
+    padding-left: 1000px;
+    padding-top: 15px;
     z-index: 999;
 }
 .testsmoke {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 128px;
-    height: 129px;
+    padding-left: 1150px;
+    padding-top: 15px;
     z-index: 999;
 }
 .start {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 90px;
+    padding-top: 240px;
     z-index: 999;
 }
 .stop {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 390px;
+    padding-top: 240px;
     z-index: 999;
 }
 .wheel {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 690px;
+    padding-top: 240px;
     z-index: 999;
 }
 .lighting {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 990px;
+    padding-top: 240px;
     z-index: 999;
 }
 .auto {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 1290px;
+    padding-top: 240px;
     z-index: 999;
 }
 .manual {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 212px;
-    height: 217px;
+    padding-left: 1590px;
+    padding-top: 240px;
     z-index: 999;
 }
+
 .Previous {
-    
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 59px;
-    height: 75px;
+    padding-left: 150px;
+    padding-top: 700px;
     z-index: 999;
-
-    
 }
 
 .setsatemp {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 100px;
-    height: 100px;
+    padding-left: 1130px;
+    padding-top: 650px;
+
     z-index: 999;
 }
 .setdpt {
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding-left: 50px;
-    padding-top: 10px;
-    width: 100px;
-    height: 100px;
+    padding-left: 1130px;
+    padding-top: 790px;
+
     z-index: 999;
 }
 
@@ -270,763 +254,7 @@ html, body {
         top: 0%;
         width: 100%;
     }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Previous {
-        margin-top: 700px;
-        margin-left: 200px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .start {
-        margin-top: 220px;
-        margin-left: 80px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .stop {
-        margin-top: 220px;
-        margin-left: 380px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .wheel {
-        margin-top: 220px;
-        margin-left: 680px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .lighting {
-        margin-top: 220px;
-        margin-left: 980px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .auto {
-        margin-top: 220px;
-        margin-left: 1280px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .manual {
-        margin-top: 220px;
-        margin-left: 1580px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .EmerP2 {
-        margin-top: 0px;
-        margin-left: 1750px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Normal {
-        margin-top: 0px;
-        margin-left: 600px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .fresh {
-        margin-top: 0px;
-        margin-left: 770px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .exhaust {
-        margin-top: 0px;
-        margin-left: 940px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .testsmoke {
-        margin-top: 0px;
-        margin-left: 1110px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: 30px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }  
-    .setsatemp img {
-        margin-top: 640px;
-        margin-left: 1080px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }  
-    .setdpt img {
-        margin-top: 780px;
-        margin-left: 1080px;
-        padding-left: 0px;
-        width: 100%;
-        height: 100%;
-    }  
+
 }
 
 
-@media screen and (max-width: 1440px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Previous {
-        margin-top: 520px;
-        margin-left: 200px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .start {
-        margin-top: 160px;
-        margin-left: 60px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .stop {
-        margin-top: 160px;
-        margin-left: 280px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .wheel {
-        margin-top: 160px;
-        margin-left: 500px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .lighting {
-        margin-top: 160px;
-        margin-left: 720px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .auto {
-        margin-top: 160px;
-        margin-left: 940px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .manual {
-        margin-top: 160px;
-        margin-left: 1160px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .EmerP2 {
-        margin-top: -5px;
-        margin-left: 1310px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Normal {
-        margin-top: 0px;
-        margin-left: 480px;
-        width: 7%;
-        height: 7%;
-    }
-    .fresh {
-        margin-top: 0px;
-        margin-left: 600px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .exhaust {
-        margin-top: 0px;
-        margin-left: 720px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .testsmoke {
-        margin-top: 0px;
-        margin-left: 840px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-
-    .setsatemp img {
-        margin-top: 470px;
-        margin-left: 800px;
-        padding-left: 0px;
-        width: 70%;
-        height: 80%;
-    }  
-    .setdpt img {
-        margin-top: 580px;
-        margin-left: 800px;
-        padding-left: 0px;
-        width: 70%;
-        height: 80%;
-    }  
-    .GPbox1 {
-        scale: 0.723618;
-        margin-left: -205px;
-        margin-top: -72px;
-    }
-    .GPbox4 {
-        margin-left: 20px;
-    }
-    .GPbox2 {
-        scale: 0.723618;
-        margin-left: -205px;
-        margin-top: -107px;
-    }
-    .GPbox5 {
-        margin-left: 20px;
-    }
-    .GPbox3 {
-        scale: 0.723618;
-        margin-left: -205px;
-        margin-top: -34px;
-    }
-    .GPbox6 {
-        margin-left: 20px;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 75%;
-        height: 75%;
-    }    
-}
-
-
-
-/* ✅ Responsive สำหรับ iPad */
-@media screen and (max-width: 1180px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Previous {
-        margin-top: 450px;
-        margin-left: 100px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .start {
-        margin-top: 130px;
-        margin-left: 40px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .stop {
-        margin-top: 130px;
-        margin-left: 230px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .wheel {
-        margin-top: 130px;
-        margin-left: 420px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .lighting {
-        margin-top: 130px;
-        margin-left: 610px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .auto {
-        margin-top: 130px;
-        margin-left: 800px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .manual {
-        margin-top: 130px;
-        margin-left: 990px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .EmerP2 {
-        margin-top: -5px;
-        margin-left: 1080px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Normal {
-        margin-top: 0px;
-        margin-left: 400px;
-        width: 7%;
-        height: 7%;
-    }
-    .fresh {
-        margin-top: 0px;
-        margin-left: 500px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .exhaust {
-        margin-top: 0px;
-        margin-left: 600px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .testsmoke {
-        margin-top: 0px;
-        margin-left: 700px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .GPbox1 {
-        scale: 0.614583;
-        margin-left: -285px;
-        margin-top: -127px;
-    }
-    .GPbox4 {
-        margin-left: 10px;
-    }
-    .GPbox2 {
-        scale: 0.614583;
-        margin-left: -285px;
-        margin-top: -153px;
-    }
-    .GPbox5 {
-        margin-left: 10px;
-    }
-    .GPbox3 {
-        scale: 0.614583;
-        margin-left: -285px;
-        margin-top: -53px;
-    }
-    .GPbox6 {
-        margin-left: 10px;
-    }
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .setsatemp img {
-        margin-top: 380px;
-        margin-left: 650px;
-        padding-left: 0px;
-        width: 60%;
-        height: 70%;
-    }  
-    .setdpt img {
-        margin-top: 470px;
-        margin-left: 650px;
-        padding-left: 0px;
-        width: 60%;
-        height: 70%;
-    } 
-}
-
-@media screen and (max-width: 1124px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .start {
-        margin-top: 120px;
-        margin-left: 40px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .stop {
-        margin-top: 120px;
-        margin-left: 220px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .wheel {
-        margin-top: 120px;
-        margin-left: 400px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .lighting {
-        margin-top: 120px;
-        margin-left: 580px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .auto {
-        margin-top: 120px;
-        margin-left: 760px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .manual {
-        margin-top: 120px;
-        margin-left: 940px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .EmerP2 {
-        margin-top: -5px;
-        margin-left: 1040px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Normal {
-        margin-top: -5px;
-        margin-left: 400px;
-        width: 7%;
-        height: 7%;
-    }
-    .fresh {
-        margin-top: -5px;
-        margin-left: 500px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .exhaust {
-        margin-top: -5px;
-        margin-left: 600px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .testsmoke {
-        margin-top: -5px;
-        margin-left: 700px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Previous {
-        margin-top: 450px;
-        margin-left: 100px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .GPbox1 {
-        scale: 0.58541667;
-        margin-left: -295px;
-        margin-top: -137px;
-    }
-    .GPbox4 {
-        margin-left: 10px;
-    }
-    .GPbox2 {
-        scale: 0.58541667;
-        margin-left: -295px;
-        margin-top: -163px;
-    }
-    .GPbox5 {
-        margin-left: 10px;
-    }
-
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .setsatemp img {
-        margin-top: 360px;
-        margin-left: 610px;
-        padding-left: 0px;
-        width: 60%;
-        height: 70%;
-    }  
-    .setdpt img {
-        margin-top: 450px;
-        margin-left: 610px;
-        padding-left: 0px;
-        width: 60%;
-        height: 70%;
-    } 
-}
-
-@media screen and (min-width: 920px) {
-    .GP {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .GP img {
-        background-size: contain;
-        background-position: center;
-        position: absolute;
-        width: 100%;
-    }
-    .BG {
-        background-size: contain;
-        background-position: center;
-        object-fit: cover;
-        position: absolute;
-        top: 0%;
-        width: 100%;
-    }
-    .BG img {
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        position: absolute;
-    }
-    .Next {
-        margin-top: 360px;
-        margin-left: 850px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .start {
-        margin-top: 105px;
-        margin-left: 40px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .stop {
-        margin-top: 105px;
-        margin-left: 200px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .wheel {
-        margin-top: 105px;
-        margin-left: 355px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .lighting {
-        margin-top: 105px;
-        margin-left: 510px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .auto {
-        margin-top: 105px;
-        margin-left: 665px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .manual {
-        margin-top: 105px;
-        margin-left: 820px;
-        padding-left: 0px;
-        width: 13%;
-        height: 13%;
-    }
-    .EmerP2 {
-        margin-top: -5px;
-        margin-left: 900px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Normal {
-        margin-top: -5px;
-        margin-left: 300px;
-        width: 7%;
-        height: 7%;
-    }
-    .fresh {
-        margin-top: -5px;
-        margin-left: 400px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .exhaust {
-        margin-top: -5px;
-        margin-left: 500px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .testsmoke {
-        margin-top: -5px;
-        margin-left: 600px;
-        padding-left: 0px;
-        width: 7%;
-        height: 7%;
-    }
-    .Previous {
-        margin-top: 350px;
-        margin-left: 100px;
-        padding-left: 0px;
-        width: 10%;
-        height: 10%;
-    }
-    .GPbox1 {
-        scale: 0.4891667;
-        margin-left: -300px;
-        margin-top: -155px;
-    }
-    .GPbox4 {
-        margin-left: 7px;
-    }
-    .GPbox2 {
-        scale: 0.4891667;
-        margin-left: -300px;
-        margin-top: -200px;
-    }
-    .GPbox5 {
-        margin-left: 10px;
-    }
-
-    .home img {
-        margin-top: 10px;
-        margin-left: 10px;
-        padding-left: 0px;
-        width: 60%;
-        height: 60%;
-    }    
-    .setsatemp img {
-        margin-top: 310px;
-        margin-left: 530px;
-        padding-left: 0px;
-        width: 50%;
-        height: 60%;
-    }  
-    .setdpt img {
-        margin-top: 380px;
-        margin-left: 530px;
-        padding-left: 0px;
-        width: 50%;
-        height: 60%;
-    } 
-}

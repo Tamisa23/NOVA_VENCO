@@ -1,88 +1,105 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DOAU-P1</title>
   <link rel="stylesheet" href="/DOAU/DOAU-P1.css">
   <link rel="icon" type="image/x-icon" href="/image/HOME/LOGO VENCO .png">
-
 </head>
 <body>
-  <!-- พื้นหลัง -->
+  <!-- Container พื้นหลังและ overlay -->
   <div class="BG">
-    <a><img src="/image/DOAU/P1/BG.jpg"></a>
-    <a><img src="/image/DOAU/P1/CDU.png"></a>
-    <a><img src="/image/DOAU/P1/DG.png"></a>
-    <a><img src="/image/DOAU/P1/SETTING.png"></a>
-    <a><img src="/image/DOAU/P1/ST-BG.png"></a>
+
+    <!-- รูปพื้นหลัง (z-index:1) -->
+    <a class="background">
+      <img src="/image/DOAU/P1/BG.jpg" alt="BG" class="bg-img">
+    </a>
+
+    <!-- รูป overlay (z-index:2) -->
+    <a class="overlay">
+      <img src="/image/DOAU/P1/CDU.png" alt="CDU" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/DG.png" alt="DG" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/SETTING.png" alt="SETTING" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/ST-BG.png" alt="ST-BG" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/LINE.png" alt="LINE" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/ST-BG2.png" alt="ST-BG2" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/GIF/GIF-EBM-N4.gif" alt="GIF-EBM" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/GIF/GIF-EZ-N4.gif" alt="GIF-EZ" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/GIF/GIF-FT-N4.gif" alt="GIF-FT" class="bg-img">
+    </a>
+    <a class="overlay">
+      <img src="/image/DOAU/P1/GIF/GIF-UV-N4.gif" alt="GIF-UV" class="bg-img">
+    </a>
+    <!-- แก้ไข .gi เป็น .gif และแก้ alt ให้ถูกต้อง -->
+    <a class="overlay">
+      <img src="/image/DOAU/P1/GIF/GIF-Z-N4.gif" alt="GIF-Z" class="bg-img">
+    </a>
+
+    <!-- ลิงก์กลับหน้าแรก (z-index:10) -->
     <a href="/HOME/index.html" class="linkhome"></a>
   </div>
-  <div class="line">
-    <a><img src="/image/DOAU/P1/LINE.png"></a>
+
+  <!-- กล่องข้อความด้านล่าง -->
+  <div class="overlay">
+    <div class="oa-t-container">
+      <div class="oa-t-value">0.0</div>
+    </div>
+    <div class="oa-h-container">
+      <div class="oa-h-value">0.0</div>
+    </div>
+    <div class="coil-container">
+      <div class="coil-value">0.0</div>
+    </div>
+    <div class="airflow-container">
+      <div class="airflow-value">NORMAL</div>
+    </div>
+    <div class="sa-t-container">
+      <div class="sa-t-value">0.0</div>
+    </div>
+    <div class="sa-h-container">
+      <div class="sa-h-value">0.0</div>
+    </div>
+    <div class="filter-container">
+      <div class="filter-value">CLEAN</div>
+    </div>
+    <div class="valve-container">
+      <div class="valve-value">0.0</div>
+    </div>
+    <div class="dpt-container">
+      <div class="dpt-value">0.0</div>
+    </div>
+    <div class="smoke-container">
+      <div class="smoke-value">0.0</div>
+    </div>
+    <div class="za-st-container">
+      <div class="za-st-value">OFF</div>
+    </div>
+    <div class="za-speed-container">
+      <div class="za-speed-value">0.0</div>
+    </div>
+    <div class="ebm-st-container">
+      <div class="ebm-st-value">OFF</div>
+    </div>
+    <div class="ebm-speed-container">
+      <div class="ebm-speed-value">0.0</div>
+    </div>
   </div>
-  <div class="st">
-    <a><img src="/image/DOAU/P1/ST-BG2.png"></a>
-  </div>
-  <div class="gif-ebm">
-    <a><img src="/image/DOAU/P1/GIF/GIF-EBM-N4.gif"></a>
-  </div>
-  <div class="gif-ez">
-    <a><img src="/image/DOAU/P1/GIF/GIF-EZ-N4.gif"></a>
-  </div>
-  <div class="gif-ft">
-    <a><img src="/image/DOAU/P1/GIF/GIF-FT-N4.gif"></a>
-  </div>
-  <div class="gif-uv">
-    <a><img src="/image/DOAU/P1/GIF/GIF-UV-N4.gif"></a>
-  </div>
-  <div class="gif-z">
-    <a><img src="/image/DOAU/P1/GIF/GIF-Z-N4.gif"></a>
-  </div>
-  <div class="oa-t-container">
-  <div class="oa-t-value">0.0</div>
-</div>
-<div class="oa-h-container">
-  <div class="oa-h-value">0.0</div>
-</div>
-<div class="coil-container">
-  <div class="coil-value">0.0</div>
-</div>
-<div class="airflow-container">
-  <div class="airflow-value">NORMAL</div>
-</div>
-<div class="sa-t-container">
-  <div class="sa-t-value">0.0</div>
-</div>
-<div class="sa-h-container">
-  <div class="sa-h-value">0.0</div>
-</div>
-<div class="filter-container">
-  <div class="filter-value">CLEAN</div>
-</div>
-<div class="valve-container">
-  <div class="valve-value">0.0</div>
-</div>
-<div class="dpt-container">
-  <div class="dpt-value">0.0</div>
-</div>
-<div class="smoke-container">
-  <div class="smoke-value">0.0</div>
-</div>
-<div class="za-st-container">
-  <div class="za-st-value">OFF</div>
-</div>
-<div class="za-speed-container">
-  <div class="za-speed-value">0.0</div>
-</div>
-<div class="ebm-st-container">
-  <div class="ebm-st-value">OFF</div>
-</div>
-<div class="ebm-speed-container">
-  <div class="ebm-speed-value">0.0</div>
-</div>
 </body>
 </html>
