@@ -111,8 +111,8 @@ body {
 
 /* ✅ ตำแหน่งวิดีโอ */
 .video-top-left { top: 20vh; left: 2.5vw; }
-.video-top-right { top: 20vh; right: 2.5vw; }
-.video-bottom-right { bottom: 7vh; right: 2vw; }
+.video-top-right { top: 22vh; right: 6vw; }
+.video-bottom-right { bottom: 4vh; right: 6vw; }
 
 
 /* ✅ Responsive Background */
