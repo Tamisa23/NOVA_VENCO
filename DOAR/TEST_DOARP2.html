@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viveport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <link rel="stylesheet" href="/DOAR/DOAR-P2 old.css" />
+    <link rel="icon" type="image/x-icon" href="/image/HOME/LOGO VENCO .png">
+
+
+  </head>
+
+  <style>
+
+    /* เอฟเฟกต์เมื่อ hover */
+    .hover-effect {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .hover-effect:hover {
+        transform: scale(1.1); /* ขยาย 10% */
+    }
+      </style>
+  <body>
+
+
+  <div class="GP">
+    <a><img src="/image/DOAR/P2/BG.jpg"></a> 
+    <a><img src="/image/DOAR/P2/ST.png"></a>    
+    <a><img src="/image/DOAR/P2/Air-BG.png"></a>
+  </div>
+
+  
+</div>
+
+
+<div class="GP">
+  <div class="AQIP2">
+    <a><img id="aqi_good" src="/image/DOAR/P2/Good.png" style="display: none;"></a>
+    <a><img id="aqi_mod" src="/image/DOAR/P2/Mod.png" style="display: none;"></a>
+    <a><img id="aqi_bad" src="/image/DOAR/P2/Bad.png" style="display: none;"></a>
+  </div>
+  
+  <div class="Filter">
+    <a><img id="Wheel_Off" src="/image/DOAR/P2/GIF/BG-Wheel.png"></a>
+    <a><img id="Wheel_On" src="/image/DOAR/P2/GIF/GIF-Wheel.gif"></a>
+    <a><img id="Filter_Off" src="/image/DOAR/P2/GIF/BG-AIR FILTER.png"></a>
+    <a><img id="Filter_On" src="/image/DOAR/P2/GIF/GIF-AIR-FILTER.gif"></a>
+  </div>
+  
+  
+  <div class="sa">
+    <a><img id="ebm_gif" src="/image/DOAR/P2/GIF/EBM-GIF-DOAR.gif"></a>
+    <a><img id="sa1_gif" src="/image/DOAR/P2/GIF/ZA(1)-GIF-DOAR.gif"></a>
+  </div>
+  
+  <div class="ea">
+    <a><img id="ea_gif" src="/image/DOAR/P2/GIF/ZA(2)-GIF-DOAR.gif"></a>
+  </div>
+
+
+
+    <a><img src="/image/DOAR/P2/line.png"width="1860" height="1075"></a>
+
+
+    <div class="smoke">
+      <div class="box">Normal</div>
+    </div>
+    <div class="SAflow">
+      <div id="flow_sa" class="box">1000</div>
+    </div>
+    <div class="SAtemp">
+      <div id="sa_t" class="box">25</div>
+    </div>
+    <div class="RAfilter">
+      <div class="box">CLEAR</div>
+    </div>
+    <div class="RAfilter2">
+      <div class="box">1000</div>
+    </div>
+    <div class="RAtemp">
+      <div id="ra_t" class="box">25</div>
+    </div>
+    <div class="RAhum">
+      <div id="ra_h" class="box">80</div>
+    </div>
+    <div class="EAflow">
+      <div id="flow_ea" class="box">800</div>
+    </div>
+    
+    <div class="EBM">
+      <div id="ebm_st" class="boxfan"></div>
+    </div>
+    <div class="EBMspeed">
+      <div id="ebm_ac" class="boxfan">800</div>
+    </div>
+    <div class="ZA2">
+      <div id="ea_st" class="boxfan"></div>
+    </div>
+    <div class="ZA2speed">
+      <div id="ea_ac" class="boxfan">800</div>
+    </div>
+    <div class="ZA1">
+      <div id="sa1_st" class="boxfan"></div>
+    </div>
+    <div class="ZA1speed">
+      <div id="sa1_ac" class="boxfan">800</div>
+    </div>
+    <div class="EVtemp1">
+      <div id="t1_ev" class="box3">10</div>
+    </div>
+    <div class="DPT">
+      <div class="box2">1000</div>
+    </div>
+    <div class="EVtemp2">
+      <div id="t2_ev" class="box2">10</div>
+    </div>
+    
+    <div class="valvepercent">
+      <div class="box2">100</div>
+    </div>
+    <div class="valveflow">
+      <div class="box2">26.75</div>
+    </div>
+    <div class="LEVtemp">
+      <div id="oa_lev_t" class="box2">25</div>
+    </div>
+    <div class="LEVhum">
+      <div id="oa_lev_h" class="box2">80</div>
+    </div>
+    <div class="EFF">
+      <div id="eff" class="box2">88</div>
+    </div>
+    <div class="OAtemp">
+      <div id="oa_t" class="box2">30</div>
+    </div>
+    <div class="OAhum">
+      <div id="oa_h" class="box2">90</div>
+    </div>
+    <div class="OAfilter1">
+      <div class="box2">CLEAR</div>
+    </div>
+    <div class="OAfilter2">
+      <div class="box2">1000</div>
+    </div>
+    
+    </div>
+    
+
+
+<div class="GP">
+
+ 
+  <div class="APFilter">
+    <a href="/DOAR/DOAR-P4 PM.html"><img src="/image/DOAR/P1/Not.png" width="150" height="200"></a>
+  </div>
+  <div class="wheel">
+    <a href="/DOAR/DOAR-P2 WHEEL.html"><img src="/image/DOAR/P1/Not.png" width="200" height="600"></a>
+  </div>
+
+
+  <div class="EmerP2">
+    <a onclick="toggleEMC()" >
+        <img id="EMCImg"  class="hover-effect float" src="/image/DOAR/icon/BG-EMC.png">
+      </a>
+
+
+  <div class="settingP2">
+    <a href="/DOAR/login.html"><img src="/image/DOAR/P2/P2-SETTING.png" width="128" height="129"></a>
+  </div>
+  <div class="simP2">
+    <a href="/DOAR/DOAR-P2 SIM.html"><img src="/image/DOAR/P2/P2-SIMULATION.png" width="128" height="129"></a>
+  </div>
+  <div class="home">
+    <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="340" height="140"></a>
+  </div>
+  <div class="energyP2">
+    <a href="/DOAR/DOAR-P3.html"><img src="/image/DOAR/P2/P2-ENERGY.png" width="128" height="129"></a>
+  </div>
+
+</div>
+
+<script>
+  // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+  const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+      username: "Venco",
+      password: "12345678Venco",
+      rejectUnauthorized: false // ปิดการตรวจสอบ SSL Certificate (ถ้าจำเป็น)
+  });
+
+  // เมื่อเชื่อมต่อสำเร็จ
+  mqttClient.on("connect", function () {
+      console.log("✅ MQTT Connected!");
+      mqttClient.subscribe("DOAR", function (err) {
+          if (!err) {
+              console.log("✅ Subscribed to DOAR");
+          }
+      });
+  });
+
+  // ฟังก์ชันอัปเดตค่าใน HTML
+  function updateElement(id, value) {
+      let element = document.getElementById(id);
+      if (element && value !== undefined) {
+          element.innerText = parseFloat(value).toFixed(2); // แปลงเป็นทศนิยม 2 ตำแหน่ง
+      }
+  }
+
+  // ฟังก์ชันอัปเดต AQI
+  function updateAQI(aqiValue) {
+      let imgGood = document.getElementById("aqi_good");
+      let imgMod = document.getElementById("aqi_mod");
+      let imgBad = document.getElementById("aqi_bad");
+
+      if (!imgGood || !imgMod || !imgBad) return;
+ // ✅ Debugging: แสดงค่า AQI ที่ได้รับ
+ console.log("AQI Value Received:", aqiValue, "Type:", typeof aqiValue);
+
+// แปลงให้แน่ใจว่าเป็นตัวเลข
+let numericAQI = parseInt(aqiValue);
+
+// ซ่อนทุกภาพก่อน
+imgGood.style.display = "none";
+imgMod.style.display = "none";
+imgBad.style.display = "none";
+
+// ✅ ตรวจสอบค่าก่อนอัปเดต
+if (numericAQI === 1) {
+    console.log("✅ Showing Good AQI");
+    imgGood.style.display = "block";  
+} else if (numericAQI === 2) {
+    console.log("✅ Showing Moderate AQI");
+    imgMod.style.display = "block";  
+} else {
+    console.log("✅ Showing Bad AQI");
+    imgBad.style.display = "block";  
+}
+}
+
+  // ฟังก์ชันอัปเดต Wheel GIF
+  function updateWheel(WheelValue) {
+      let imgWheelOn = document.getElementById("Wheel_On");
+      let imgWheelOff = document.getElementById("Wheel_Off");
+
+      if (!imgWheelOn || !imgWheelOff) return;
+
+      // ซ่อนทุกภาพก่อน
+      imgWheelOn.style.display = "none";
+      imgWheelOff.style.display = "none";
+
+      // แสดงรูปภาพตามค่า WheelValue
+      if (WheelValue === 1) {
+          imgWheelOn.style.display = "block";  
+      } else {
+          imgWheelOff.style.display = "block";
+      }
+  }
+
+   // ฟังก์ชันอัปเดต Filter
+   function updateFilter(FilterValue) {
+      let imgFilterOn = document.getElementById("Filter_On");
+      let imgFilterOff = document.getElementById("Filter_Off");
+
+      if (!imgFilterOn || !imgFilterOff) return;
+
+      // ซ่อนทุกภาพก่อน
+      imgFilterOn.style.display = "none";
+      imgFilterOff.style.display = "none";
+
+      if (parseInt(FilterValue) === 1) {
+    imgFilterOn.style.display = "block";  
+} else {
+    imgFilterOff.style.display = "block";
+}
+   }
+
+ // ✅ ฟังก์ชันอัปเดตค่าความเร็วพัดลม (ใช้กับ *_ac)
+ function updateIntegerElement(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        let numericValue = parseFloat(value);
+        element.textContent = !isNaN(numericValue) ? Math.round(numericValue) : "N/A"; // ปัดเศษเป็นจำนวนเต็ม
+    }
+}
+
+    // ✅ ฟังก์ชันอัปเดตสถานะ RUN / OFF (ใช้กับ *_st)
+    function updateStatusElement(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            let numericValue = parseFloat(value);
+            console.log(`Updating status for ${id}: ${numericValue}, Type: ${typeof numericValue}`);
+            if (!isNaN(numericValue)) {
+                element.textContent = numericValue > 10 ? "RUN" : "OFF";
+                console.log(`✅ Updated ${id} to: ${element.textContent}`);
+            } else {
+                element.textContent = "N/A";
+                console.log(`❌ Invalid value for ${id}, setting to N/A`);
+            }
+        } else {
+            console.error(`❌ Element with ID '${id}' not found.`);
+        }
+    }
+
+// ✅ ฟังก์ชันอัปเดต GIF (ถ้ามีการเคลื่อนที่)
+function updateFanGIF(id, value) {
+    let fanGif = document.getElementById(id);
+    if (!fanGif) return;
+
+    let numericValue = parseFloat(value);
+    if (!isNaN(numericValue) && numericValue > 10) {
+        fanGif.style.display = "block";  
+    } else {
+        fanGif.style.display = "none";
+    }
+}
+
+// ✅ รับค่าจาก MQTT และอัปเดตข้อมูล
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
+
+            // ✅ Debugging log เช็คค่าที่ได้รับ
+            console.log("SA1 AC:", data.sa1_ac, "EBM AC:", data.ebm_ac, "EA AC:", data.ea_ac);
+
+            // ✅ อัปเดตค่าความเร็วของพัดลม
+            if (data.sa1_ac !== undefined) {
+                console.log(`Updating SA1: ${data.sa1_ac} (Type: ${typeof data.sa1_ac})`);
+                updateIntegerElement("sa1_ac", data.sa1_ac);  
+                updateStatusElement("sa1_st", data.sa1_ac);
+            }
+
+            if (data.ebm_ac !== undefined) {
+                console.log(`Updating EBM: ${data.ebm_ac} (Type: ${typeof data.ebm_ac})`);
+                updateIntegerElement("ebm_ac", data.ebm_ac);  
+                updateStatusElement("ebm_st", data.ebm_ac);
+            }
+
+            if (data.ea_ac !== undefined) {
+                console.log(`Updating EA: ${data.ea_ac} (Type: ${typeof data.ea_ac})`);
+                updateIntegerElement("ea_ac", data.ea_ac);  
+                updateStatusElement("ea_st", data.ea_ac);
+            }
+                    // อัปเดต AQI ถ้ามีค่า AQI
+        if (data.AQI !== undefined) {
+            updateAQI(data.AQI);
+        }
+
+        // อัปเดต Wheel ถ้ามีค่า Wheel
+        if (data.Wheel !== undefined) {
+            updateWheel(data.Wheel);
+        }
+
+        // อัปเดต Filter ถ้ามีค่า Filter
+        if (data.Filter !== undefined) {
+            updateFilter(data.Filter);
+        }
+
+
+        // ✅ อัปเดต GIF ของพัดลม
+        if (data.ebm_ac !== undefined) updateFanGIF("ebm_gif", data.ebm_ac);
+        if (data.sa1_ac !== undefined) updateFanGIF("sa1_gif", data.sa1_ac);
+        if (data.ea_ac !== undefined) updateFanGIF("ea_gif", data.ea_ac);
+
+        // ✅ อัปเดตค่าเซ็นเซอร์และระบบอื่น ๆ
+        if (data.ra_t !== undefined) updateElement("ra_t", data.ra_t);
+        if (data.ra_h !== undefined) updateElement("ra_h", data.ra_h);
+        if (data.sa_t !== undefined) updateElement("sa_t", data.sa_t);
+        if (data.oa_t !== undefined) updateElement("oa_t", data.oa_t);
+        if (data.oa_h !== undefined) updateElement("oa_h", data.oa_h);
+        if (data.oa_lev_t !== undefined) updateElement("oa_lev_t", data.oa_lev_t);
+        if (data.oa_lev_h !== undefined) updateElement("oa_lev_h", data.oa_lev_h);
+        if (data.flow_ea !== undefined) updateElement("flow_ea", data.flow_ea);
+        if (data.flow_sa !== undefined) updateElement("flow_sa", data.flow_sa);
+        if (data.eff !== undefined) updateElement("eff", data.eff);
+        if (data.t1_ev !== undefined) updateElement("t1_ev", data.t1_ev);
+        if (data.t2_ev !== undefined) updateElement("t2_ev", data.t2_ev);
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
+  // ตรวจสอบว่าหน้าเว็บโหลดเสร็จแล้ว
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log("📌 DOM Loaded, Ready to receive MQTT messages.");
+  });
+
+  // จัดการข้อผิดพลาดของ MQTT
+  mqttClient.on("error", function (error) {
+      console.error("❌ MQTT Error:", error);
+  });
+
+  mqttClient.on("close", function () {
+      console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+  });
+
+  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
+function updateEMCGUI(value) {
+    let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
+
+    if (EMCImg) {
+        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
+        if (value === 1) {
+            EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
+        } else {
+            EMCImg.src = "/image/DOAR/icon/BG-EMC.png"; // รูป EMC ปิด
+        }
+    } else {
+        console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
+    }
+}
+
+// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
+let EMCState = 0;
+
+// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
+function toggleEMC() {
+    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
+    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
+
+    // ส่งค่า MQTT
+    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
+
+    // อัปเดต UI
+    updateEMCGUI(EMCState);
+}
+
+// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log(`📩 Received MQTT Data from ${topic}:`, data);
+
+        if (topic === "DOAR" && data.EMC !== undefined) {
+            let EMCValue = parseInt(data.EMC, 10);
+            console.log("✅ EMC Value Received:", EMCValue);
+            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
+                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
+                updateEMCGUI(EMCValue);
+            }
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+
+
+</script>
+
+  </body>
+</html>

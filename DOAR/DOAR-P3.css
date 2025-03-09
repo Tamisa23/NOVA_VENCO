@@ -204,3 +204,93 @@ html, body {
         height: 60%;
     }    
 }
+@media (max-width: 1124px) {
+   
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .EmerP2 img {
+        margin-top: 7px;
+        margin-left: 1030px;
+        padding-left: 0px;
+        width: 52%;
+        height: 52%;
+    }
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }    
+}
+@media (min-width: 920px) and (max-width: 1024px) {
+   
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .EmerP2 img {
+        margin-top: 3px;
+        margin-left: 900px;
+        padding-left: 0px;
+        width: 52%;
+        height: 52%;
+    }
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }   
+}

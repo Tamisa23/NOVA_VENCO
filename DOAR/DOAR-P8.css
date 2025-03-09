@@ -82,3 +82,15 @@ html, body {
     }
 
 }
+@media screen and (min-width: 920px) {
+    .GP {
+        background-size: contain;
+        background-position: center;
+        top: 0%;
+    }
+    .GP a {
+        background-size: contain;
+        background-position: center;
+    }
+
+}

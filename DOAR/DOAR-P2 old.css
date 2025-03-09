@@ -76,7 +76,7 @@ html, body {
     height: 260px;
     z-index: 999;
 }
-.EmerP2 {   
+.emerP2 {   
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -425,7 +425,7 @@ html, body {
         position: absolute;
     }
 
-    .EmerP2 img {
+    .emerP2 img {
         margin-top: 0px;
         margin-left: 1700px;
         padding-left: 0px;
@@ -673,25 +673,25 @@ html, body {
         height: 57%;
     }
     .settingP2 img {
-        margin-top: -7px;
-        margin-left: 530px;
+        margin-top: -5px;
+        margin-left: 500px;
         padding-left: 0px;
-        width: 60%;
-        height: 60%;
+        width: 65%;
+        height: 65%;
     }
     .simP2 img {
-        margin-top: -7px;
-        margin-left: 410px;
+        margin-top: -5px;
+        margin-left: 390px;
         padding-left: 0px;
-        width: 60%;
-        height: 60%;
+        width: 65%;
+        height: 65%;
     }
     .energyP2 img {
-        margin-top: -7px;
-        margin-left: 650px;
+        margin-top: -5px;
+        margin-left: 610px;
         padding-left: 0px;
-        width: 60%;
-        height: 60%;
+        width: 65%;
+        height: 65%;
     }    
     .APFilter img {
         margin-top: 380px;
@@ -715,5 +715,244 @@ html, body {
         height: 60%;
     }    
 
+
+}
+@media (max-width: 1124px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .text {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        scale: 0.58541667;
+        margin-top: -205px;
+        margin-left: -235px;
+    }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 10   0%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .AQIP2 {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .AQIP2 img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .Filter {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .Filter img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .emerP2 img {
+        margin-top: -5px;
+        margin-left: 980px;
+        padding-left: 0px;
+        width: 55%;
+        height: 55%;
+    }
+    .settingP2 img {
+        margin-top: -8px;
+        margin-left: 470px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
+    }
+    .simP2 img {
+        margin-top: -8px;
+        margin-left: 360px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
+    }
+    .energyP2 img {
+        margin-top: -8px;
+        margin-left: 580px;
+        padding-left: 0px;
+        width: 65%;
+        height: 65%;
+    }    
+    .APFilter img {
+        margin-top: 360px;
+        margin-left: 720px;
+        padding-left: 0px;
+        width: 50%;
+        height: 50%;
+    }    
+    .wheel img {
+        margin-top: 200px;
+        margin-left: 550px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }    
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }    
+
+
+}
+
+
+@media (min-width: 920px) and (max-width: 1024px) {
+
+    .GP {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .text {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        scale: 0.51;
+        margin-top: -240px;
+        margin-left: -240px;
+    }
+    .GP img {
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+    }
+    .BG {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 10   0%;
+    }
+    .BG img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .AQIP2 {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .AQIP2 img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .Filter {
+        background-size: contain;
+        background-position: center;
+        object-fit: cover;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+    }
+    .Filter img {
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        position: absolute;
+    }
+    .emerP2 img {
+        margin-top: -7px;
+        margin-left: 850px;
+        padding-left: 0px;
+        width: 52%;
+        height: 52%;
+    }
+    .settingP2 img {
+        margin-top: -7px;
+        margin-left: 425px;
+        padding-left: 0px;
+        width: 55%;
+        height: 55%;
+    }
+    .simP2 img {
+        margin-top: -7px;
+        margin-left: 330px;
+        padding-left: 0px;
+        width: 55%;
+        height: 55%;
+    }
+    .energyP2 img {
+        margin-top: -7px;
+        margin-left: 520px;
+        padding-left: 0px;
+        width: 55%;
+        height: 55%;
+    }  
+    .APFilter img {
+        margin-top: 310px;
+        margin-left: 630px;
+        padding-left: 0px;
+        width: 45%;
+        height: 45%;
+    }    
+    .wheel img {
+        margin-top: 160px;
+        margin-left: 470px;
+        padding-left: 0px;
+        width: 55%;
+        height: 55%;
+    }    
+    .home img {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }    
 
 }

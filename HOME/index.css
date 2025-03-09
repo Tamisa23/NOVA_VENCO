@@ -444,7 +444,7 @@ body {
 
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
-    width: 13vw;
+    width: 10vw;
     max-width: 200px;
     height: auto;
     border-radius: 10px;
