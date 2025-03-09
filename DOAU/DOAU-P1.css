@@ -45,60 +45,103 @@
   z-index: 10;
 }
 
-/* ---------------------------
-   กรอบล่างสำหรับแสดงค่าตัวหนังสือ
----------------------------- */
+/* 
+  กรอบล่างสำหรับแสดงค่าตัวหนังสือ 
+  - ใช้ flex เพื่อเรียง sensor-box ต่อกัน
+  - ไม่ใช้ gap เพราะเราจะใช้ margin ใน sensor-box เพื่อกำหนดระยะห่างไม่เท่ากัน
+*/
 .bottom-status {
-  position: absolute;         /* วางทับอิสระในหน้า */
-  bottom: 2%;                 /* ห่างจากขอบล่าง 2% */
-  left: 50%;                  /* จัดกึ่งกลางแนวนอน */
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
   transform: translateX(-50%);
-
-  display: flex;             /* ใช้ Flexbox จัดเรียง */
-  flex-wrap: wrap;           /* ถ้ามีหลายค่าก็ขึ้นบรรทัดใหม่ได้ */
-  gap: 1rem;                 /* ระยะห่างระหว่างกล่อง */
-
+  display: flex;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1rem 2rem;
   border: 2px solid #ccc;
   border-radius: 8px;
-  z-index: 999;              /* ให้อยู่เหนือรูปอื่นๆ */
+  z-index: 999;
 }
 
-/* สไตล์ภายใน bottom-status (แต่ละ container ของค่า) */
-.bottom-status > div {
+/* กล่องย่อยแต่ละตัว (sensor-box) */
+.sensor-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 60px;
+  margin: 0; /* ค่า default ไม่มี margin */
+}
+
+/* กำหนดระยะห่างไม่เท่ากันในแต่ละกล่อง */
+.oa-t-container {
+  margin-right: 2.5rem;
+}
+.oa-h-container {
+  margin-right: 5rem;
+}
+.coil-container {
+  margin-right: 8rem;
+}
+.airflow-container {
+  margin-right: 6rem;
+}
+.sa-t-container {
+  margin-right: 2rem;
+}
+.sa-h-container {
+  margin-right: 5rem;
+}
+/* หากต้องการให้กล่องสุดท้ายไม่มี margin-right */
+.sensor-box:last-child {
+  margin-right: 0;
+}
+
+/* ใช้ clamp() เพื่อให้ฟอนต์ย่อ-ขยายตามขนาดหน้าจอ */
+
+/* ส่วนที่เป็น label (ชื่อเซนเซอร์) */
+.sensor-label {
+  font-size: clamp(0.8rem, 2vw, 1rem);  /* ค่าต่ำสุด 0.8rem, ปรับตาม vw, ค่าสูงสุด 1rem */
+  color: #666;
+  font-weight: 600;
+}
+
+/* ส่วนที่เป็น value (ค่าจริง) */
+.sensor-value {
+  font-size: clamp(1rem, 3vw, 1.2rem);  /* ค่าต่ำสุด 1rem, ปรับตาม vw, ค่าสูงสุด 1.2rem */
+  color: #000;
   font-weight: bold;
 }
 
-/* สไตล์ตัวหนังสือ (ค่าต่าง ๆ) */
-.bottom-status .oa-t-value,
-.bottom-status .oa-h-value,
-.bottom-status .coil-value,
-.bottom-status .airflow-value,
-.bottom-status .sa-t-value,
-.bottom-status .sa-h-value,
-.bottom-status .filter-value,
-.bottom-status .valve-value,
-.bottom-status .dpt-value,
-.bottom-status .smoke-value,
-.bottom-status .za-st-value,
-.bottom-status .za-speed-value,
-.bottom-status .ebm-st-value,
-.bottom-status .ebm-speed-value {
-  font-size: 1rem;
-  color: #000;
+/* ---------------------------------------
+   สไตล์เฉพาะของแต่ละค่า (ถ้าต้องการ)
+---------------------------------------- */
+.oa-t-container .sensor-label {
+  color: #aa0000;
+}
+.oa-t-container .sensor-value {
+  color: #ff0000;
 }
 
-/* Media query สำหรับ iPad (ตัวอย่าง) */
+.oa-h-container .sensor-label {
+  color: #0066cc;
+}
+.oa-h-container .sensor-value {
+  color: #00aaff;
+}
+
+.coil-container .sensor-label {
+  color: #008800;
+}
+.coil-container .sensor-value {
+  color: #00cc00;
+}
+
+/* Media Query สำหรับ iPad (ตัวอย่าง) */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .linkhome {
     width: 10%;
     height: 12%;
   }
-  /* ปรับ .bottom-status ตามต้องการ เช่น ขนาดตัวอักษร ฯลฯ */
+  /* สามารถปรับค่าเพิ่มเติมได้ตามต้องการ */
 }
