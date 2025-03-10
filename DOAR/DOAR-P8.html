@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <meta charset="UTF-8"/>
     <meta name="viveport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <link rel="stylesheet" href="/DOAR/DOAR-P8.css" />
+    <script src="/DOAR/DOAR.js"></script>
     <link rel="icon" type="image/x-icon" href="/image/HOME/LOGO VENCO .png">
-
-
   </head>
+  <style>
+
+    /* เอฟเฟกต์เมื่อ hover */
+    .hover-effect {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .hover-effect:hover {
+        transform: scale(1.1); /* ขยาย 10% */
+    }
+      </style>
+  <body>
   <body>
 
 
@@ -18,7 +33,7 @@
     
     <div class="GP">
       <div class="EmerP2">
-          <a href="#"><img src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
+          <a href="#" onclick="toggleEMC()"><img id="EMCImg" class="hover-effect float" src="/image/DOAR/P2/BG-EMC.png" width="128" height="129"></a>
         </div>
         <div class="home">
           <a href="/DOAR/DOAR-P1.html"><img src="/image/DOAR/P1/Not.png" width="328" height="129"></a>

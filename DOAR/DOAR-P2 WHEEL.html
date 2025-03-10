@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="/DOAR/DOAR.js"></script>
     <meta charset="UTF-8"/>
     <meta name="viveport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
     <link rel="stylesheet" href="/DOAR/DOAR-P2 WHEEL.css" />
     <link rel="icon" type="image/x-icon" href="/image/HOME/LOGO VENCO .png">
-
-
   </head>
-  <body>
+  <style>
 
+    /* เอฟเฟกต์เมื่อ hover */
+    .hover-effect {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .hover-effect:hover {
+        transform: scale(1.1); /* ขยาย 10% */
+    }
+      </style>
+  <body>
 
   <div class="GP">
     <a><img id="imgWheelOff" src="/image/DOAR/Wheel/BG.jpg"></a>
@@ -25,9 +37,10 @@
         
       
         <div class="EmerP2">
-            <a href="#" id="EMCImg" class="hover-effect float"><img src="/image/DOAR/P2/BG-EMC.png" width="150" height="150"></a>
+            <a href="#" onclick="toggleEMC()">
+                <img id="EMCImg" class="hover-effect float" src="/image/DOAR/P2/BG-EMC.png" width="150" height="150">
+          </a>
         </div>
-          
 
 
         <div class="home">
@@ -149,40 +162,6 @@ function updateEMCGUI(value) {
     }
 }
 
-// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
-let EMCState = 0;
-
-// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
-function toggleEMC() {
-    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
-
-    // อัปเดต UI
-    updateEMCGUI(EMCState);
-}
-
-// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.EMC !== undefined) {
-            let EMCValue = parseInt(data.EMC, 10);
-            console.log("✅ EMC Value Received:", EMCValue);
-            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
-                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
-                updateEMCGUI(EMCValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
 
 // ✅ โหลดค่าล่าสุดจาก `localStorage` ถ้ามี
 document.addEventListener("DOMContentLoaded", function() {
@@ -208,21 +187,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // ✅ ฟังก์ชันอัปเดตค่าและบันทึกลง localStorage
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, value);
-}
-
-// ✅ ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
-function toggleEMC() {
-    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
-
-    // ส่งค่าไป MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
-
-    // บันทึกค่า EMC ลง localStorage
-    saveToLocalStorage("EMC", EMCState);
-
-    // อัปเดต UI
-    updateEMCGUI(EMCState);
 }
 
 // 📌 รับค่า EMC จาก MQTT และอัปเดต UI

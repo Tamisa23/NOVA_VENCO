@@ -24,7 +24,6 @@ body {
     z-index: -3;
 }
 
-
 /* BG-ICON-L (ซ้าย) */
 .bg-icon.left {
     position: absolute;
@@ -50,8 +49,6 @@ body {
     z-index: -1;
 
 }
-
-/* ✅ Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -60,12 +57,22 @@ body {
     background: linear-gradient(to right, #2BAAE0, #1E327D);
     color: white;
     display: flex;
-    justify-content: flex-end;
+    justify-content: right; /* จัดให้อยู่กลางแนวนอน */
     align-items: center;
-    padding: 35px 0px;
+    padding: 35px 0;
     font-size: 50px;
     font-weight: bold;
     z-index: 1000;
+}
+.brand-container {
+    position: relative; /* ตั้งเพื่อจัดวางตำแหน่งภายใน */
+}
+
+.brand {
+    position: relative;
+    top: 0; /* ปรับค่านี้ขึ้น-ลงได้ตามต้องการ */
+    left: 0; /* ปรับค่านี้เพื่อเลื่อนซ้าย-ขวา */
+    transform: translate(-50%, 0px); /* ใช้ translate ในการปรับละเอียด */
 }
 
 /* ✅ กำหนดขนาดของไอคอน */

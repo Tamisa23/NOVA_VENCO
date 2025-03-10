@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <meta charset="UTF-8"/>
+    <script src="/DOAR/DOAR.js"></script>
     <meta name="viveport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
     <link rel="stylesheet" href="/DOAR/DOAR-P2 old.css" />
@@ -391,56 +395,7 @@ mqttClient.on("message", function (topic, message) {
       console.warn("⚠️ MQTT Disconnected! Reconnecting...");
   });
 
-  // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม EMC ตามค่าจาก `EMC`
-function updateEMCGUI(value) {
-    let EMCImg = document.getElementById("EMCImg"); // ใช้ EMCImg แทน LTGImg
 
-    if (EMCImg) {
-        console.log("🔄 อัปเดตรูปภาพ UI ตามค่า EMC:", value);
-        if (value === 1) {
-            EMCImg.src = "/image/DOAR/icon/EMC.png"; // รูป EMC เปิด
-        } else {
-            EMCImg.src = "/image/DOAR/icon/BG-EMC.png"; // รูป EMC ปิด
-        }
-    } else {
-        console.warn("⚠️ ไม่พบ EMCImg ใน DOM");
-    }
-}
-
-// 📌 ตัวแปรเก็บสถานะของ EMC (ค่าเริ่มต้นเป็น 0)
-let EMCState = 0;
-
-// 📌 ฟังก์ชัน Toggle EMC (0 <-> 1) และส่งค่าไป MQTT
-function toggleEMC() {
-    EMCState = EMCState === 0 ? 1 : 0; // สลับค่า 0 <-> 1
-    console.log(`🚀 ส่ง MQTT: EMC = ${EMCState}`);
-
-    // ส่งค่า MQTT
-    mqttClient.publish("DOAR/command", JSON.stringify({ EMC: EMCState }));
-
-    // อัปเดต UI
-    updateEMCGUI(EMCState);
-}
-
-// 📌 รับค่า EMC จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.EMC !== undefined) {
-            let EMCValue = parseInt(data.EMC, 10);
-            console.log("✅ EMC Value Received:", EMCValue);
-            if (!isNaN(EMCValue) && (EMCValue === 0 || EMCValue === 1)) {
-                EMCState = EMCValue; // อัปเดตสถานะในตัวแปร
-                updateEMCGUI(EMCValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
 
 
 

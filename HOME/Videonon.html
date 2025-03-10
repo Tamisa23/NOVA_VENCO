@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page</title>
@@ -20,12 +23,12 @@
     <!-- คอนเทนต์แสดงวิดีโอ -->
     <div class="video-container">
         <h1>NON CHEMICAL</h1>
-        <video id="videoPlayer" controls autoplay>
-            <source src="/video/Demo-Elgressy EST - 2025.mp4" type="video/mp4">
+        <video id="videoPlayer" controls autoplay muted>
+            <source src="https://www.dropbox.com/scl/fi/z3tycg8cqfjo60dj5kaem/VDO-Elgressy.mp4?rlkey=fph5qmv0q8f4x88r2uaz5ezuu&raw=1" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-
+    
     <script>
         document.getElementById('videoPlayer').addEventListener('ended', function() {
             document.body.classList.add('fade-out'); // เพิ่มคลาส fade-out ให้กับ <body>
