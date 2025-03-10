@@ -209,7 +209,7 @@ body {
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
     width: 10vw;
-    max-width: 200px;
+    max-width: 100px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s;
@@ -240,11 +240,11 @@ body {
         border-radius: 1px;
       }
     .corner-link img {
-        width: 12vw;
+        width: 10vw;
         max-width: 150px;
     }
     .video-link img {
-        width: 6vw;
+        width: 5vw;
         max-width: 100px;
     }
     
@@ -350,8 +350,8 @@ body {
     border-radius: 1px;
   }
   .corner-link img {
-    width: 11.5vw;
-    max-width: 200px;
+    width: 10vw;
+    max-width: 100px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s;
@@ -456,7 +456,7 @@ body {
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
     width: 10vw;
-    max-width: 200px;
+    max-width: 100px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s;
