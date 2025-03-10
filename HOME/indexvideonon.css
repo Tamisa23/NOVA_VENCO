@@ -76,7 +76,7 @@ body::before {
 
 /* ✅ Navbar Logo ปรับขนาดอัตโนมัติ */
 .navbar-logo {
-  font-size: 5vw; /* ปรับขนาดตามหน้าจอ */
+  font-size: 4vw; /* ปรับขนาดตามหน้าจอ */
   text-decoration: none;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
