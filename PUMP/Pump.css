@@ -13,6 +13,9 @@ body {
   background-size: cover;
   background-attachment: fixed;
   font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 550;
+
 }
 
 /* ✅ Navbar */
@@ -21,12 +24,12 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 10vh;
+  height: 12vh;
   background: linear-gradient(to right, #2BAAE0 , #1E327D);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5vw;
+  padding: 0 1vw;
   z-index: 2000;
 }
 
