@@ -160,64 +160,72 @@ mqttClient.on("connect", function () {
         if (!err) console.log("✅ Subscribed to DOAR/command");
     });
 });
-
-// 📩 รับค่าจาก MQTT และตรวจสอบค่า
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        // ✅ อัปเดตค่าเซ็นเซอร์และระบบอื่น ๆ
-        if (data.set_ea !== undefined) updateElement("set_ea", data.set_ea);
-        if (data.set_sa !== undefined) updateElement("set_sa", data.set_sa);
-        if (data.set_ebm !== undefined) updateElement("set_ebm", data.set_ebm);
-        if (data.max_ea !== undefined) updateElement("max_ea", data.max_ea);
-        if (data.max_sa !== undefined) updateElement("max_sa", data.max_sa);
-        if (data.max_ebm !== undefined) updateElement("max_ebm", data.max_ebm);
-
-        // ✅ อัปเดต START/STOP จาก `cmd`
-        if (topic === "DOAR" && data.cmd !== undefined && Array.isArray(data.cmd)) {
-            let cmdValue = parseInt(data.cmd[0], 10);
-            console.log("✅ CMD Value Received:", cmdValue);
-            if (!isNaN(cmdValue) && (cmdValue === 0 || cmdValue === 1)) {
-                updateStartStopUI(cmdValue);
-            }
-        }
-
-        // ✅ อัปเดต Auto/Manual จาก `A_M`
-        if (topic === "DOAR" && data.A_M !== undefined && Array.isArray(data.A_M)) {
-            let A_MValue = parseInt(data.A_M[0], 10);
-            console.log("✅ AUTO/MANUAL Value Received:", A_MValue);
-            if (!isNaN(A_MValue) && (A_MValue === 0 || A_MValue === 1)) {
-                updateAutoManualUI(A_MValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
-
-// ✅ โหลดค่า `commandData` จาก localStorage ถ้ามี
 let commandData = JSON.parse(localStorage.getItem("commandData")) || {
-    START: 0,
-    A_M: 0,
-    Wheel: 0,
-    LTG: 0,
-    EMC: 0,
-    Mode: 0,
-    set_sa: 0,
-    set_sa2: 0,
-    set_ea: 0,
-    SA_SP:0,
-    DPT_SP:0
+        START: 0,
+        A_M: 0,
+        Wheel: 0,
+        LTG: 0,
+        EMC: 0,
+        Mode: 0,
+        set_sa: 0,
+        set_sa2: 0,
+        set_ea: 0,
+        SA_SP: 0,
+        DPT_SP: 0,
+        Aqe: 0,
+        smoke: 0
 };
 
-// ✅ ฟังก์ชันบันทึกค่าไป localStorage ทุกครั้งที่มีการเปลี่ยนแปลง
-function saveCommandData() {
-    localStorage.setItem("commandData", JSON.stringify(commandData));
-}
+    function saveCommandData() {
+        localStorage.setItem("commandData", JSON.stringify(commandData));
+    }
 
+    window.addEventListener("beforeunload", saveCommandData);
+
+    mqttClient.on("connect", () => {
+        mqttClient.subscribe("DOAR");
+        mqttClient.subscribe("DOAR/command");
+    });
+
+    mqttClient.on("message", (topic, message) => {
+        try {
+            let data = JSON.parse(message.toString());
+
+            if (topic === "DOAR/command") {
+                Object.keys(data).forEach(key => {
+                    if (data[key] !== undefined && data[key] !== 0) {
+                        commandData[key] = data[key];
+                        updateElement(key, data[key]);
+                    }
+                });
+                saveCommandData();
+                updateStartStopUI(commandData.START);
+                updateAutoManualUI(commandData.A_M);
+                updateWheelUI(commandData.Wheel);
+                updateLTGUI(commandData.LTG);
+                updateEMCGUI(commandData.EMC);
+                updateModeUI(commandData.Mode);
+            }
+
+        } catch (error) {
+            console.error("Error parsing MQTT message:", error);
+        }
+    });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    Object.keys(commandData).forEach(key => updateElement(key, commandData[key]));
+    updateStartStopUI(commandData.START);
+    updateAutoManualUI(commandData.A_M);
+    updateWheelUI(commandData.Wheel);
+    updateLTGUI(commandData.LTG);
+    updateEMCGUI(commandData.EMC);
+    updateModeUI(commandData.Mode);
+  });
+
+  function updateElement(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.innerText = value;
+  } 
 
 function updateCommandAndSend(key, value) {
     commandData[key] = value; // อัปเดตค่าใน object
@@ -521,6 +529,8 @@ mqttClient.on("message", function (topic, message) {
             updateLTGUI(commandData.LTG);
             updateEMCGUI(commandData.EMC);
             updateModeUI(commandData.Mode);
+                updateAqeUI(commandData.Aqe);
+              updateSmokeUI(commandData.Smoke);
         }
     } catch (error) {
         console.error("❌ Error parsing MQTT message:", error);
@@ -544,7 +554,6 @@ mqttClient.on("message", function (topic, message) {
         console.error("❌ Error parsing MQTT message:", error);
     }
 });
-
 
 
 

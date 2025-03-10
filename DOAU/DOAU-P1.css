@@ -1,147 +1,778 @@
-/* รีเซ็ตสไตล์เบื้องต้น */
-* {
+/* ตั้งค่าพื้นฐาน */
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-/* Container สำหรับ BG และ overlay 
-   ใช้ aspect-ratio เพื่อคงสัดส่วน 16:9 */
-.BG {
-  position: relative;
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9; /* ถ้าเบราว์เซอร์เก่าไม่รองรับ ให้ใช้ padding-bottom trick */
-}
-
-/* รูปทั้งหมดใน .BG ให้ซ้อนกันเต็มพื้นที่ */
-.BG a img.bg-img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* เปลี่ยนเป็น cover หากต้องการให้เต็มพื้นที่แบบไม่เหลือขอบ */
+  overflow: hidden;
+}
+body {
+
+  font-family: "Roboto", serif;
+  font-weight: 550;
+  font-style: normal;
 }
 
-/* รูปพื้นหลัง (z-index ต่ำ) */
-.BG a.background img.bg-img {
-  z-index: 1;
+/* พื้นหลัง */
+.BG {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
-
-/* รูป overlay (z-index สูงกว่า BG) */
-.BG a.overlay img.bg-img {
-  z-index: 2;
+.BG a {
+  position: absolute;
+  display: flex;
 }
-
-/* ลิงก์กลับหน้าแรก (z-index สูงสุด) */
+.line{
+  position: absolute;
+  z-index: 210;
+}
+.st{
+  position: absolute;
+  z-index: 220;
+}
+.gif-ebm{
+  position: absolute;
+  z-index: 200;
+}
+.gif-ez{
+  position: absolute;
+  z-index: 200;
+}
+.gif-ft{
+  position: absolute;
+  z-index: 200;
+}
+.gif-uv{
+  position: absolute;
+  z-index: 200;
+}
+.gif-z{
+  position: absolute;
+  z-index: 200;
+}
+/* ลิงก์ที่ครอบรูปภาพ */
 .linkhome {
   position: absolute;
-  top: 2%;
-  left: 2%;
-  width: 8%;
-  height: 10%;
-  z-index: 10;
+  top: 10px;
+  left: 30px;
+  width: 480px;
+  height: 120px;
+  display: flex;
+  z-index: 9999; /* ให้อยู่เหนือรูปภาพ */
 }
-
-/* 
-  กรอบล่างสำหรับแสดงค่าตัวหนังสือ 
-  - ใช้ flex เพื่อเรียง sensor-box ต่อกัน
-  - ไม่ใช้ gap เพราะเราจะใช้ margin ใน sensor-box เพื่อกำหนดระยะห่างไม่เท่ากัน
-*/
-.bottom-status {
+.oa-t-container{
   position: absolute;
-  bottom: 2%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 1rem 2rem;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  z-index: 999;
+  text-align: center;
+  top: 221px;
+  left: 243px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
 }
-
-/* กล่องย่อยแต่ละตัว (sensor-box) */
-.sensor-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 60px;
-  margin: 0; /* ค่า default ไม่มี margin */
-}
-
-/* กำหนดระยะห่างไม่เท่ากันในแต่ละกล่อง */
-.oa-t-container {
-  margin-right: 2.5rem;
-}
-.oa-h-container {
-  margin-right: 5rem;
-}
-.coil-container {
-  margin-right: 8rem;
-}
-.airflow-container {
-  margin-right: 6rem;
-}
-.sa-t-container {
-  margin-right: 2rem;
-}
-.sa-h-container {
-  margin-right: 5rem;
-}
-/* หากต้องการให้กล่องสุดท้ายไม่มี margin-right */
-.sensor-box:last-child {
-  margin-right: 0;
-}
-
-/* ใช้ clamp() เพื่อให้ฟอนต์ย่อ-ขยายตามขนาดหน้าจอ */
-
-/* ส่วนที่เป็น label (ชื่อเซนเซอร์) */
-.sensor-label {
-  font-size: clamp(0.8rem, 2vw, 1rem);  /* ค่าต่ำสุด 0.8rem, ปรับตาม vw, ค่าสูงสุด 1rem */
-  color: #666;
-  font-weight: 600;
-}
-
-/* ส่วนที่เป็น value (ค่าจริง) */
-.sensor-value {
-  font-size: clamp(1rem, 3vw, 1.2rem);  /* ค่าต่ำสุด 1rem, ปรับตาม vw, ค่าสูงสุด 1.2rem */
-  color: #000;
+.oa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
   font-weight: bold;
+  font-size: 36px;
+}
+.oa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 438px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.oa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.coil-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.coil-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.airflow-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.airflow-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-t-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1482px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1677px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.filter-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 312px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.filter-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.valve-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.valve-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.dpt-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.dpt-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.smoke-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1482px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.smoke-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-st-container{
+  position: absolute;
+  text-align: center;
+  top: 400px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 450px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-st-container{
+  position: absolute;
+  text-align: center;
+  top: 696px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 745px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
 }
 
-/* ---------------------------------------
-   สไตล์เฉพาะของแต่ละค่า (ถ้าต้องการ)
----------------------------------------- */
-.oa-t-container .sensor-label {
-  color: #aa0000;
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+  /* ลิงก์ที่ครอบรูปภาพ */
+.linkhome {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 480px;
+  height: 120px;
+  display: flex;
+  z-index: 100; /* ให้อยู่เหนือรูปภาพ */
 }
-.oa-t-container .sensor-value {
-  color: #ff0000;
+.oa-t-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 243px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.oa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.oa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 438px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.oa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.coil-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.coil-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.airflow-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.airflow-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-t-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1482px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1677px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.filter-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 312px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.filter-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.valve-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.valve-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.dpt-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.dpt-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.smoke-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1482px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.smoke-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-st-container{
+  position: absolute;
+  text-align: center;
+  top: 400px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 450px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-st-container{
+  position: absolute;
+  text-align: center;
+  top: 696px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 745px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
 }
 
-.oa-h-container .sensor-label {
-  color: #0066cc;
-}
-.oa-h-container .sensor-value {
-  color: #00aaff;
-}
 
-.coil-container .sensor-label {
-  color: #008800;
-}
-.coil-container .sensor-value {
-  color: #00cc00;
-}
 
-/* Media Query สำหรับ iPad (ตัวอย่าง) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .linkhome {
-    width: 10%;
-    height: 12%;
-  }
-  /* สามารถปรับค่าเพิ่มเติมได้ตามต้องการ */
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  /* ลิงก์ที่ครอบรูปภาพ */
+.linkhome {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 480px;
+  height: 120px;
+  display: flex;
+  z-index: 100; /* ให้อยู่เหนือรูปภาพ */
+}
+.oa-t-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 243px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.oa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.oa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 438px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.oa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.coil-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.coil-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.airflow-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.airflow-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-t-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1482px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-t-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.sa-h-container{
+  position: absolute;
+  text-align: center;
+  top: 221px;
+  left: 1677px;
+  width: 195px;
+  height: 88px;
+  z-index: 30;
+}
+.sa-h-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.filter-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 312px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.filter-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.valve-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 702px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.valve-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.dpt-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1092.5px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.dpt-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.smoke-container{
+  position: absolute;
+  text-align: center;
+  top: 951px;
+  left: 1482px;
+  width: 320px;
+  height: 88px;
+  z-index: 30;
+}
+.smoke-value{
+  color: black;
+  padding-top: 22px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-st-container{
+  position: absolute;
+  text-align: center;
+  top: 400px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.za-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 450px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.za-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-st-container{
+  position: absolute;
+  text-align: center;
+  top: 696px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-st-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.ebm-speed-container{
+  position: absolute;
+  text-align: center;
+  top: 745px;
+  left: 1462px;
+  width: 188px;
+  height: 50px;
+  z-index: 230;
+}
+.ebm-speed-value{
+  color: rgb(255, 255, 255);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
 }

@@ -163,7 +163,7 @@ function updateAqeUI(value) {
 }
 
 function updateSmokeUI(value) {
-    document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/SM-ON.png" : "/image/DOAR/icon/smoke.png";
+    document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/N4-18.png" : "/image/DOAR/icon/smoke.png";
 }
 
 function updateEMCGUI(value) {
@@ -281,7 +281,7 @@ mqttClient.on("message", function (topic, message) {
     }
 
     function updateSmokeUI(value) {
-        document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/SM-ON.png" : "/image/DOAR/icon/smoke.png";
+        document.getElementById("SmokeImg").src = value === 1 ? "/image/DOAR/icon/N4-18.png" : "/image/DOAR/icon/smoke.png";
     }
 
     function updateEMCGUI(value) {
@@ -344,6 +344,12 @@ function updateFilter(FilterValue) {
             console.log(`📩 MQTT Data Received from ${topic}:`, data);
 
             if (topic === "DOAR") {
+                if (data.set_ea !== undefined) updateElement("set_ea", data.set_ea);
+                if (data.set_sa !== undefined) updateElement("set_sa", data.set_sa);
+                if (data.set_ebm !== undefined) updateElement("set_ebm", data.set_ebm);
+                if (data.max_ea !== undefined) updateElement("max_ea", data.max_ea);
+                if (data.max_sa !== undefined) updateElement("max_sa", data.max_sa);
+                if (data.max_ebm !== undefined) updateElement("max_ebm", data.max_ebm);
                 if (data.Smoke !== undefined) updateSmokeUI(parseInt(data.Smoke, 10));
                 if (data.Aqe !== undefined) updateAqeUI(parseInt(data.Aqe, 10));
                 if (data.EMC !== undefined) updateEMCGUI(parseInt(data.EMC, 10));
@@ -352,8 +358,26 @@ function updateFilter(FilterValue) {
                 if (data.PM25 !== undefined) updateElement("PM25", data.PM25);
                 if (data.AQI_AC !== undefined) updateElement("AQI_AC", data.AQI_AC);
                 if (data.Filter !== undefined) updateFilter(data.Filter);  // ✅ อัปเดตค่า Filter
+                if (data.wheelState !== undefined) updateWheelUI(data.wheelState);
 
+                 // ✅ อัปเดต START/STOP จาก `cmd`
+        if (topic === "DOAR" && data.cmd !== undefined && Array.isArray(data.cmd)) {
+            let cmdValue = parseInt(data.cmd[0], 10);
+            console.log("✅ CMD Value Received:", cmdValue);
+            if (!isNaN(cmdValue) && (cmdValue === 0 || cmdValue === 1)) {
+                updateStartStopUI(cmdValue);
             }
+        }
+
+        // ✅ อัปเดต Auto/Manual จาก `A_M`
+        if (topic === "DOAR" && data.A_M !== undefined && Array.isArray(data.A_M)) {
+            let A_MValue = parseInt(data.A_M[0], 10);
+            console.log("✅ AUTO/MANUAL Value Received:", A_MValue);
+            if (!isNaN(A_MValue) && (A_MValue === 0 || A_MValue === 1)) {
+                updateAutoManualUI(A_MValue);
+            }
+        }}
+
         } catch (error) {
             console.error("❌ Error parsing MQTT message:", error);
         }

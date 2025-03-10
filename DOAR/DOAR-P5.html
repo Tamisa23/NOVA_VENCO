@@ -131,10 +131,6 @@
       </div>
       
 </div>
-
-
-
-
 <script>
     // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
   const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
@@ -151,8 +147,8 @@
           if (!err) console.log("✅ Subscribed to DOAR");
       });
   
-      mqttClient.subscribe("DOAR/command/P5", function (err) {
-          if (!err) console.log("✅ Subscribed to DOAR/command/P5");
+      mqttClient.subscribe("DOAR/command", function (err) {
+          if (!err) console.log("✅ Subscribed to DOAR/command");
       });
   });
   
@@ -168,8 +164,9 @@
           if (data.set_ebm !== undefined) updateElement("set_ebm", data.set_ebm);
           if (data.max_ea !== undefined) updateElement("max_ea", data.max_ea);
           if (data.max_sa !== undefined) updateElement("max_sa", data.max_sa);
-          if (data.SA_SP !== undefined) updateElement("SA_SP", data.SA_SP);
-          if (data.DPT_SP !== undefined) updateElement("DPT_SP", data.DPT_SP)
+          if (data.max_ebm !== undefined) updateElement("max_ebm", data.max_ebm);
+          if (data.Smoke !== undefined) updateSmokeUI(parseInt(data.Smoke, 10));
+          if (data.Aqe !== undefined) updateAqeUI(parseInt(data.Aqe, 10));
   
           // ✅ อัปเดต START/STOP จาก `cmd`
           if (topic === "DOAR" && data.cmd !== undefined && Array.isArray(data.cmd)) {
@@ -206,7 +203,9 @@
       set_sa2: 0,
       set_ea: 0,
       SA_SP:0,
-      DPT_SP:0
+      DPT_SP:0,
+      Aqe:0,
+      smoke:0
   };
   
   // ✅ ฟังก์ชันบันทึกค่าไป localStorage ทุกครั้งที่มีการเปลี่ยนแปลง
@@ -221,14 +220,15 @@
       console.log(`🚀 ส่ง MQTT: ${key} = ${value}`, commandData);
       
       // ✅ ส่งค่าทั้งหมดไป MQTT
-      mqttClient.publish("DOAR/command/P5", JSON.stringify(commandData));
+      mqttClient.publish("DOAR/command", JSON.stringify(commandData));
   }
   
   
-  function setSaAndDptSp(type) {
+  function setSaEaValues(type) {
       let promptText = {
-          "SA_SP": "กรุณากรอกค่า SET SA_SP:",
-          "DPT_SP": "กรุณากรอกค่า SET DPT_SP:",
+          "set_sa": "กรุณากรอกค่า SET SA:",
+          "set_sa2": "กรุณากรอกค่า SET SA2:",
+          "set_ea": "กรุณากรอกค่า SET EA:"
       }[type];
   
       let newValue = prompt(promptText, commandData[type]);
@@ -494,7 +494,7 @@
           var data = JSON.parse(message.toString());
           console.log(`📩 Received MQTT Data from ${topic}:`, data);
   
-          if (topic === "DOAR/command/P5") {
+          if (topic === "DOAR/command") {
               // ✅ อัปเดตค่าทั้งหมดที่ได้รับจาก MQTT ไปที่ commandData
               Object.keys(data).forEach(key => {
                   if (commandData.hasOwnProperty(key)) {
@@ -516,6 +516,8 @@
               updateLTGUI(commandData.LTG);
               updateEMCGUI(commandData.EMC);
               updateModeUI(commandData.Mode);
+              updateAqeUI(commandData.Aqe);
+              updateSmokeUI(commandData.Smoke);
           }
       } catch (error) {
           console.error("❌ Error parsing MQTT message:", error);
@@ -539,7 +541,6 @@
           console.error("❌ Error parsing MQTT message:", error);
       }
   });
-  
   
   
   
