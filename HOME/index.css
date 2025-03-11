@@ -439,7 +439,7 @@ body {
 .center { top: 46vh; right: 14vw; }
 .top-right { top: 25vh; right: 9vw; }
 .bottom-left { bottom: 20vh; left: 9vw; }
-.bottom-right { bottom: 10vh; right: 9vw; }
+.bottom-right { bottom: 18vh; right: 9vw; }
 
 /* ✅ กล่องวิดีโอ */
 .video-section {
@@ -450,13 +450,13 @@ body {
 
 /* ✅ ตำแหน่งวิดีโอ */
 .video-top-left { top: 25vh; left: 5vw; }
-.video-top-right { top: 24vh; right: 5vw; }
-.video-bottom-right { bottom: 13vh; right: 4vw; }
+.video-top-right { top: 25vh; right: 5vw; }
+.video-bottom-right { bottom: 16vh; right: 4vw; }
 
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
     width: 10vw;
-    max-width: 100px;
+    max-width: 200px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s;
