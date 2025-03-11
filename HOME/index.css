@@ -188,7 +188,7 @@ body {
   }
   
 /* ✅ ตำแหน่งของไอคอนปกติ */
-.top-left { top: 25vh; left: 8vw; }
+.top-left { top: 25vh; left: 7vw; }
 .center { top: 48vh; right: 15vw; }
 .top-right { top: 25vh; right: 12vw; }
 .bottom-left { bottom: 20vh; left: 8vw; }
@@ -438,7 +438,7 @@ body {
 .top-left { top: 28vh; left: 10vw; }
 .center { top: 46vh; right: 14vw; }
 .top-right { top: 25vh; right: 9vw; }
-.bottom-left { bottom: 20vh; left: 9vw; }
+.bottom-left { bottom: 20vh; left: 13vw; }
 .bottom-right { bottom: 13vh; right: 9vw; }
 
 /* ✅ กล่องวิดีโอ */
