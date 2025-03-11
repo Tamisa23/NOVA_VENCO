@@ -30,7 +30,10 @@ let commandData = JSON.parse(localStorage.getItem("commandData")) || {
         SA_SP: 0,
         DPT_SP: 0,
         Aqe: 0,
-        smoke: 0
+        smoke: 0,
+        setmaxsa: 0,
+    setmaxebm: 0,
+    setmaxea: 0
 };
 
     function saveCommandData() {
@@ -57,6 +60,9 @@ let commandData = JSON.parse(localStorage.getItem("commandData")) || {
         updateModeUI(commandData.Mode);
         updateAqeUI(commandData.Aqe);
         updateSmokeUI(commandData.smoke);
+
+           // ✅ เพิ่มอัปเดต UI สำหรับ setmax
+    ["setmaxsa", "setmaxebm", "setmaxea"].forEach(key => updateElement(key, commandData[key]));
     });
     
   function updateElement(id, value) {
@@ -91,6 +97,25 @@ function setSaEaValues(type) {
         alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้อง!");
     }
 }
+function setMaxValue(type) {
+    let promptText = {
+        "setmaxsa": "กรุณากรอกค่า Max SA:",
+        "setmaxebm": "กรุณากรอกค่า Max EBM:",
+        "setmaxea": "กรุณากรอกค่า Max EA:"
+    }[type];
+
+    let newValue = prompt(promptText, commandData[type]);
+
+    if (newValue !== null && newValue.trim() !== "" && !isNaN(newValue)) {
+        newValue = parseFloat(newValue);
+        updateCommandAndSend(type, newValue);
+        updateElement(type, newValue);
+    } else {
+        alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้อง!");
+    }
+}
+
+
 
 
 function setSaAndDptSp(type) {
@@ -109,6 +134,24 @@ function setSaAndDptSp(type) {
         alert("⚠️ กรุณากรอกตัวเลขที่ถูกต้อง!");
     }
 }
+
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+
+        if (topic === "DOAR") {
+            ["setmaxsa", "setmaxebm", "setmaxea"].forEach(key => {
+                if (data[key] !== undefined) {
+                    commandData[key] = data[key];
+                    updateElement(key, data[key]);
+                    saveCommandData();
+                }
+            });
+        }
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
 
 
 // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม START/STOP ตามค่าจาก `cmd`
