@@ -192,7 +192,7 @@ body {
 .center { top: 48vh; right: 15vw; }
 .top-right { top: 25vh; right: 12vw; }
 .bottom-left { bottom: 20vh; left: 8vw; }
-.bottom-right { bottom: 12vh; right: 10vw; }
+.bottom-right { bottom: 10vh; right: 10vw; }
 
 /* ✅ กล่องวิดีโอ */
 .video-section {
@@ -204,7 +204,7 @@ body {
 /* ✅ ตำแหน่งวิดีโอ */
 .video-top-left { top: 18vh; left: 3vw; }
 .video-top-right { top: 18vh; right: 8vw; }
-.video-bottom-right { bottom: 8vh; right: 6vw; }
+.video-bottom-right { bottom: 5vh; right: 6vw; }
 
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
@@ -252,12 +252,12 @@ body {
     .top-left { top: 40vh; left: 10vw; }
     .top-right { top: 40vh; right: 10vw; }
     .bottom-left { bottom: 35vh; left: 10vw; }
-    .bottom-right { bottom: 32vh; right: 10vw; }
+    .bottom-right { bottom: 30vh; right: 10vw; }
 
     /* ปรับตำแหน่งวิดีโอ */
     .video-top-left { top: 38vh; left: 3vw; }
     .video-top-right { top: 38vh; right: 3vw; }
-    .video-bottom-right { bottom: 32vh; right: 3vw; }
+    .video-bottom-right { bottom: 29vh; right: 3vw; }
 }
 
 /* ✅ Responsive สำหรับมือถือแนวตั้ง */
@@ -439,7 +439,7 @@ body {
 .center { top: 46vh; right: 14vw; }
 .top-right { top: 25vh; right: 9vw; }
 .bottom-left { bottom: 20vh; left: 9vw; }
-.bottom-right { bottom: 15vh; right: 9vw; }
+.bottom-right { bottom: 13vh; right: 9vw; }
 
 /* ✅ กล่องวิดีโอ */
 .video-section {
@@ -451,7 +451,7 @@ body {
 /* ✅ ตำแหน่งวิดีโอ */
 .video-top-left { top: 25vh; left: 5vw; }
 .video-top-right { top: 25vh; right: 5vw; }
-.video-bottom-right { bottom: 16vh; right: 4vw; }
+.video-bottom-right { bottom: 12vh; right: 4vw; }
 
 /* ✅ กำหนดขนาดของไอคอน */
 .corner-link img {
