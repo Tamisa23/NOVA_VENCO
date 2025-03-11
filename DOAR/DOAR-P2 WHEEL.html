@@ -5,7 +5,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-    <script src="/DOAR/DOAR.js"></script>
     <meta charset="UTF-8"/>
     <meta name="viveport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
@@ -87,29 +86,21 @@
 }
 
   
-    
-    // ฟังก์ชันอัปเดต Wheel GIF
-function updateWheel(WheelValue) {
-    let imgWheelOn = document.getElementById("imgWheelOn");  // ใช้ ID ที่ถูกต้อง
-    let imgWheelOff = document.getElementById("imgWheelOff");
+function updateWheel(value) {
+    const imgWheelOn = document.getElementById("imgWheelOn");
 
-    if (!imgWheelOn || !imgWheelOff) {
-        console.warn("⚠️ Wheel images not found in the DOM");
+    if (!imgWheelOn) {
+        console.warn("⚠️ ไม่พบ imgWheelOn ใน DOM");
         return;
     }
 
-    // ซ่อนทุกภาพก่อน
-    imgWheelOn.style.display = "none";
-    imgWheelOff.style.display = "none";
-
-    // แสดงรูปภาพตามค่า WheelValue
-    if (WheelValue === 1) {
-        imgWheelOn.src = "/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif?random=" + new Date().getTime();  // รีเฟรช GIF
-        imgWheelOn.style.display = "block";  
+    if (parseInt(value, 10) === 1) {
+        imgWheelOn.style.display = "block"; // แสดง GIF
     } else {
-        imgWheelOff.style.display = "block";
+        imgWheelOn.style.display = "none";  // ซ่อน GIF
     }
 }
+
 
 
     
@@ -210,31 +201,6 @@ mqttClient.on("message", function (topic, message) {
     }
 });
 
-// ✅ อัปเดต Wheel และบันทึกค่า
-function updateWheel(WheelValue) {
-    let imgWheelOn = document.getElementById("imgWheelOn");
-    let imgWheelOff = document.getElementById("imgWheelOff");
-
-    if (!imgWheelOn || !imgWheelOff) {
-        console.warn("⚠️ Wheel images not found in the DOM");
-        return;
-    }
-
-    // ซ่อนทุกภาพก่อน
-    imgWheelOn.style.display = "none";
-    imgWheelOff.style.display = "none";
-
-    // แสดงรูปภาพตามค่า WheelValue
-    if (WheelValue === 1) {
-        imgWheelOn.src = "/image/DOAR/Wheel/GIF/GIF-WHEEL-P2.gif?random=" + new Date().getTime();
-        imgWheelOn.style.display = "block";
-    } else {
-        imgWheelOff.style.display = "block";
-    }
-
-    // ✅ บันทึกค่า Wheel ลง `localStorage`
-    saveToLocalStorage("Wheel", WheelValue);
-}
 
 // 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
 mqttClient.on("message", function (topic, message) {
@@ -248,6 +214,26 @@ mqttClient.on("message", function (topic, message) {
             updateWheel(WheelValue); // อัปเดต UI ตามค่าที่ได้รับ
         }
 
+    } catch (error) {
+        console.error("❌ Error parsing MQTT message:", error);
+    }
+});
+
+// ✅ รับค่าจาก MQTT และอัปเดตข้อมูล
+mqttClient.on("message", function (topic, message) {
+    try {
+        var data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
+
+        if (data.flow_ea !== undefined) updateElement("flow_ea", data.flow_ea);
+        if (data.flow_sa !== undefined) updateElement("flow_sa", data.flow_sa);
+        if (data.eff !== undefined) updateElement("eff", data.eff);
+
+         // อัปเดต Wheel ถ้ามีค่า Wheel
+         if (data.Wheel !== undefined) {
+            updateWheel(data.Wheel);
+        }
+     
     } catch (error) {
         console.error("❌ Error parsing MQTT message:", error);
     }

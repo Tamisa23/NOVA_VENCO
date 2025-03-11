@@ -135,23 +135,6 @@ function setSaAndDptSp(type) {
     }
 }
 
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-
-        if (topic === "DOAR") {
-            ["setmaxsa", "setmaxebm", "setmaxea"].forEach(key => {
-                if (data[key] !== undefined) {
-                    commandData[key] = data[key];
-                    updateElement(key, data[key]);
-                    saveCommandData();
-                }
-            });
-        }
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
 
 
 // 📌 ฟังก์ชันเปลี่ยนรูปภาพของปุ่ม START/STOP ตามค่าจาก `cmd`
@@ -217,25 +200,6 @@ function toggleWheel() {
     updateWheelUI(commandData.Wheel);
 }
 
-// 📌 รับค่า Wheel จาก MQTT และอัปเดต UI
-mqttClient.on("message", function (topic, message) {
-    try {
-        var data = JSON.parse(message.toString());
-        console.log(`📩 Received MQTT Data from ${topic}:`, data);
-
-        if (topic === "DOAR" && data.Wheel !== undefined && Array.isArray(data.Wheel)) {
-            let wheelValue = parseInt(data.Wheel[0], 10);
-            console.log("✅ Wheel Value Received:", wheelValue);
-            if (!isNaN(wheelValue) && (wheelValue === 0 || wheelValue === 1)) {
-                wheelState = wheelValue; // อัปเดตสถานะในตัวแปร
-                updateWheelUI(wheelValue);
-            }
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT message:", error);
-    }
-});
 
 
 function toggleStartStop(action) {
@@ -334,6 +298,21 @@ function toggleLTG() {
     updateCommandAndSend("LTG", commandData.LTG);
     updateLTGUI(commandData.LTG);
 }
+
+function updateAqeUI(value) {
+    const aqeImg = document.getElementById("AqeImg");
+    if (!aqeImg) {
+        console.error("⚠️ ไม่พบ AqeImg ใน DOM");
+        return;
+    }
+    aqeImg.src = value === 1 
+        ? "/image/DOAR/icon/AQE-ON.png" 
+        : "/image/DOAR/icon/ar.png";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateAqeUI(commandData.Aqe);
+});
 
 
 // 📌 รับค่า LTG จาก MQTT และอัปเดต UI
@@ -468,37 +447,74 @@ mqttClient.on("message", function (topic, message) {
     }
 });
 
-// ✅ รับค่าจาก MQTT และอัปเดต UI
 mqttClient.on("message", function (topic, message) {
     try {
-        let data = JSON.parse(message.toString());
+        const data = JSON.parse(message.toString());
         console.log(`📩 MQTT Data Received from ${topic}:`, data);
 
         if (topic === "DOAR") {
             if (data.Smoke !== undefined) {
-                localStorage.setItem("Smoke", data.Smoke);
-                updateSmokeUI(parseInt(data.Smoke, 10));
+                commandData.Smoke = parseInt(data.Smoke, 10);
+                updateSmokeUI(commandData.Smoke);
+                localStorage.setItem("Smoke", commandData.Smoke);
             }
+
             if (data.Aqe !== undefined) {
-                localStorage.setItem("Aqe", data.Aqe);
-                updateAqeUI(parseInt(data.Aqe, 10));
+                commandData.Aqe = parseInt(data.Aqe, 10);
+                updateAqeUI(commandData.Aqe);
+                localStorage.setItem("Aqe", commandData.Aqe);
             }
+
             if (data.EMC !== undefined) {
-                localStorage.setItem("EMC", data.EMC);
-                updateEMCGUI(parseInt(data.EMC, 10));
+                commandData.EMC = parseInt(data.EMC, 10);
+                updateEMCGUI(commandData.EMC);
+                localStorage.setItem("EMC", commandData.EMC);
             }
+
             if (data.Filter !== undefined) {
-                localStorage.setItem("Filter", data.Filter);
                 updateFilter(parseInt(data.Filter, 10));
             }
-            if (data.PM10 !== undefined) updateElement("PM10", data.PM10);
-            if (data.PM25 !== undefined) updateElement("PM25", data.PM25);
-            if (data.AQI_AC !== undefined) updateElement("AQI_AC", data.AQI_AC);
-}
+
+            if (data.Wheel !== undefined && Array.isArray(data.Wheel)) {
+                updateWheelUI(parseInt(data.Wheel[0], 10));
+            }
+
+            if (data.LTG !== undefined && Array.isArray(data.LTG)) {
+                updateLTGUI(parseInt(data.LTG[0], 10));
+            }
+
+            if (data.mode !== undefined && Array.isArray(data.mode)) {
+                updateModeUI(parseInt(data.mode[0], 10));
+            }
+
+            if (data.START !== undefined) updateStartStopUI(parseInt(data.START, 10));
+            if (data.A_M !== undefined) updateAutoManualUI(parseInt(data.A_M, 10));
+            
+            ["PM10", "PM25", "AQI_AC", "ra_h", "sa_t", "eff"].forEach(key => {
+                if (data[key] !== undefined) updateElement(key, data[key]);
+            });
+        }
+
+        if (topic === "DOAR/command") {
+            Object.assign(commandData, data);
+            saveCommandData();
+        }
+
     } catch (error) {
         console.error("❌ Error parsing MQTT message:", error);
     }
-    });
+});
+
+
+// ✅ DOM loaded
+document.addEventListener("DOMContentLoaded", () => {
+    commandData = JSON.parse(localStorage.getItem("commandData")) || commandData;
+
+    updateSmokeUI(commandData.Smoke);
+    updateAqeUI(commandData.Aqe);
+    updateEMCGUI(commandData.EMC);
+});
+
 
 
 mqttClient.on("message", function (topic, message) {

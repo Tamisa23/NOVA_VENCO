@@ -236,24 +236,28 @@ if (numericAQI === 1) {
 }
 }
 
-  // ฟังก์ชันอัปเดต Wheel GIF
-  function updateWheel(WheelValue) {
-      let imgWheelOn = document.getElementById("Wheel_On");
-      let imgWheelOff = document.getElementById("Wheel_Off");
+ // ฟังก์ชันอัปเดต Wheel GIF แบบสมบูรณ์
+function updateWheel(WheelValue) {
+    const imgWheelOn = document.getElementById("Wheel_On");
+    const imgWheelOff = document.getElementById("Wheel_Off");
 
-      if (!imgWheelOn || !imgWheelOff) return;
+    if (!imgWheelOn || !imgWheelOff) {
+        console.error("❌ Wheel_On หรือ Wheel_Off ไม่มีใน DOM");
+        return;
+    }
 
-      // ซ่อนทุกภาพก่อน
-      imgWheelOn.style.display = "none";
-      imgWheelOff.style.display = "none";
+    let numericWheelValue = parseInt(WheelValue, 10);
+    console.log("WheelValue Received:", numericWheelValue);
 
-      // แสดงรูปภาพตามค่า WheelValue
-      if (WheelValue === 1) {
-          imgWheelOn.style.display = "block";  
-      } else {
-          imgWheelOff.style.display = "block";
-      }
-  }
+    if (numericWheelValue === 1) {
+        imgWheelOn.style.display = "block";
+        imgWheelOff.style.display = "none";
+    } else {
+        imgWheelOn.style.display = "none";
+        imgWheelOff.style.display = "block";
+    }
+}
+
 
    // ฟังก์ชันอัปเดต Filter
    function updateFilter(FilterValue) {
