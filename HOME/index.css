@@ -244,7 +244,7 @@ body {
         max-width: 150px;
     }
     .video-link img {
-        width: 5vw;
+        width: 4vw;
         max-width: 100px;
     }
     
@@ -252,7 +252,7 @@ body {
     .top-left { top: 40vh; left: 10vw; }
     .top-right { top: 40vh; right: 10vw; }
     .bottom-left { bottom: 35vh; left: 10vw; }
-    .bottom-right { bottom: 35vh; right: 10vw; }
+    .bottom-right { bottom: 32vh; right: 10vw; }
 
     /* ปรับตำแหน่งวิดีโอ */
     .video-top-left { top: 38vh; left: 3vw; }
@@ -439,7 +439,7 @@ body {
 .center { top: 46vh; right: 14vw; }
 .top-right { top: 25vh; right: 9vw; }
 .bottom-left { bottom: 20vh; left: 9vw; }
-.bottom-right { bottom: 18vh; right: 9vw; }
+.bottom-right { bottom: 15vh; right: 9vw; }
 
 /* ✅ กล่องวิดีโอ */
 .video-section {
