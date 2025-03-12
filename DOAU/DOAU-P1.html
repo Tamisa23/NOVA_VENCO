@@ -37,25 +37,25 @@
     <a><img id="sa_gif" src="/image/DOAU/P1/GIF/GIF-Z-N4.gif"></a>
   </div>
   <div class="oa-t-container">
-  <div id="OA_Temp" class="oa-t-value">0.0</div>
+  <div id="OA_T" class="oa-t-value">0.0</div>
 </div>
 <div class="oa-h-container">
-  <div id="OA_Hum" class="oa-h-value">0.0</div>
+  <div id="OA_H" class="oa-h-value">0.0</div>
 </div>
 <div class="coil-container">
-  <div id="Lev_Coil_Temp" class="coil-value">0.0</div>
+  <div id="Lev_Coil_T" class="coil-value">0.0</div>
 </div>
 <div class="airflow-container">
   <div class="airflow-value">NORMAL</div>
 </div>
 <div class="sa-t-container">
-  <div id="SA_Temp" class="sa-t-value">0.0</div>
+  <div id="SA_T" class="sa-t-value">0.0</div>
 </div>
 <div class="sa-h-container">
-  <div id="SA_Hum"class="sa-h-value">0.0</div>
+  <div id="SA_H"class="sa-h-value">0.0</div>
 </div>
 <div class="filter-container">
-  <div class="filter-value">CLEAN</div>
+  <div class="filter-value">NORMAL</div>
 </div>
 <div class="valve-container">
   <div id="DXVALVE" class="valve-value">0.0</div>
@@ -64,19 +64,181 @@
   <div class="dpt-value">0.0</div>
 </div>
 <div class="smoke-container">
-  <div class="smoke-value">0.0</div>
+  <div class="smoke-value">NORMAL</div>
 </div>
 <div class="za-st-container">
   <div id="sa_st" class="za-st-value">OFF</div>
 </div>
 <div class="za-speed-container">
-  <div id="sa_ac" class="za-speed-value">0.0</div>
+  <div id="AC_SP_ZA" class="za-speed-value">0.0</div>
 </div>
 <div class="ebm-st-container">
   <div id="ebm_st" class="ebm-st-value">OFF</div>
 </div>
 <div class="ebm-speed-container">
-  <div id="ebm_ac" class="ebm-speed-value">0.0</div>
+  <div id="AC_SP_EBM" class="ebm-speed-value">0.0</div>
 </div>
 </body>
+
+<script>
+  // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
+    username: "Venco",
+    password: "12345678Venco",
+    rejectUnauthorized: false
+});
+
+// เมื่อเชื่อมต่อสำเร็จ
+mqttClient.on("connect", function () {
+    console.log("✅ MQTT Connected!");
+    mqttClient.subscribe("/edge/DOAU/+/rtg", function (err) {
+        if (!err) {
+            console.log("✅ Subscribed to RTG topic");
+        }
+    });
+});
+
+// ฟังก์ชันอัปเดต DOM
+function updateElement(id, value) {
+    let element = document.getElementById(id);
+    if (element && value !== undefined) {
+        element.innerText = parseFloat(value).toFixed(2);
+    } else {
+        console.warn(`⚠️ Element with ID '${id}' not found or value undefined`);
+    }
+}
+
+// ฟังก์ชันอัปเดตค่า Integer
+function updateIntegerElement(id, value) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.innerText = parseInt(value, 10);
+    }
+}
+
+// ฟังก์ชันอัปเดตสถานะ RUN/OFF
+function updateStatusElement(id, value) {
+    const el = document.getElementById(id);
+    if (el) {
+        const numericVal = parseFloat(value);
+        el.textContent = numericValue > 10 ? "RUN" : "OFF";
+    } else {
+        console.warn(`⚠️ ไม่พบ ${id} ใน DOM`);
+    }
+}
+
+// ฟังก์ชันอัปเดต GIF พัดลม
+function updateFanGif(id, value) {
+    const gif = document.getElementById(id);
+    if (gif) {
+        gif.style.display = parseFloat(value) > 10 ? "block" : "none";
+    }
+}
+
+// เมื่อได้รับข้อมูลจาก MQTT
+mqttClient.on("message", (topic, message) => {
+    try {
+        const data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
+
+        if (data.devs && Array.isArray(data.devs)) {
+            data.devs.forEach(dev => {
+                if (dev.d && Array.isArray(dev.d)) {
+                    dev.d.forEach(item => {
+                        if (item.m && item.v !== undefined) {
+                            updateElement(item.m, item.v);  // ใช้ item.m เป็น id และ item.v เป็นค่า
+                        }
+                    });
+                }
+            });
+        }
+
+        // ✅ ตัวอย่างข้อมูลที่คุณส่งมา ใช้เคสนี้หลักๆ:
+        if (data.de && Array.isArray(data.de)) {
+            data.de.forEach(item => {
+                updateElement(item.m, item.value || item.v);
+            });
+        }
+
+        // ข้อมูลล่าสุดที่มี `d` และ `m`
+        if (data.dev && Array.isArray(data.dev)) {
+            data.dev.forEach(device => {
+                device.d.forEach(dItem => {
+                    updateElement(d.m, d.v);
+                });
+            });
+        }
+
+        // ตัวอย่างสำหรับข้อมูลที่มีการส่งเข้ามา
+        if (data.RA_H !== undefined) updateElement("RA_H", data.RA_H);
+        if (data.Lev_Coil_T !== undefined) updateElement("Lev_Coil_T", data.Lev_Coil_T);
+        if (data.SA_T !== undefined) updateElement("SA_T", data.SA_T);
+        if (data.SA_H !== undefined) updateElement("SA_H", data.SA_H);
+        if (data.OA_H !== undefined) updateElement("OA_H", data.OA_H);
+        if (data.OA_T !== undefined) updateElement("OA_T", data.OA_T);
+        if (data.DXVALVE !== undefined) updateElement("DXVALVE", data.DXVALVE);
+        if (data.AC_SP_ZA !== undefined) updateElement("RAC_SP_ZA", data.AC_SP_ZA);
+        if (data.AC_SP_EBM !== undefined) updateElement("AC_SP_EBM", data.AC_SP_EBM/65535);
+
+
+        // อัปเดต GIF Wheel
+        if (data.Wheel !== undefined) {
+            updateWheel(data.Wheel);
+        }
+
+        // อัปเดต EMC UI
+        if (data.EMC !== undefined) {
+            updateEMCGUI(data.EMC);
+        }
+
+    } catch (error) {
+        console.error("❌ Error parsing MQTT data:", error);
+    }
+});
+function updateElement(id, value) {
+    const el = document.getElementById(id);
+    if (el && value !== undefined) {
+        el.innerText = parseFloat(value).toFixed(2);
+    } else {
+        console.warn(`⚠️ Element with ID '${id}' not found or value undefined`);
+    }
+}
+
+mqttClient.on("message", (topic, message) => {
+    try {
+        const data = JSON.parse(message.toString());
+        console.log("📩 Received MQTT Data:", data);
+
+        if (data.devs && Array.isArray(data.devs)) {
+            data.devs.forEach(dev => {
+                dev.d.forEach(item => {
+                    if (item.m && item.v !== undefined) {
+                        let val = item.m === "AC_SP_EBM" ? item.v / 65535 : item.v;
+                        updateElement(item.m, val);
+                        
+                        // ✅ อัปเดตสถานะ RUN/OFF ตาม AC_SP_ZA และ AC_SP_EBM
+                        if (item.m === "AC_SP_ZA") updateStatusElement("sa_st", val);
+                        if (item.m === "AC_SP_EBM") updateStatusElement("ebm_st", val);
+                    }
+                });
+            });
+        }
+    } catch (error) {
+        console.error("❌ Error parsing MQTT data:", error);
+    }
+});
+
+
+
+// MQTT Error Handling
+mqttClient.on("error", (error) => {
+    console.error("❌ MQTT Error:", error);
+});
+
+mqttClient.on("close", function () {
+    console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+});
+
+
+</script>
 </html>
