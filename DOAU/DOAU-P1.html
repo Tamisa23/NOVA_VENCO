@@ -28,13 +28,13 @@
     <a><img src="/image/DOAU/P1/ST-BG2.png"></a>
   </div>
   <div class="gif-ebm">
-    <a><img id="ebm_gif" src="/image/DOAU/P1/GIF/GIF-EBM-N4.gif"></a>
+    <a><img id="ebm_gif" src="/image/DOAU/P1/GIF/GIF-EBM-N4.gif" style="display:none;"></a>
   </div>
   <div class="gif-uv">
-    <a><img id="UV_ON" src="/image/DOAU/P1/GIF/GIF-UV-N4.gif"></a>
+    <a><img id="UV_ON" src="/image/DOAU/P1/GIF/GIF-UV-N4.gif" style="display:none;"></a>
   </div>
   <div class="gif-z">
-    <a><img id="sa_gif" src="/image/DOAU/P1/GIF/GIF-Z-N4.gif"></a>
+    <a><img id="sa_gif" src="/image/DOAU/P1/GIF/GIF-Z-N4.gif" style="display:none;"></a>
   </div>
   <div class="oa-t-container">
   <div id="OA_T" class="oa-t-value">0.0</div>
@@ -81,164 +81,101 @@
 </body>
 
 <script>
-  // เชื่อมต่อ MQTT Broker ผ่าน WebSockets
+
 const mqttClient = mqtt.connect("wss://2217876f209d4a73af014e541592ee16.s1.eu.hivemq.cloud:8884/mqtt", {
-    username: "Venco",
-    password: "12345678Venco",
-    rejectUnauthorized: false
+  username: "Venco",
+  password: "12345678Venco",
+  rejectUnauthorized: false
 });
 
-// เมื่อเชื่อมต่อสำเร็จ
 mqttClient.on("connect", function () {
-    console.log("✅ MQTT Connected!");
-    mqttClient.subscribe("/edge/DOAU/+/rtg", function (err) {
-        if (!err) {
-            console.log("✅ Subscribed to RTG topic");
-        }
-    });
+  console.log("✅ MQTT Connected!");
+  mqttClient.subscribe("/edge/DOAU/+/rtg", function (err) {
+      if (!err) console.log("✅ Subscribed to RTG topic");
+  });
 });
 
-// ฟังก์ชันอัปเดต DOM
+// อัปเดตค่าตัวเลข
 function updateElement(id, value) {
-    let element = document.getElementById(id);
-    if (element && value !== undefined) {
-        element.innerText = parseFloat(value).toFixed(2);
-    } else {
-        console.warn(`⚠️ Element with ID '${id}' not found or value undefined`);
-    }
+  const el = document.getElementById(id);
+  if (el) el.innerText = parseFloat(value).toFixed(2);
 }
 
-// ฟังก์ชันอัปเดตค่า Integer
-function updateIntegerElement(id, value) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.innerText = parseInt(value, 10);
-    }
-}
-
-// ฟังก์ชันอัปเดตสถานะ RUN/OFF
+// อัปเดตสถานะ RUN/OFF
 function updateStatusElement(id, value) {
-    const el = document.getElementById(id);
-    if (el) {
-        const numericVal = parseFloat(value);
-        el.textContent = numericValue > 10 ? "RUN" : "OFF";
-    } else {
-        console.warn(`⚠️ ไม่พบ ${id} ใน DOM`);
-    }
+  const el = document.getElementById(id);
+  if (el) {
+      el.textContent = parseFloat(value) > 10 ? "RUN" : "OFF";
+  } else {
+      console.warn(`⚠️ ไม่พบ ${id} ใน DOM`);
+  }
 }
 
-// ฟังก์ชันอัปเดต GIF พัดลม
-function updateFanGif(id, value) {
-    const gif = document.getElementById(id);
-    if (gif) {
-        gif.style.display = parseFloat(value) > 10 ? "block" : "none";
-    }
+// ฟังก์ชันแสดงหรือซ่อน GIF พัดลม
+function updateFanGIF(id, value) {
+  const gif = document.getElementById(id);
+  if (gif) {
+      gif.style.display = parseFloat(value) > 10 ? "block" : "none";
+  }
 }
 
-// เมื่อได้รับข้อมูลจาก MQTT
+// รับข้อมูล MQTT และอัปเดต UI
 mqttClient.on("message", (topic, message) => {
-    try {
-        const data = JSON.parse(message.toString());
-        console.log("📩 Received MQTT Data:", data);
+  try {
+      const data = JSON.parse(message.toString());
+      console.log("📩 Received MQTT Data:", data);
 
-        if (data.devs && Array.isArray(data.devs)) {
-            data.devs.forEach(dev => {
-                if (dev.d && Array.isArray(dev.d)) {
-                    dev.d.forEach(item => {
-                        if (item.m && item.v !== undefined) {
-                            updateElement(item.m, item.v);  // ใช้ item.m เป็น id และ item.v เป็นค่า
-                        }
-                    });
-                }
-            });
-        }
+      if (data.devs && Array.isArray(data.devs)) {
+          data.devs.forEach(dev => {
+              dev.d.forEach(item => {
+                  const id = item.m;
+                  let val = parseFloat(item.v);
 
-        // ✅ ตัวอย่างข้อมูลที่คุณส่งมา ใช้เคสนี้หลักๆ:
-        if (data.de && Array.isArray(data.de)) {
-            data.de.forEach(item => {
-                updateElement(item.m, item.value || item.v);
-            });
-        }
+                  // หารด้วย 65535 เฉพาะ AC_SP_EBM และ AC_SP_ZA
+                  if (id === "AC_SP_EBM") {
+                      val = val / 65535 ; // แปลงเป็นเปอร์เซ็นต์
+                  }
 
-        // ข้อมูลล่าสุดที่มี `d` และ `m`
-        if (data.dev && Array.isArray(data.dev)) {
-            data.dev.forEach(device => {
-                device.d.forEach(dItem => {
-                    updateElement(d.m, d.v);
-                });
-            });
-        }
+                  updateElement(idMapper(id), val);
 
-        // ตัวอย่างสำหรับข้อมูลที่มีการส่งเข้ามา
-        if (data.RA_H !== undefined) updateElement("RA_H", data.RA_H);
-        if (data.Lev_Coil_T !== undefined) updateElement("Lev_Coil_T", data.Lev_Coil_T);
-        if (data.SA_T !== undefined) updateElement("SA_T", data.SA_T);
-        if (data.SA_H !== undefined) updateElement("SA_H", data.SA_H);
-        if (data.OA_H !== undefined) updateElement("OA_H", data.OA_H);
-        if (data.OA_T !== undefined) updateElement("OA_T", data.OA_T);
-        if (data.DXVALVE !== undefined) updateElement("DXVALVE", data.DXVALVE);
-        if (data.AC_SP_ZA !== undefined) updateElement("RAC_SP_ZA", data.AC_SP_ZA);
-        if (data.AC_SP_EBM !== undefined) updateElement("AC_SP_EBM", data.AC_SP_EBM/65535);
+                  // ✅ อัปเดตสถานะ RUN/OFF และ GIF ตามค่า AC_SP_ZA และ AC_SP_EBM
+                  if (id === "AC_SP_ZA") {
+                      updateStatusElement("sa_st", val);
+                      updateFanGIF("sa_gif", val);
+                  }
 
-
-        // อัปเดต GIF Wheel
-        if (data.Wheel !== undefined) {
-            updateWheel(data.Wheel);
-        }
-
-        // อัปเดต EMC UI
-        if (data.EMC !== undefined) {
-            updateEMCGUI(data.EMC);
-        }
-
-    } catch (error) {
-        console.error("❌ Error parsing MQTT data:", error);
-    }
+                  if (id === "AC_SP_EBM") {
+                      updateStatusElement("ebm_st", val);
+                      updateFanGIF("ebm_gif", val);
+                  }
+              });
+          });
+      }
+  } catch (error) {
+      console.error("❌ Error parsing MQTT data:", error);
+  }
 });
+
+
+// ฟังก์ชันอัปเดต DOM แบบมาตรฐาน
 function updateElement(id, value) {
-    const el = document.getElementById(id);
-    if (el && value !== undefined) {
-        el.innerText = parseFloat(value).toFixed(2);
-    } else {
-        console.warn(`⚠️ Element with ID '${id}' not found or value undefined`);
-    }
+  const el = document.getElementById(id);
+  if (el && value !== undefined) {
+      el.innerText = parseFloat(value).toFixed(2);
+  } else {
+      console.warn(`⚠️ Element with ID '${id}' not found or value undefined`);
+  }
 }
-
-mqttClient.on("message", (topic, message) => {
-    try {
-        const data = JSON.parse(message.toString());
-        console.log("📩 Received MQTT Data:", data);
-
-        if (data.devs && Array.isArray(data.devs)) {
-            data.devs.forEach(dev => {
-                dev.d.forEach(item => {
-                    if (item.m && item.v !== undefined) {
-                        let val = item.m === "AC_SP_EBM" ? item.v / 65535 : item.v;
-                        updateElement(item.m, val);
-                        
-                        // ✅ อัปเดตสถานะ RUN/OFF ตาม AC_SP_ZA และ AC_SP_EBM
-                        if (item.m === "AC_SP_ZA") updateStatusElement("sa_st", val);
-                        if (item.m === "AC_SP_EBM") updateStatusElement("ebm_st", val);
-                    }
-                });
-            });
-        }
-    } catch (error) {
-        console.error("❌ Error parsing MQTT data:", error);
-    }
-});
-
-
 
 // MQTT Error Handling
 mqttClient.on("error", (error) => {
-    console.error("❌ MQTT Error:", error);
+  console.error("❌ MQTT Error:", error);
 });
 
-mqttClient.on("close", function () {
-    console.warn("⚠️ MQTT Disconnected! Reconnecting...");
+mqttClient.on("close", () => {
+  console.warn("⚠️ MQTT Disconnected! Reconnecting...");
 });
-
-
+  
 </script>
+</body>
 </html>
